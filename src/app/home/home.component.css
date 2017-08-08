@@ -1,0 +1,91 @@
+button {
+  outline: none;
+  cursor: pointer;
+}
+
+li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+  list-style: none;
+}
+
+@media screen and (min-width: 800px) {
+  .wrapLeftMenu {
+    display: block;
+  }
+}
+
+.activeli {
+  border-radius: 4px;
+  background-color: rgb(241, 241, 241);
+}
+
+.bgSite {
+  width: 100%;
+  height: 100%;
+  background: #f1f1f1;
+}
+
+.leftMenu {
+  margin: 0 10px;
+}
+
+.logoSite {
+  text-align: center;
+  margin: 60px 0;
+}
+
+.leftMenu a {
+  font-size: 16px;
+  color: #000;
+}
+
+.leftMenu li {
+  padding: 15px 0;
+}
+
+.leftMenu li {
+  padding: 15px 0;
+}
+
+.leftMenu img {
+  margin: 0 10px;
+  padding: 0 12px;
+  vertical-align: bottom;
+}
+
+
+
+.wrapLeftMenu {
+  width: 290px;
+  height: 100%;
+  float: left;
+  overflow-x: auto;
+  background: #fff;
+  position: fixed;
+  /*display: none;*/
+}
+
+@media screen and (min-width: 800px) {
+  .log-outbtn {
+    width: 100px;
+    margin: 0 auto;
+    padding: 12px 0;
+    border: 1px solid rgb(229, 229, 229);
+    background-color: rgb(255, 255, 255);
+  }
+}
+
+  .log-outbtn {
+    width: 100%;
+    color: #000;
+    border: none;
+    display: block;
+    padding: 18px 0;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 3px;
+    background: #e5e5e5;
+  }
+
