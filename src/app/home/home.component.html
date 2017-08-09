@@ -1,30 +1,22 @@
-<div class="bgSite">
-  <div class="wrapperSite clearfix">
+<!--Content-->
+<div class="content-wrapper">
+  <div class="headTitle">
+    <img class="logo" src="../../assets/img/logo.svg">
+  </div>
 
-    <!--Navigation menu-->
-    <div class="wrapLeftMenu">
-      <div class="logoSite">
-        <a href=""><img src="../../assets/img/logoSite.png" alt="Сервис"></a>
-      </div>
-      <div class="leftMenu">
-        <ul>
-          <li class="mainli getSerivices activeli"><a href="#"><img class="bottomIconHome"
-                                                                    src="../../assets/img/home-icon-active.svg" alt="">Главная</a>
-          </li>
-          <li class="mainli showOrders"><a href="#"><img class="bottomIconOrders" src="../../assets/img/orders_icon.svg" alt="">Мои
-            Заказы</a></li>
-          <li class="mainli showProfile"><a href="#"><img class="bottomIconProfile" src="../../assets/img/profile-icon.svg" alt="">Мой
-            профиль</a></li>
-          <li><a href="#" onclick="jivo_api.open();"><img src="../../assets/img/support-icon.svg" alt="">Онлайн-поддержка</a></li>
-        </ul>
-      </div>
-      <div class="log-out">
-        <a href="#">
-          <button class="log-outbtn" type="submit">Войти</button>
-        </a>
-      </div>
+  <!--Service list-->
+  <div class="service-list">
+    <div class="service" (click)="onClick()">
+      <img class="service-img" src="../../assets/img/clearning.png">
+      <p class="service-title">Уборка</p>
     </div>
-
-
+    <div class="service">
+      <img class="service-img" src="../../assets/img/plumbing.png">
+      <p class="service-title">Сантехника</p>
+    </div>
+    <div class="service">
+      <img class="service-img" src="../../assets/img/antenna.png">
+      <p class="service-title">Электрика</p>
+    </div>
   </div>
 </div>

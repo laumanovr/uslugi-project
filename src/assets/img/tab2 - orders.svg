@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="213 603 24 24">
+  <defs>
+    <style>
+      .cls-1 {
+        clip-path: url(#clip-path);
+      }
+
+      .cls-2 {
+        fill: #d3d3d3;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_6" data-name="Rectangle 6" width="24" height="24" transform="translate(90)"/>
+    </clipPath>
+  </defs>
+  <g id="tab2_-_orders" data-name="tab2 - orders" transform="translate(123 603)">
+    <g id="Group_4" data-name="Group 4" class="cls-1">
+      <path id="Path_3" data-name="Path 3" class="cls-2" d="M108.1,4.2H95.9a1.685,1.685,0,0,0-1.7,1.7V18a1.685,1.685,0,0,0,1.7,1.7H108a1.685,1.685,0,0,0,1.7-1.7V5.9a1.6,1.6,0,0,0-1.6-1.7ZM99.4,16.3H97.7V14.6h1.7Zm0-3.4H97.7V11.2h1.7Zm0-3.5H97.7V7.7h1.7Zm6.9,6.9h-6.1V14.6h6.1Zm0-3.4h-6.1V11.2h6.1Zm0-3.5h-6.1V7.7h6.1Zm0,0"/>
+    </g>
+  </g>
+</svg>

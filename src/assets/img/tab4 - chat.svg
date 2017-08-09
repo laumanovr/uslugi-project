@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="123 603 24 24">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        clip-path: url(#clip-path);
+      }
+
+      .cls-3 {
+        fill: #d3d3d3;
+        fill-rule: evenodd;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_8" data-name="Rectangle 8" class="cls-1" width="24" height="24" transform="translate(302 692)"/>
+    </clipPath>
+  </defs>
+  <g id="tab4_-_chat" data-name="tab4 - chat" class="cls-2" transform="translate(-179 -89)">
+    <path id="chat-icon" class="cls-3" d="M314.253,1345.79a8.5,8.5,0,0,0-7.461,12.57.781.781,0,0,1,.074.556l-.853,3.515,3.023-1.04a.78.78,0,0,1,.671.072,8.5,8.5,0,1,0,4.546-15.672Zm2.927,10.409h-6.186a.775.775,0,1,1,0-1.551h6.186a.776.776,0,0,1,0,1.551Zm0-2.224h-6.186a.776.776,0,1,1,0-1.551h6.186a.776.776,0,0,1,0,1.551Z" transform="translate(0.247 -649.79)"/>
+  </g>
+</svg>

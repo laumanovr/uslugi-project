@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {AppRouting} from './app.routes';
 import { HomeComponent } from './home/home.component';
+import { ChooseTypeComponent } from './choose-type/choose-type.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    ChooseTypeComponent
   ],
   imports: [
     AppRouting,
