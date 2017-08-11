@@ -69,7 +69,6 @@ li {
 
 .wrapLeftMenu {
   width: 290px;
-  height: 100%;
   float: left;
   overflow-x: auto;
   background: #fff;
@@ -80,7 +79,7 @@ li {
   flex-direction: row;
   max-width: 1190px;
   margin-bottom: 20px;
-  height: 100%;
+  /*height: 100%;*/
   margin: 0 auto;
 }
 

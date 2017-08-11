@@ -1,0 +1,181 @@
+.cl-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.cl-head {
+  width: 100%;
+  height: 24px;
+  background: #1c7fce;
+  border: none;
+  outline: none;
+}
+
+.cl-headTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 66px;
+  background: #2196f3;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  border: none;
+  outline: none;
+}
+
+.cl-head-text {
+  width: 90%;
+  text-align: center;
+}
+
+.cl-sort {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  margin-top: 100px;
+}
+
+.cl-sort-city {
+  width: 20%;
+  height: 40px;
+  background-color: white;
+  text-align: left;
+  padding-left: 20px;
+  margin: 20px;
+  line-height: 40px;
+  border: 2px #646464 !important;
+  border-radius: 5px;
+}
+
+.cl-contractor {
+  display: block;
+}
+
+.cl {
+  background-color: white;
+  width: 40%;
+  border-radius: 5px;
+  margin: 20px;
+}
+
+.cl-name {
+  flex-direction: column;
+  margin: 10px;
+}
+
+.cl-name-prof {
+  font-size: 12px;
+  color: #7E7E7E;
+}
+
+.cl-contractor-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  width: 100%;
+}
+
+.cl-contractor-img {
+  margin: 20px;
+}
+
+.cl-con-left {
+  width: 50%;
+  margin-left: 10px;
+  font-size: 14px;
+  color: #7E7E7E;
+}
+
+.cl-con-right {
+  width: 50%;
+  font-size: 14px;
+
+}
+
+.cl-con-com {
+  font-size: 13px;
+  color: #7E7E7E;
+}
+
+.cl-con-1 {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+}
+
+.cl-con-2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0 10px;
+}
+
+.cl-call-btn {
+  border-width: 0;
+  border-style: none;
+  border-radius: 5px;
+  background-color: #FFC107;
+  height: 42px;
+  width: 45%;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  margin: 20px 10px;
+}
+
+.cl-info-btn {
+  border-width: 0;
+  border-style: none;
+  border-radius: 5px;
+  background-color: #F1F1F1;
+  height: 42px;
+  width: 45%;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  margin: 20px 10px;
+}
+
+.cl-main {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+}
+
+.material-icons {
+  color: #2196F3;
+}
+
+.mi-2 {
+  color: white;
+}
+
+.title {
+  position: fixed;
+  width: 100%;
+}
+
+/*Responsive styles*/
+@media screen and (max-width: 500px) {
+  .cl-main {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+  }
+
+  .cl {
+    width: 90%;
+  }
+
+  .cl-sort-city {
+    width: 40%;
+  }
+}

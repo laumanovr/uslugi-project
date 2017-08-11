@@ -1,11 +1,11 @@
 /*====================================================================================================================*/
 /*Content*/
-.content-wrapper {
+.contacts-content-wrapper {
   width: 100%;
   margin-left: 10px;
 }
 
-.headTitle {
+.contacts-headTitle {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -57,27 +57,20 @@
 }
 
 @media screen and (max-width: 800px) {
-  .content-wrapper {
+  .contacts-content-wrapper {
     width: 100%;
     margin: 0;
+    margin-bottom: 60px;
   }
 
   .service {
     margin-bottom: 10px;
-  }
-
-  .wrapLeftMenu {
-    display: none;
   }
 }
 
 @media screen and (min-width: 800px) {
   .bottom-menu {
     display: none;
-  }
-
-  .wrapLeftMenu {
-    display: block;
   }
 
   .wrapperSite {
