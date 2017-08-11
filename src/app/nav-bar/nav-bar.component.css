@@ -1,0 +1,113 @@
+/*====================================================================================================================*/
+/*Left navigation menu*/
+button {
+  outline: none;
+  cursor: pointer;
+}
+
+li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+  list-style: none;
+}
+
+.activeli {
+  border-radius: 4px;
+  background-color: rgb(241, 241, 241);
+}
+
+.accept, .request, .call-customer, .started, .finished, .log-out, .ellowBtn {
+  padding: 19px 14px;
+}
+
+.leftMenu {
+  margin: 0 10px;
+}
+
+.logoSite {
+  text-align: center;
+  padding: 60px 0;
+}
+
+.leftMenu a {
+  font-size: 16px;
+  color: #000;
+}
+
+.leftMenu li {
+  padding: 15px 0;
+}
+
+.leftMenu li {
+  padding: 15px 0;
+}
+
+.leftMenu img {
+  margin: 0 10px;
+  padding: 0 12px;
+  vertical-align: bottom;
+}
+
+.log-outbtn {
+  width: 100%;
+  color: #000;
+  border: none;
+  display: block;
+  padding: 18px 0;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 3px;
+  background: #e5e5e5;
+}
+
+.wrapLeftMenu {
+  width: 290px;
+  height: 100vh;
+  background: #fff;
+}
+
+/*====================================================================================================================*/
+/*Bottom navigation menu*/
+.bottom-menu {
+  width: 100%;
+  height: 48px;
+  background: #fff;
+  position: fixed;
+  bottom: -4px;
+  box-shadow: 0px 0px 4.95px 0.05px rgba(0, 1, 2, 0.15);
+}
+
+.barBtn {
+  width: 25%;
+  height: 100%;
+  float: left;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.bottom-icon {
+  width: 18px;
+  padding-top: 14px;
+}
+
+/*Responsive styles*/
+@media screen and (max-width: 800px) {
+  .wrapLeftMenu {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .bottom-menu {
+    display: none;
+  }
+
+  .wrapLeftMenu {
+    display: block;
+  }
+
+  .wrapperSite {
+    padding: 0 5px;
+  }
+}

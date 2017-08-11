@@ -1,11 +1,13 @@
 /*====================================================================================================================*/
 /*Content*/
-.contacts-content-wrapper {
+.home-wrapper {
+  position: relative;
   width: 100%;
-  margin-left: 10px;
+  height: 100vh;
+  background: #f1f1f1;
 }
 
-.contacts-headTitle {
+.home-headTitle {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -57,7 +59,7 @@
 }
 
 @media screen and (max-width: 800px) {
-  .contacts-content-wrapper {
+  .home-wrapper {
     width: 100%;
     margin: 0;
     margin-bottom: 60px;

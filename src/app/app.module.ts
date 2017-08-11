@@ -10,6 +10,7 @@ import { ContactsComponent } from './master/contacts/contacts.component';
 import { CodeComponent } from './master/code/code.component';
 import { ContractorComponent } from './contractor/contractor.component';
 import { ContractorListComponent } from './contractor/contractor-list/contractor-list.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ContractorListComponent } from './contractor/contractor-list/contractor
     ContactsComponent,
     CodeComponent,
     ContractorComponent,
-    ContractorListComponent
+    ContractorListComponent,
+    NavBarComponent
   ],
   imports: [
     AppRouting,

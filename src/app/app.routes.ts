@@ -8,8 +8,7 @@ import {ContractorComponent} from './contractor/contractor.component';
 import {ContractorListComponent} from './contractor/contractor-list/contractor-list.component';
 
 const appRoutes: Routes = [
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'home', component: HomeComponent},
+  {path: '', component: HomeComponent},
   {path: 'choose', component: ChooseTypeComponent},
   {
     path: 'contractor',
