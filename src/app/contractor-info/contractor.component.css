@@ -1,4 +1,6 @@
 .content {
+  display: flex;
+  flex-direction: row;
   background-color: white;
   margin: 20px;
 }
@@ -6,7 +8,7 @@
 .contractor-name {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   width: 100%;
 }
@@ -27,13 +29,16 @@
 
 .title {
   font-weight: bold;
-  margin-left: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .text {
   font-size: 14px;
   margin-left: 10px;
+}
+
+.text-1 {
+  font-size: 14px;
 }
 
 .material-icons {
@@ -56,10 +61,7 @@
 }
 
 .m {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 40px 0;
+  margin: 40px 20px;
 }
 
 .photo-gallery {
@@ -68,6 +70,52 @@
   flex-wrap: wrap;
 }
 
-.row {
-  flex-wrap: wrap;
+.reviews {
+  width: 50%;
+  margin: 20px;
+  background-color: white;
+}
+
+.review {
+  border: 1px #E5E5E5 solid;
+  border-radius: 5px;
+}
+
+.review-title {
+  font-weight: bold;
+}
+
+.review-date {
+  font-size: 12px;
+  color: #9F9F9F;
+}
+
+.review-descrip {
+  margin-left: 10px;
+}
+
+.mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFC107;
+  border: 1px #FFC107 solid;
+  border-radius: 5px;
+  width: 35px;
+  height: 35px;
+}
+
+.ci-main-content {
+  width: 60%;
+}
+
+@media screen and (max-width: 800px) {
+  .nav-bar {
+    margin: 0;
+    width: 0;
+  }
+
+  .ci-main-content {
+    width: 100%;
+  }
 }
