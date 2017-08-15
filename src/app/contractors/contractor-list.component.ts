@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Location} from '@angular/common';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-contractor-list',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContractorListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private location: Location,
+              private router: Router) { }
 
   ngOnInit() {
   }
 
+  onClickBack() {
+    this.location.back();
+  }
+
+  onClick() {
+    this.router.navigate(['contractor-info']);
+  }
 }

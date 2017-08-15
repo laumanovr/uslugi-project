@@ -14,7 +14,7 @@ export class CodeComponent implements OnInit {
   }
 
   onClick() {
-    this.router.navigate(['master/contractor']);
+    this.router.navigate(['master/contractor-info']);
   }
 
 }

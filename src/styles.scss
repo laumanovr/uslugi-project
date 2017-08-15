@@ -1,0 +1,110 @@
+/* You can add global styles to this file, and also import other style files */
+html, body{
+  margin: 0;
+  padding: 0;
+  background: #f1f1f1;
+}
+body{
+  font-family: 'Roboto', sans-serif;
+}
+h1,h2,h3,h4,p{
+  margin: 0;
+}
+ul{
+  margin: 0;
+  padding: 0;
+}
+li{
+  list-style: none;
+}
+a{
+  outline: none;
+  text-decoration: none;
+}
+button{
+  outline: none;
+  cursor: pointer;
+}
+img{
+  outline: none;
+}
+a img {
+  border: none;
+}
+input{
+  -webkit-appearance: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+a {
+  outline: none !important;
+}
+
+/*==================================================================================*/
+/*Header*/
+.header {
+  width: 100%;
+}
+
+.header-1 {
+  width: 100%;
+  height: 24px;
+  background: #1c7fce;
+  border: none;
+  outline: none;
+}
+
+.header-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 66px;
+  background: #2196f3;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  border: none;
+  outline: none;
+}
+
+.header-title {
+  width: 90%;
+  text-align: center;
+}
+
+.header-icon {
+  color: white;
+}
+
+/*====================================================================================*/
+/*Main wrapper*/
+.main-wrapper {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.nav-bar {
+  margin-left: 10%;
+  width: 290px;
+}
+
+.icon-verified {
+  color: #2196F3 !important;
+}
+
+/*Common styles*/
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}

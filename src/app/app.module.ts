@@ -8,8 +8,8 @@ import { ChooseTypeComponent } from './choose-type/choose-type.component';
 import { MasterComponent } from './master/master.component';
 import { ContactsComponent } from './master/contacts/contacts.component';
 import { CodeComponent } from './master/code/code.component';
-import { ContractorComponent } from './contractor/contractor.component';
-import { ContractorListComponent } from './contractor/contractor-list/contractor-list.component';
+import { ContractorComponent } from './contractor-info/contractor.component';
+import { ContractorListComponent } from './contractors/contractor-list.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
