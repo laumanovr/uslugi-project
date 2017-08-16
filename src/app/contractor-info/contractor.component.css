@@ -109,6 +109,39 @@
   width: 60%;
 }
 
+.info-cont {
+  width: 50%;
+}
+
+.nav-cont {
+  display: none;
+  height: 48px;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 0 5px #9F9F9F;
+  margin-bottom: 6px;
+}
+
+.nav-info {
+  width: 50%;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 48px;
+  border-bottom: 3px #2196F3 solid;
+}
+
+.nav-rev {
+  width: 50%;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 48px;
+  color: #9F9F9F;
+}
+
 @media screen and (max-width: 800px) {
   .nav-bar {
     margin: 0;
@@ -117,5 +150,29 @@
 
   .ci-main-content {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .info-cont {
+    width: 100%;
+  }
+
+  .reviews {
+    display: none;
+    width: 100%;
+  }
+
+  .content {
+    margin: 0;
+    height: 80%;
+  }
+
+  .ci-main-content {
+    height: 100%;
+  }
+
+  .nav-cont {
+    display: flex;
   }
 }

@@ -15,10 +15,16 @@
       </div>
     </div>
 
+    <!--Content nav bar-->
+    <div class="row nav-cont">
+      <p class="nav-info" id="navInfo" (click)="onClickInfo()">Информация</p>
+      <p class="nav-rev" id="navRev" (click)="onClickRev()">Отзывы(13)</p>
+    </div>
+
     <!--Content-->
     <div class="content">
 
-      <div style="width: 50%">
+      <div class="info-cont" id="infoCont">
         <!--Title-->
         <div class="contractor-name">
           <img class="cl-contractor-img" src="../../assets/img/contractor/sample-user.png">
@@ -93,7 +99,7 @@
       </div>
 
       <!--Reviews-->
-      <div class="reviews">
+      <div class="reviews" id="revCont">
         <!--Title-->
         <div class="reviews-title">
           <p class="title">Отзывы пользователей</p>
