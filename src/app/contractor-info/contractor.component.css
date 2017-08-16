@@ -1,4 +1,4 @@
-.content {
+.ci-content {
   display: flex;
   flex-direction: row;
   background-color: white;
@@ -142,6 +142,25 @@
   color: #9F9F9F;
 }
 
+.ci-call-btn {
+  border-width: 0;
+  border-style: none;
+  border-radius: 5px;
+  background-color: #FFC107;
+  height: 42px;
+  width: 328px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.ci-call-btn-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 70px;
+}
+
 @media screen and (max-width: 800px) {
   .nav-bar {
     margin: 0;
@@ -154,6 +173,10 @@
 }
 
 @media screen and (max-width: 500px) {
+  .header {
+    position: fixed;
+  }
+
   .info-cont {
     width: 100%;
   }
@@ -161,11 +184,13 @@
   .reviews {
     display: none;
     width: 100%;
+    margin-top: 130px;
   }
 
-  .content {
+  .ci-content {
     margin: 0;
-    height: 80%;
+    height: 100%;
+    padding-bottom: 40px;
   }
 
   .ci-main-content {
@@ -174,5 +199,19 @@
 
   .nav-cont {
     display: flex;
+    position: fixed;
+    top: 66px;
+  }
+
+  .ci-call-btn {
+    width: 90%;
+  }
+
+  .ci-call-btn-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 80px;
+    background-color: white;
   }
 }
