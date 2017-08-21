@@ -1,0 +1,120 @@
+/*====================================================================================================================*/
+/*Left navigation menu*/
+button {
+  outline: none;
+  cursor: pointer;
+}
+
+span {
+  margin-left: 20px;
+  margin-right: 10px;
+}
+
+.activeli {
+  border-radius: 4px;
+  background-color: rgb(241, 241, 241);
+}
+
+.leftMenu {
+  margin: 0 10px;
+}
+
+.logoSite {
+  text-align: center;
+  padding: 60px 0;
+}
+
+.leftMenu a {
+  font-size: 16px;
+  color: #000;
+}
+
+.leftMenu li {
+  padding: 15px 0;
+}
+
+.leftMenu li {
+  padding: 15px 0;
+}
+
+.leftMenu img {
+  margin: 0 10px;
+  padding: 0 12px;
+  vertical-align: bottom;
+}
+
+.log-outbtn {
+  width: 90%;
+  height: 42px;
+  line-height: 42px;
+  color: #000;
+  border: none;
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 3px;
+  background: #FFC107;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wrapLeftMenu {
+  width: 290px;
+  height: 100%;
+  background: #fff;
+}
+
+/*====================================================================================================================*/
+/*Bottom navigation menu*/
+.bottom-menu {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 48px;
+  position: fixed;
+  bottom: -4px;
+  background-color: rgb(241, 241, 241);
+  box-shadow: 0px 0px 4.95px 0.05px rgba(0, 1, 2, 0.15);
+}
+
+.bottom-elem {
+  width: 25%;
+  text-align: center;
+  line-height: 48px;
+}
+
+.bottom-icon {
+  width: 18px;
+  padding-top: 14px;
+}
+
+.nb-logo {
+  width: 200px;
+}
+
+.icon {
+  color: darkgrey;
+}
+
+/*Responsive styles*/
+@media screen and (max-width: 800px) {
+  .wrapLeftMenu {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .bottom-menu {
+    display: none;
+  }
+
+  .wrapLeftMenu {
+    display: block;
+  }
+
+  .wrapperSite {
+    padding: 0 5px;
+  }
+}

@@ -3,6 +3,7 @@ html, body{
   margin: 0;
   padding: 0;
   background: #f1f1f1;
+  height: 100%;
 }
 body{
   font-family: 'Roboto', sans-serif;
@@ -46,10 +47,6 @@ a {
 /*==================================================================================*/
 /*Header*/
 .header {
-  width: 100%;
-}
-
-.header-2 {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,18 +68,17 @@ a {
 
 .header-icon {
   color: white;
+  font-size: 24px;
 }
 
 /*====================================================================================*/
 /*Main wrapper*/
-.main-wrapper {
-  display: flex;
-  flex-direction: row;
-  height: 100vh;
+.common-wrapper {
+  width: 60%;
+  margin-left: 10px;
 }
 
 .nav-bar {
-  margin-left: 10%;
   width: 290px;
 }
 
@@ -94,6 +90,11 @@ a {
 .column {
   display: flex;
   flex-direction: column;
+}
+
+.main {
+  justify-content: center;
+  height: 100%;
 }
 
 .row {
@@ -111,4 +112,15 @@ a {
 
 .p-10 {
   padding: 10px;
+}
+
+@font-face {
+  font-family: 'icons';
+  src: url('./assets/fonts/icons.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.icon{
+  font-family: icons, sans-serif;
 }

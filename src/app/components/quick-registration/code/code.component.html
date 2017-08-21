@@ -1,0 +1,21 @@
+<div class="row main">
+  <!--Nav bar-->
+  <div class="nav-bar">
+    <app-nav-bar></app-nav-bar>
+  </div>
+
+  <div class="code-content-wrapper">
+    <div class="header">
+      <i class="material-icons header-icon" (click)="onClickBack()">arrow_back</i>
+      <span class="header-title">Код подтверждения</span>
+    </div>
+
+    <div class="code-content">
+      <h3 class="code-title">Подтверждение номера</h3>
+      <p class="code-text">Пожалуйста введите код который мы отправили на ваш номер телефона</p>
+      <input class="code" type="number" id="code" autocomplete="off" placeholder="Код подтверждения">
+      <br>
+      <button class="code-btn" (click)="onClick()">Далее</button>
+    </div>
+  </div>
+</div>

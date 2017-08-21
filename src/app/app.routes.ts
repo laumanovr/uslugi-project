@@ -1,22 +1,22 @@
 import {RouterModule, Routes} from '@angular/router';
-import {HomeComponent} from './home/home.component';
-import {ChooseTypeComponent} from './choose-type/choose-type.component';
-import {MasterComponent} from './master/master.component';
-import {ContactsComponent} from './master/contacts/contacts.component';
-import {CodeComponent} from './master/code/code.component';
-import {ContractorComponent} from './contractor-info/contractor.component';
-import {ContractorListComponent} from './contractors/contractor-list.component';
+import {HomeComponent} from './components/home/home.component';
+import {ChooseTypeComponent} from './components/choose-type/choose-type.component';
+import {ContactsComponent} from './components/quick-registration/contacts/contacts.component';
+import {CodeComponent} from './components/quick-registration/code/code.component';
+import {ContractorComponent} from './components/contractor-info/contractor.component';
+import {ContractorListComponent} from './components/contractor-list/contractor-list.component';
+import {ProfileComponent} from './components/profile/profile.component';
+import {QuickRegistrationComponent} from './components/quick-registration/quick-registration.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'choose', component: ChooseTypeComponent},
-  {path: 'contractors', component: ContractorListComponent},
+  {path: 'contractor-list', component: ContractorListComponent},
   {path: 'contractor-info', component: ContractorComponent},
-
-  // Old routes
+  {path: 'profile', component: ProfileComponent},
   {
-    path: 'master',
-    component: MasterComponent,
+    path: 'quick-registration',
+    component: QuickRegistrationComponent,
     children: [
       {
         path: '',
@@ -30,7 +30,7 @@ const appRoutes: Routes = [
       {
         path: 'code',
         component: CodeComponent
-      },
+      }
     ]
   },
 ];

@@ -1,0 +1,56 @@
+import {Component, OnInit} from '@angular/core';
+import * as Icons from '../../utils/icons';
+
+@Component({
+  selector: 'app-nav-bar',
+  templateUrl: './nav-bar.component.html',
+  styleUrls: ['./nav-bar.component.css']
+})
+export class NavBarComponent implements OnInit {
+
+  /**
+   * Handler for icons
+   */
+  ico = Icons;
+
+  /**
+   * Vars for get element from DOM
+   */
+  mainLink: HTMLElement;
+  homeIcon: HTMLElement;
+  homeIconBottom: HTMLElement;
+  ordersLink: HTMLElement;
+  ordersIcon: HTMLElement;
+  profileLink: HTMLElement;
+  profileIcon: HTMLElement;
+  supportLink: HTMLElement;
+  supportIcon: HTMLElement;
+
+  constructor() {
+  }
+
+  ngOnInit() {
+    this.mainLink = document.getElementById('home');
+    this.homeIcon = document.getElementById('homeIcon');
+    this.homeIconBottom = document.getElementById('homeIconBottom');
+    this.ordersLink = document.getElementById('orders');
+    this.ordersIcon = document.getElementById('ordersIcon');
+    this.profileLink = document.getElementById('profile');
+    this.profileIcon = document.getElementById('profileIcon');
+    this.supportLink = document.getElementById('support');
+    this.supportIcon = document.getElementById('HTMLElement');
+    this.checkLocation();
+  }
+
+  private checkLocation() {
+    const loc = window['location'];
+    switch (loc.pathname) {
+      case '/':
+        this.mainLink.className += 'activeli';
+        this.homeIcon.style.color = '#2196f3';
+        this.homeIconBottom.style.color = '#2196f3';
+        break;
+    }
+  }
+
+}

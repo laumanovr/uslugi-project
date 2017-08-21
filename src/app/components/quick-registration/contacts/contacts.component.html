@@ -1,0 +1,21 @@
+<div class="row main">
+  <!--Nav bar-->
+  <div class="nav-bar">
+    <app-nav-bar></app-nav-bar>
+  </div>
+
+  <div class="contacts-content-wrapper">
+    <div class="header">
+      <i class="material-icons header-icon" (click)="onClickBack()">arrow_back</i>
+      <span class="header-title">Ваши контакты</span>
+    </div>
+    <div class="contacts-content">
+      <input class="qr-c-name" type="text" id="address" autocomplete="off" placeholder="Имя">
+      <input class="qr-c-name" type="tel" id="phone" autocomplete="off" placeholder="Номер телефона">
+      <input class="qr-c-name" type="email" id="email" autocomplete="off" placeholder="E-mail (не обязательно)">
+      <input class="qr-c-name" type="text" id="description" autocomplete="off" placeholder="Описание проблемы ">
+      <button class="qr-c-btn" (click)="onClick()">Далее</button>
+    </div>
+  </div>
+</div>
+
