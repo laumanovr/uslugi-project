@@ -1,0 +1,39 @@
+<div class="row main">
+  <!--Nav bar-->
+  <div class="nav-bar">
+    <app-nav-bar></app-nav-bar>
+  </div>
+
+  <div class="master-content-wrapper">
+    <div class="header">
+      <i class="material-icons header-icon" (click)="onClickBack()">arrow_back</i>
+      <span class="header-title">Позвонить исполнителю</span>
+    </div>
+
+    <h3 class="master-title">Исполнитель</h3>
+
+    <div class="row master-con">
+      <img class="m-20" src="../../../assets/img/contractor/sample-user.png">
+      <div class="m-10">
+        <p>Александр Б.</p>
+        <p class="master-con-name">cантехник</p>
+      </div>
+      <i class="material-icons icon-verified">verified_user</i>
+    </div>
+
+    <button class="master-btn" (click)="onCall()">Позвонить</button>
+
+    <div class="master-bottom">
+      <h3 class="master-title master-title-2">Смена исполнителя</h3>
+      <div class="row master-link" (click)="onNavContractors()">
+        <span class="master-link-elem">Выбрать другого исполнителя</span>
+        <i class="material-icons master-link-icon">keyboard_arrow_right</i>
+      </div>
+      <div class="row master-link-2">
+        <span class="master-link-elem">Заказать через оператора</span>
+        <i class="material-icons master-link-icon">keyboard_arrow_right</i>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -7,6 +7,7 @@ import {ContractorComponent} from './components/contractor-info/contractor.compo
 import {ContractorListComponent} from './components/contractor-list/contractor-list.component';
 import {ProfileComponent} from './components/profile/profile.component';
 import {QuickRegistrationComponent} from './components/quick-registration/quick-registration.component';
+import {MasterComponent} from './components/master/master.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -33,6 +34,7 @@ const appRoutes: Routes = [
       }
     ]
   },
+  {path: 'master', component: MasterComponent},
 ];
 
 export const AppRouting = RouterModule.forRoot(appRoutes);

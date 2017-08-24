@@ -53,11 +53,6 @@
 }
 
 @media screen and (max-width: 800px) {
-  .nav-bar {
-    margin: 0;
-    width: 0;
-  }
-
   .header {
     margin: 0;
     padding: 0;

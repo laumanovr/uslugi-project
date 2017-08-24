@@ -21,6 +21,7 @@ export class NavBarComponent implements OnInit {
   homeIconBottom: HTMLElement;
   ordersLink: HTMLElement;
   ordersIcon: HTMLElement;
+  ordersIconBottom: HTMLElement;
   profileLink: HTMLElement;
   profileIcon: HTMLElement;
   supportLink: HTMLElement;
@@ -35,6 +36,7 @@ export class NavBarComponent implements OnInit {
     this.homeIconBottom = document.getElementById('homeIconBottom');
     this.ordersLink = document.getElementById('orders');
     this.ordersIcon = document.getElementById('ordersIcon');
+    this.ordersIconBottom = document.getElementById('ordersIconBottom');
     this.profileLink = document.getElementById('profile');
     this.profileIcon = document.getElementById('profileIcon');
     this.supportLink = document.getElementById('support');
@@ -49,6 +51,12 @@ export class NavBarComponent implements OnInit {
         this.mainLink.className += 'activeli';
         this.homeIcon.style.color = '#2196f3';
         this.homeIconBottom.style.color = '#2196f3';
+        break;
+
+      case '/orders/list' || '/orders/...':
+        this.ordersLink.className += 'activeli';
+        this.ordersIcon.style.color = '#2196f3';
+        this.ordersIconBottom.style.color = '#2196f3';
         break;
     }
   }
