@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import * as Icons from '../../utils/icons';
+import {Router} from '@angular/router';
+import {orders} from '../../utils/icons';
 
 @Component({
   selector: 'app-nav-bar',
@@ -27,7 +29,7 @@ export class NavBarComponent implements OnInit {
   supportLink: HTMLElement;
   supportIcon: HTMLElement;
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit() {
@@ -44,6 +46,23 @@ export class NavBarComponent implements OnInit {
     this.checkLocation();
   }
 
+  /**
+   * Navigate to home
+   */
+  onClickHome() {
+    this.router.navigate(['']);
+  }
+
+  /**
+   * Navigate to orders
+   */
+  onClickOrders() {
+    this.router.navigate(['orders']);
+  }
+
+  /**
+   * Handler to check out location and painting icons
+   */
   private checkLocation() {
     const loc = window['location'];
     switch (loc.pathname) {
@@ -52,7 +71,6 @@ export class NavBarComponent implements OnInit {
         this.homeIcon.style.color = '#2196f3';
         this.homeIconBottom.style.color = '#2196f3';
         break;
-
       case '/orders/list' || '/orders/...':
         this.ordersLink.className += 'activeli';
         this.ordersIcon.style.color = '#2196f3';
@@ -60,5 +78,4 @@ export class NavBarComponent implements OnInit {
         break;
     }
   }
-
 }
