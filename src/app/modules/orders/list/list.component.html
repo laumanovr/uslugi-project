@@ -11,13 +11,20 @@
       <p class="header-title">Мои заказы</p>
     </div>
 
+    <!--Not authorized notification-->
+    <div *ngIf="!authorized" class="authorized">
+      <p class="notif-title">Вход в систему</p>
+      <p class="notif-text m-t-20">Для просмотра заказов необходимо авторизоваться</p>
+      <button class="btn btn-orange m-t-20" (click)="authorized = true">Войти</button>
+    </div>
+
     <!--Content nav bar-->
-    <div class="row list-nav-cont">
+    <div class="row list-nav-cont" *ngIf="authorized">
       <p class="list-nav-info" id="navTap1" (click)="onClickTap1()">АКТИВНЫЕ</p>
       <p class="list-nav-rev" id="navTap2" (click)="onClickTap2()">ВЫПОЛНЕННЫЕ</p>
     </div>
 
-    <div class="row">
+    <div class="row" *ngIf="authorized">
       <!--Tap 1-->
       <div class="tap-1" id="tap1">
         <!--Title-->
@@ -51,10 +58,10 @@
             </div>
           </div>
 
-          <button class="order-btn">Подробнее</button>
+          <button class="order-btn" (click)="onClickDesc()">Подробнее</button>
           <div class="row order-btn-con">
             <button class="order-btn1">Написать</button>
-            <button class="order-btn2">Позвонить</button>
+            <button class="order-btn2" (click)="modal = true">Позвонить</button>
           </div>
           <div class="row order-accept">
             <i class="material-icons info-icon">info_outline</i>
@@ -109,6 +116,21 @@
 
         </div>
       </div>
+
+      <!--Call popup-->
+      <div class="modal" id="modal" *ngIf="modal" (click)="onClickOverModal($event)">
+        <div class="popup">
+          <button class="btn btn-operator">
+            <i class="material-icons phone-icon">phone</i>
+            Звонок оператору
+          </button>
+          <button class="btn btn-operator">
+            <i class="material-icons phone-icon">phone</i>
+            Звонок исполнителю
+          </button>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

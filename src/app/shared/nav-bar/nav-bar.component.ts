@@ -61,6 +61,13 @@ export class NavBarComponent implements OnInit {
   }
 
   /**
+   * Navigate to profile
+   */
+  onClickProfile() {
+    this.router.navigate(['profile']);
+  }
+
+  /**
    * Handler to check out location and painting icons
    */
   private checkLocation() {

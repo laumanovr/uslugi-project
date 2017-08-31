@@ -1,4 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: 'icons';
+  src: url('./assets/fonts/icons.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html, body{
   margin: 0;
   padding: 0;
@@ -43,7 +50,39 @@ a {
   outline: none !important;
 }
 
-/*==================================================================================*/
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.m-10 {
+  margin: 10px;
+}
+
+.m-20 {
+  margin: 20px;
+}
+
+.m-l-20 {
+  margin-left: 20px;
+}
+
+.m-l-40 {
+  margin-left: 40px;
+}
+
+.m-t-20 {
+  margin-top: 20px;
+}
+
+.p-10 {
+  padding: 10px;
+}
 /*Header*/
 .header {
   display: flex;
@@ -72,22 +111,93 @@ a {
   font-size: 24px;
 }
 
-/*====================================================================================*/
 /*Main wrapper*/
+.main {
+  justify-content: center;
+  min-height: 100vh;
+}
+
 .common-wrapper {
   width: 60%;
   margin-left: 10px;
 }
 
-.nav-bar {
-  width: 290px;
-}
-
 .content-wrapper {
   width: 60%;
   margin-left: 10px;
+  min-height: 100vh;
 }
 
+.icon-verified {
+  color: #2196F3 !important;
+}
+
+.icon{
+  font-family: icons, sans-serif;
+}
+
+.btn {
+  outline: none;
+  border: none;
+}
+
+// Popup
+.popup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 30%;
+  left: 40%;
+  width: 320px;
+  height: 145px;
+  background-color: white;
+  border-radius: 4px;
+}
+
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.btn-orange {
+  height: 42px;
+  width: 320px;
+  background-color: #FFC107;
+  border-radius: 4px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+@media screen and (max-width: 500px) {
+  // Popup
+  .popup {
+    position: absolute;
+    top: 40%;
+    left: 10%;
+    width: 80%;
+    height: 20vh;
+    background-color: white;
+    border-radius: 4px;
+  }
+
+  .modal {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
 
 @media screen and (max-width: 800px) {
   .nav-bar {
@@ -105,55 +215,4 @@ a {
     width: 100%;
     margin: 0;
   }
-
-}
-
-.icon-verified {
-  color: #2196F3 !important;
-}
-
-/*Common styles*/
-.column {
-  display: flex;
-  flex-direction: column;
-}
-
-.main {
-  justify-content: center;
-}
-
-.row {
-  display: flex;
-  flex-direction: row;
-}
-
-.m-10 {
-  margin: 10px;
-}
-
-.m-20 {
-  margin: 20px;
-}
-
-.m-l-20 {
-  margin-left: 20px;
-}
-
-.m-t-20 {
-  margin-top: 20px;
-}
-
-.p-10 {
-  padding: 10px;
-}
-
-@font-face {
-  font-family: 'icons';
-  src: url('./assets/fonts/icons.ttf');
-  font-weight: normal;
-  font-style: normal;
-}
-
-.icon{
-  font-family: icons, sans-serif;
 }

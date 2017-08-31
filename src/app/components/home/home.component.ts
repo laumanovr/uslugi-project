@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {RequestService} from '../../services/request.service';
 
 @Component({
   selector: 'app-home',
@@ -8,12 +9,27 @@ import {Router} from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  services;
 
-  ngOnInit() {
+  constructor(private router: Router,
+              private requestService: RequestService) {
   }
 
-  onClick() {
-    this.router.navigate(['contractor-list']);
+  ngOnInit() {
+    this.getListOfMasters();
+  }
+
+  onClick(id) {
+    this.router.navigate(['contractor-list'], {queryParams: {id: id}});
+  }
+
+  /**
+   * Get list of masters from api
+   */
+  private getListOfMasters() {
+    this.requestService.get('https://usluga.namba1.co/api.php?todo=getservices')
+      .subscribe((data) => {
+        this.services = data.json();
+      });
   }
 }

@@ -10,6 +10,10 @@ span {
   margin-right: 10px;
 }
 
+li {
+  cursor: pointer;
+}
+
 .activeli {
   border-radius: 4px;
   background-color: rgb(241, 241, 241);
@@ -92,6 +96,7 @@ span {
 
 .nb-logo {
   width: 200px;
+  cursor: pointer;
 }
 
 .icon {
@@ -112,9 +117,5 @@ span {
 
   .wrapLeftMenu {
     display: block;
-  }
-
-  .wrapperSite {
-    padding: 0 5px;
   }
 }

@@ -4,6 +4,7 @@ import {OrdersRouting} from './orders.routes';
 import {OrdersComponent} from './orders.component';
 import {ListComponent} from './list/list.component';
 import {NavBarModule} from '../../shared/nav-bar/nav-bar.module';
+import { DescriptionComponent } from './description/description.component';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import {NavBarModule} from '../../shared/nav-bar/nav-bar.module';
   declarations: [
     OrdersComponent,
     ListComponent,
+    DescriptionComponent,
   ]
 })
 export class OrdersModule { }

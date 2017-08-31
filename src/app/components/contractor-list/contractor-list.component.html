@@ -22,138 +22,32 @@
     </div>
 
     <!--Contractor-->
-    <div class="cl-main">
-      <div class="cl">
+    <div class="cl-main" *ngIf="!modal">
+
+      <div class="cl" *ngFor="let master of masters">
         <div class="cl-contractor">
           <div class="cl-contractor-title">
-            <img class="cl-contractor-img" src="../../../assets/img/contractor/sample-user.png">
+            <img class="cl-contractor-img" src="{{master?.photo}}">
             <div class="cl-name">
-              <p>Александр Б.</p>
-              <p class="cl-name-prof">cантехник</p>
+              <p>{{master?.name}}</p>
+              <p class="cl-name-prof">{{master?.profession}}</p>
             </div>
-            <i class="material-icons icon-verified">verified_user</i>
+            <i *ngIf="master?.verifed_user" class="material-icons icon-verified">verified_user</i>
           </div>
 
           <div class="cl-con-1">
-            <span class="cl-con-left">Рейтинг:</span><span class="cl-con-right">4,5 из 5<span class="cl-con-com"> (13 отзывов)</span></span>
+            <span class="cl-con-left">Рейтинг:</span><span class="cl-con-right">{{master?.rating}} из 5<span
+            class="cl-con-com"> ({{master?.reviews}} отзывов)</span></span>
           </div>
           <div class="cl-con-1">
-            <span class="cl-con-left">График работы:</span><span class="cl-con-right">07:00 - 21:00</span>
+            <span class="cl-con-left">График работы:</span><span class="cl-con-right">{{master?.schedule}}</span>
           </div>
           <div class="cl-con-1">
-            <span class="cl-con-left">Стоимость услуг:</span><span class="cl-con-right">300 - 5000</span>
+            <span class="cl-con-left">Стоимость услуг:</span><span class="cl-con-right">{{master?.price}}</span>
           </div>
           <div class="cl-con-2">
-            <button class="cl-info-btn" (click)="onClick()">Подробнее</button>
+            <button class="cl-info-btn" (click)="onClickDesc(master)">Подробнее</button>
             <button class="cl-call-btn" (click)="onClickChoose()">Выбрать</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="cl">
-        <div class="cl-contractor">
-          <div class="cl-contractor-title">
-            <img class="cl-contractor-img" src="../../../assets/img/contractor/sample-user.png">
-            <div class="cl-name">
-              <p>Александр Б.</p>
-              <p class="cl-name-prof">cантехник</p>
-            </div>
-            <i class="material-icons icon-verified">verified_user</i>
-          </div>
-
-          <div class="cl-con-1">
-            <span class="cl-con-left">Рейтинг:</span><span class="cl-con-right">4,5 из 5<span class="cl-con-com"> (13 отзывов)</span></span>
-          </div>
-          <div class="cl-con-1">
-            <span class="cl-con-left">График работы:</span><span class="cl-con-right">07:00 - 21:00</span>
-          </div>
-          <div class="cl-con-1">
-            <span class="cl-con-left">Стоимость услуг:</span><span class="cl-con-right">300 - 5000</span>
-          </div>
-          <div class="cl-con-2">
-            <button class="cl-info-btn">Подробнее</button>
-            <button class="cl-call-btn">Позвонить</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="cl">
-        <div class="cl-contractor">
-          <div class="cl-contractor-title">
-            <img class="cl-contractor-img" src="../../../assets/img/contractor/sample-user.png">
-            <div class="cl-name">
-              <p>Александр Б.</p>
-              <p class="cl-name-prof">cантехник</p>
-            </div>
-            <i class="material-icons">verified_user</i>
-          </div>
-
-          <div class="cl-con-1">
-            <span class="cl-con-left">Рейтинг:</span><span class="cl-con-right">4,5 из 5<span class="cl-con-com"> (13 отзывов)</span></span>
-          </div>
-          <div class="cl-con-1">
-            <span class="cl-con-left">График работы:</span><span class="cl-con-right">07:00 - 21:00</span>
-          </div>
-          <div class="cl-con-1">
-            <span class="cl-con-left">Стоимость услуг:</span><span class="cl-con-right">300 - 5000</span>
-          </div>
-          <div class="cl-con-2">
-            <button class="cl-info-btn">Подробнее</button>
-            <button class="cl-call-btn">Позвонить</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="cl">
-        <div class="cl-contractor">
-          <div class="cl-contractor-title">
-            <img class="cl-contractor-img" src="../../../assets/img/contractor/sample-user.png">
-            <div class="cl-name">
-              <p>Александр Б.</p>
-              <p class="cl-name-prof">cантехник</p>
-            </div>
-            <i class="material-icons">verified_user</i>
-          </div>
-
-          <div class="cl-con-1">
-            <span class="cl-con-left">Рейтинг:</span><span class="cl-con-right">4,5 из 5<span class="cl-con-com"> (13 отзывов)</span></span>
-          </div>
-          <div class="cl-con-1">
-            <span class="cl-con-left">График работы:</span><span class="cl-con-right">07:00 - 21:00</span>
-          </div>
-          <div class="cl-con-1">
-            <span class="cl-con-left">Стоимость услуг:</span><span class="cl-con-right">300 - 5000</span>
-          </div>
-          <div class="cl-con-2">
-            <button class="cl-info-btn">Подробнее</button>
-            <button class="cl-call-btn">Позвонить</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="cl">
-        <div class="cl-contractor">
-          <div class="cl-contractor-title">
-            <img class="cl-contractor-img" src="../../../assets/img/contractor/sample-user.png">
-            <div class="cl-name">
-              <p>Александр Б.</p>
-              <p class="cl-name-prof">cантехник</p>
-            </div>
-            <i class="material-icons">verified_user</i>
-          </div>
-
-          <div class="cl-con-1">
-            <span class="cl-con-left">Рейтинг:</span><span class="cl-con-right">4,5 из 5<span class="cl-con-com"> (13 отзывов)</span></span>
-          </div>
-          <div class="cl-con-1">
-            <span class="cl-con-left">График работы:</span><span class="cl-con-right">07:00 - 21:00</span>
-          </div>
-          <div class="cl-con-1">
-            <span class="cl-con-left">Стоимость услуг:</span><span class="cl-con-right">300 - 5000</span>
-          </div>
-          <div class="cl-con-2">
-            <button class="cl-info-btn">Подробнее</button>
-            <button class="cl-call-btn">Позвонить</button>
           </div>
         </div>
       </div>
@@ -161,4 +55,112 @@
     </div>
   </div>
 
+</div>
+
+<!--Description popup-->
+<div class="modal" id="modal" *ngIf="modal" (click)="onClickOverModal($event)">
+  <div class="cl-popup">
+
+    <!--Content nav bar-->
+    <div class="row nav-cont">
+      <p class="nav-info" id="masterInfo" (click)="onClickInfo()">Информация</p>
+      <p class="nav-rev" id="masterRev" (click)="onClickRev()">Отзывы(13)</p>
+    </div>
+
+    <!--Content-->
+    <div class="row">
+
+      <div *ngIf="!reviews">
+        <!--Title-->
+        <div class="cl-cont-name">
+          <img class="cl-contractor-img" src="{{masterDesc?.photo}}">
+          <div class="cl-name">
+            <p>{{masterDesc?.name}}</p>
+            <p class="cl-name-prof">{{masterDesc?.profession}}</p>
+          </div>
+          <i class="material-icons icon-verified" *ngIf="masterDesc?.verifed_user">verified_user</i>
+        </div>
+
+        <!--Photo gallery-->
+        <div class="row m-l-20">
+          <img class="cl-work-img" *ngFor="let photo of masterDesc?.whork_images" src="{{photo}}">
+        </div>
+
+        <!--Registration-->
+        <div class="cl-reg-cont">
+          <p class="cl-title">Регистрация</p>
+          <div class="row">
+            <div class="column">
+              <i class="material-icons" *ngIf="masterDesc?.registration.docs_verifed">check</i>
+              <i class="material-icons" *ngIf="masterDesc?.registration.interview_passed">check</i>
+              <i class="material-icons" *ngIf="masterDesc?.registration.test_passed">check</i>
+            </div>
+            <div class="column">
+              <p class="cl-text">Документы подтверждены</p>
+              <p class="cl-text">Собеседование пройдено</p>
+              <p class="cl-text">Тестирование прошел</p>
+            </div>
+          </div>
+        </div>
+
+        <!--Contractor info-->
+        <div class="cl-reg-cont">
+          <p class="cl-title">Информация об исполнителе</p>
+          <span class="cl-info-text">Опыт работы</span>
+          <span class="cl-info-text-2">{{masterDesc?.experience}}</span>
+          <br>
+          <span class="cl-info-text">Образование</span>
+          <span class="cl-info-text-2">{{masterDesc?.education}}</span>
+          <br>
+          <span class="cl-info-text">Район обслуживания</span>
+          <span class="cl-info-text-2">{{masterDesc?.work_location}}</span>
+          <br>
+          <span class="cl-info-text">График работы</span>
+          <span class="cl-info-text-2">{{masterDesc?.schedule}}</span>
+        </div>
+
+        <!--Service list-->
+        <div class="cl-reg-cont">
+          <p class="cl-title">Виды оказываемых услуг</p>
+          <div class="row" *ngFor="let service of masterDesc?.service_list">
+            <p class="cl-info-text">{{service.name}} труб</p>
+            <p class="cl-info-text-3">{{service.price}}</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!--Reviews-->
+    <div *ngIf="reviews">
+
+      <!--Title-->
+      <p class="cl-title m-20">Отзывы пользователей</p>
+      <div class="row m-l-20">
+        <div>
+          <p class="cl-info-text">Рейтинг:</p>
+          <p class="cl-info-text">Отзывов:</p>
+        </div>
+        <div class="m-l-40">
+          <p class="cl-info-text-3">{{masterDesc.rating}} из 5</p>
+          <p class="cl-info-text-3">{{masterDesc.reviews}}</p>
+        </div>
+      </div>
+
+      <!--Array of reviews-->
+      <div class="cl-review m-t-20">
+        <div class="row m-10">
+          <p class="cl-review-mark">4</p>
+          <div class="cl-review-descrip">
+            <p class="cl-review-title">Ремонт бойлера</p>
+            <p class="cl-review-date">03.08.2017</p>
+          </div>
+        </div>
+        <p class="p-10">Значимость этих проблем настолько очевидна, что реализация намеченных плановых заданий в
+          значительной
+          степени обуславливает создание модели развития. </p>
+      </div>
+
+    </div>
+  </div>
 </div>

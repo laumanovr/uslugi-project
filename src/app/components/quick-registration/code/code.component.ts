@@ -9,6 +9,8 @@ import {Router} from '@angular/router';
 })
 export class CodeComponent implements OnInit {
 
+  codeValue: string;
+
   constructor(private location: Location,
               private router: Router) {
   }

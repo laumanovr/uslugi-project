@@ -13,9 +13,10 @@
     <div class="code-content">
       <h3 class="code-title">Подтверждение номера</h3>
       <p class="code-text">Пожалуйста введите код который мы отправили на ваш номер телефона</p>
-      <input class="code" type="number" id="code" autocomplete="off" placeholder="Код подтверждения">
+      <input class="code" name="code" type="text" id="code" autocomplete="off" placeholder="Код подтверждения"
+            [(ngModel)]="codeValue" #code="ngModel" minlength="4" maxlength="4" required>
       <br>
-      <button class="code-btn" (click)="onClick()">Далее</button>
+      <button class="code-btn" [disabled]="code.invalid" (click)="onClick()">Далее</button>
     </div>
   </div>
 </div>

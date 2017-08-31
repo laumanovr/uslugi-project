@@ -1,3 +1,10 @@
+.authorized {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .tap-1, .tap-2 {
   display: flex;
   flex-direction: column;
@@ -21,10 +28,6 @@
 
 .list-month {
   font-size: 14px;
-}
-
-.main {
-  height: 100vh;
 }
 
 .list-nav-cont {
@@ -167,6 +170,30 @@
   margin-right: 5px;
 }
 
+.btn-operator {
+  display: flex;
+  align-items: center;
+  height: 42px;
+  width: 80%;
+  background-color: #F1F1F1;
+  border-radius: 4px;
+  margin-top: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.phone-icon {
+  font-size: 16px;
+  margin-left: 20%;
+  margin-right: 10px;
+}
+
+.notif-title {
+  font-weight: bold;
+  margin-top: 30px;
+}
+
 @media screen and (max-width: 500px) {
   .header {
     position: fixed;
@@ -186,5 +213,16 @@
 
   .tap-2 {
     display: none;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .authorized {
+    height: 80%;
+  }
+
+  .notif-text {
+    width: 80%;
+    text-align: center;
   }
 }

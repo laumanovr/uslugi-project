@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
 
@@ -10,7 +10,17 @@ import {Router} from '@angular/router';
 export class ListComponent implements OnInit {
 
   /**
-   * Vars for hide/show html containers
+   * Var to show/hide modal the authorized window
+   */
+  authorized = false;
+
+  /**
+   * Var to show/hide modal the modal window
+   */
+  modal = false;
+
+  /**
+   * Vars to hide/show html containers
    */
   private tap1: HTMLElement;
   private tap2: HTMLElement;
@@ -29,14 +39,14 @@ export class ListComponent implements OnInit {
   }
 
   /**
-   * Handler for navigate back
+   * Handler to navigate back
    */
   onClickBack() {
     this.location.back();
   }
 
   /**
-   * Handler for hide/show Info container
+   * Handler to hide/show Info container
    */
   onClickTap1() {
     this.tap1.style.display = 'block';
@@ -46,13 +56,31 @@ export class ListComponent implements OnInit {
   }
 
   /**
-   * Handler for hide/show Reviews container
+   * Handler to hide/show Reviews container
    */
   onClickTap2() {
     this.tap2.style.display = 'block';
     this.tap1.style.display = 'none';
     this.nav1.style.border = 'none';
     this.nav2.style.borderBottom = '3px #2196F3 solid';
+  }
+
+  /**
+   * When the user clicks anywhere outside of the modal, close it
+   * @param event
+   */
+  onClickOverModal(event) {
+    const modalWindow = document.getElementById('modal');
+    if (event.target === modalWindow) {
+      this.modal = false;
+    }
+  }
+
+  /**
+   * Handler to navigate to order description page
+   */
+  onClickDesc() {
+    this.router.navigate(['orders/description']);
   }
 
 }

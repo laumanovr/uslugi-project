@@ -1,7 +1,7 @@
 <!--Navigation menu-->
 <div class="wrapLeftMenu">
   <div class="logoSite">
-    <a href=""><img class="nb-logo" src="../assets/img/logo2.svg" alt="Сервис"></a>
+    <img class="nb-logo" src="../assets/img/logo2.svg" alt="Сервис" (click)="onClickHome()">
   </div>
   <div class="leftMenu">
     <ul>
@@ -13,17 +13,17 @@
         <span id="ordersIcon" class="icon">{{ico.orders}}</span>Мои заказы
       </li>
 
-      <li id="profile">
-        <a href="#"><span id="profileIcon" class="icon">{{ico.profile}}</span>Мой профиль</a>
+      <li id="profile" (click)="onClickProfile()">
+        <span id="profileIcon" class="icon">{{ico.profile}}</span>Мой профиль
       </li>
 
       <li id="support">
-        <a href="#"><span id="supportIcon" class="icon">{{ico.support}}</span>Онлайн-поддержка</a>
+        <span id="supportIcon" class="icon">{{ico.support}}</span>Онлайн-поддержка
       </li>
     </ul>
   </div>
   <div class="log-out">
-    <a href="#">
+    <a>
       <button class="log-outbtn" type="submit">Войти</button>
     </a>
   </div>
@@ -35,16 +35,12 @@
       <span id="homeIconBottom" class="bottom-icon icon">{{ico.home}}</span>
   </div>
   <div class="bottom-elem">
-    <a href="#">
       <span id="supportIconBottom" class="bottom-icon icon">{{ico.support}}</span>
-    </a>
   </div>
   <div class="bottom-elem" (click)="onClickOrders()">
       <span id="ordersIconBottom" class="bottom-icon icon">{{ico.orders}}</span>
   </div>
-  <div class="bottom-elem">
-    <a href="#">
+  <div class="bottom-elem" (click)="onClickProfile()">
       <span id="profileIconBottom" class="bottom-icon icon">{{ico.profile}}</span>
-    </a>
   </div>
 </div>
