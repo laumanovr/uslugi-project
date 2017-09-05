@@ -6,19 +6,42 @@
 
   <div class="common-wrapper">
     <div class="header">
-      <i class="material-icons header-icon" (click)="onClickBack()">arrow_back</i>
       <span class="header-title">Мой профиль</span>
     </div>
 
-    <div class="prof-content">
-      <input class="prof-form" name="name" type="text" autocomplete="off" placeholder="Имя"
-             minlength="10" required/>
-      <input class="prof-form" name="password" type="text" autocomplete="off" placeholder="Пароль"
-             minlength="10" required/>
-      <button [disabled]="" class="prof-btn">
-        Далее
-      </button>
-    </div>
-  </div>
+    <!--Content-->
+    <div class="main-container">
+      <p class="prof-title m-t-30">Обо мне</p>
+      <div class="row">
+        <div class="col-1">
+          <p class="prof-key">Имя:</p>
+          <p class="prof-key">Телефон:</p>
+          <p class="prof-key">E-mail:</p>
+        </div>
+        <div class="col-2">
+          <p class="prof-val">Владимир</p>
+          <p class="prof-val">0(550)12-33-22</p>
+          <p class="prof-val">usluga@mail.com</p>
+        </div>
+      </div>
 
+      <p class="prof-title m-t-50">Информация</p>
+      <div class="row prof-border-1 m-t-10">
+        <span class="nav-text">Часто задаваемые вопросы</span>
+        <span class="arrow-right"></span>
+      </div>
+      <div class="row prof-border-2">
+        <span class="nav-text">Пользовательское солашение</span>
+        <span class="arrow-right"></span>
+      </div>
+
+      <p class="prof-title m-t-50">Управление</p>
+      <div class="row prof-border-1 m-t-10">
+        <span class="nav-text">Создать пароль</span>
+        <span class="arrow-right"></span>
+      </div>
+      <p class="nav-text-2 prof-border-2">Выйти</p>
+    </div>
+
+  </div>
 </div>

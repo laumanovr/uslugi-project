@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {ProfileService} from '../../services/profile.service';
-import {Location} from '@angular/common';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-profile',
@@ -9,17 +7,9 @@ import {Location} from '@angular/common';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private profileService: ProfileService,
-              private location: Location) { }
+  constructor() { }
 
   ngOnInit() {
-  }
-
-  /**
-   * Handler for navigate back
-   */
-  onClickBack() {
-    this.location.back();
   }
 
 }

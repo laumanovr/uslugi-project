@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {ActivatedRoute, Router} from '@angular/router';
-import {RequestService} from '../../services/request.service';
+import {RequestService} from '../../../services/request.service';
 
 @Component({
   selector: 'app-contractor-list',
@@ -81,6 +81,6 @@ export class ContractorListComponent implements OnInit {
    * Handler for navigate to profile page
    */
   onClickChoose() {
-    this.router.navigate(['quick-registration']);
+    this.router.navigate(['contacts']);
   }
 }

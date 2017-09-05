@@ -10,10 +10,10 @@ import {ProfileService} from '../../../services/profile.service';
 })
 export class ContactsComponent implements OnInit {
 
+  button: HTMLElement;
   emailValue: string;
   nameValue: string;
   phoneValue: string;
-  descValue: string;
 
   constructor(private location: Location,
               private router: Router,
@@ -21,6 +21,7 @@ export class ContactsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.button = document.getElementById('btn');
   }
 
   /**
@@ -34,9 +35,21 @@ export class ContactsComponent implements OnInit {
     if (!this.emailValue) {
       this.emailValue = '';
     }
-    this.profileService.user.name = this.nameValue;
-    this.profileService.user.phone = this.phoneValue;
-    this.profileService.user.email = this.emailValue;
-    this.router.navigate(['quick-registration/code']);
+    this.profileService.name = this.nameValue;
+    this.profileService.phone = this.phoneValue;
+    this.profileService.email = this.emailValue;
+    this.router.navigate(['sms-code']);
+  }
+
+  /**
+   * Handler to change the button colors
+   */
+  checkBtnValid() {
+    const buttonDisabled = (<HTMLInputElement> document.getElementById('btn')).disabled;
+    if (buttonDisabled === false) {
+      this.button.style.backgroundColor = '#FFC107';
+    } else {
+      this.button.style.backgroundColor = '#E5E5E5';
+    }
   }
 }

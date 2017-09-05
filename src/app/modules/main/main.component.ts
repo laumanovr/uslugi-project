@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
 import {RequestService} from '../../services/request.service';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-main',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class MainComponent implements OnInit {
 
   services;
 
@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   }
 
   onClick(id) {
-    this.router.navigate(['contractor-list'], {queryParams: {id: id}});
+    this.router.navigate(['contractors'], {queryParams: {id: id}});
   }
 
   /**

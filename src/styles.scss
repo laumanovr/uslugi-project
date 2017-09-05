@@ -76,8 +76,21 @@ a {
   margin-left: 40px;
 }
 
+.m-t-10 {
+  margin-top: 10px;
+}
+
 .m-t-20 {
   margin-top: 20px;
+}
+
+.m-t-30 {
+  margin-top: 30px;
+}
+
+
+.m-t-50 {
+  margin-top: 50px;
 }
 
 .p-10 {
@@ -141,6 +154,12 @@ a {
   border: none;
 }
 
+.hor-line {
+  width: 100%;
+  border-bottom: 1px #E5E5E5 solid;
+}
+
+
 // Popup
 .popup {
   display: flex;
@@ -173,6 +192,7 @@ a {
   height: 42px;
   width: 320px;
   background-color: #FFC107;
+  border: none;
   border-radius: 4px;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
