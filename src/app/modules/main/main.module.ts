@@ -7,6 +7,9 @@ import {ContractorListComponent} from './contractor-list/contractor-list.compone
 import {ContactsComponent} from './contacts/contacts.component';
 import {FormsModule} from '@angular/forms';
 import {CodeComponent} from './code/code.component';
+import {ChooseTypeComponent} from './choose-type/choose-type.component';
+import {MasterComponent} from './master/master.component';
+import {ContractorComponent} from './contractor-info/contractor.component';
 
 @NgModule({
   imports: [
@@ -19,7 +22,10 @@ import {CodeComponent} from './code/code.component';
     MainComponent,
     ContractorListComponent,
     ContactsComponent,
-    CodeComponent
+    CodeComponent,
+    ChooseTypeComponent,
+    MasterComponent,
+    ContractorComponent
   ]
 })
 export class MainModule { }

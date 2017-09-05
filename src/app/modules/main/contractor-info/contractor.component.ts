@@ -59,6 +59,6 @@ export class ContractorComponent implements OnInit {
    * Handler for navigate to profile page
    */
   onClickChoose() {
-    this.router.navigate(['quick-registration']);
+    this.router.navigate(['master-call']);
   }
 }
