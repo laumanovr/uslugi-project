@@ -41,6 +41,7 @@ export class CodeComponent implements OnInit, OnDestroy {
     const url = 'http://namba.usta.asia/api.php?todo=checkSms&code=' + this.codeValue + '&mobile=' + this.profileService.phone;
     this.subscription = this.request.get(url).subscribe(data => {
       if (data.statusText === 'OK') {
+        this.profileService.userCreated = true;
         this.router.navigate(['choose']);
       }
     });

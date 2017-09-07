@@ -46,7 +46,6 @@ export class ContactsComponent implements OnInit, OnDestroy {
     if (!this.emailValue) {
       this.emailValue = '';
     }
-    this.profileService.phone = this.phoneValue;
     const urlPart = 'http://namba.usta.asia/api.php?todo=create_client';
     const name = '&firstname=' + this.nameValue;
     const phone = '&mobile=' + this.phoneValue;
