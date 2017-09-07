@@ -24,7 +24,7 @@ const ordersRoutes: Routes = [
     component: ChooseTypeComponent
   },
   {
-    path: 'master-info',
+    path: 'contractor-info',
     component: ContractorComponent
   },
   {

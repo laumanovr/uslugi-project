@@ -20,4 +20,8 @@ export class RequestService {
     return this.http.get(url);
   }
 
+  post(url: string, body: any): Observable<any> {
+    return this.http.post(url, body);
+  }
+
 }

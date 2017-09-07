@@ -11,6 +11,7 @@ import {ProfileModule} from './modules/profile/profile.module';
 import {ProfileService} from './services/profile.service';
 import {FormsModule} from '@angular/forms';
 import {MainModule} from './modules/main/main.module';
+import {MasterService} from './services/master.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {MainModule} from './modules/main/main.module';
   ],
   providers: [
     RequestService,
-    ProfileService
+    ProfileService,
+    MasterService
   ],
   bootstrap: [AppComponent]
 })

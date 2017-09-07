@@ -1,35 +1,46 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {ActivatedRoute, Router} from '@angular/router';
 import {RequestService} from '../../../services/request.service';
+import {Subscription} from 'rxjs/Subscription';
+import {MasterService} from '../../../services/master.service';
 
 @Component({
   selector: 'app-contractor-list',
   templateUrl: './contractor-list.component.html',
   styleUrls: ['./contractor-list.component.css']
 })
-export class ContractorListComponent implements OnInit {
+export class ContractorListComponent implements OnInit, OnDestroy {
 
   masters;
   masterDesc;
   modal = false;
   reviews = false;
+
   private navInfo: HTMLElement;
   private navRev: HTMLElement;
+  private subscription: Subscription;
 
   constructor(private location: Location,
               private router: Router,
               private route: ActivatedRoute,
+              private masterService: MasterService,
               private requestService: RequestService) {
   }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
+    this.subscription = this.route.queryParams.subscribe(params => {
       this.requestService.get('http://namba.usta.asia/api.php?todo=getAgents&serviceid=' + params['id'])
         .subscribe(data => {
           this.masters = data.json();
         });
     });
+  }
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   onClickBack() {
@@ -80,7 +91,9 @@ export class ContractorListComponent implements OnInit {
   /**
    * Handler for navigate to profile page
    */
-  onClickChoose() {
+  onClickChoose(master) {
+    console.log(master);
+    this.masterService.currentMaster = master;
     this.router.navigate(['contacts']);
   }
 }

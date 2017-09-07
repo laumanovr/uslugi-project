@@ -13,12 +13,12 @@
     <h3 class="master-title">Исполнитель</h3>
 
     <div class="row master-con">
-      <img class="m-20" src="../../../../assets/img/contractor/sample-user.png">
+      <img class="master-img m-20" src="{{master?.photo}}">
       <div class="m-10">
-        <p>Александр Б.</p>
-        <p class="master-con-name">cантехник</p>
+        <p>{{master?.name}}</p>
+        <p class="master-con-name">{{master?.profession}}</p>
       </div>
-      <i class="material-icons icon-verified">verified_user</i>
+      <i class="material-icons icon-verified" *ngIf="master?.verifed_user">verified_user</i>
     </div>
 
     <button class="master-btn" (click)="onCall()">Позвонить</button>
@@ -32,6 +32,20 @@
       <div class="row master-link-2">
         <span class="master-link-elem">Заказать через оператора</span>
         <i class="material-icons master-link-icon">keyboard_arrow_right</i>
+      </div>
+    </div>
+
+    <!--Call popup-->
+    <div class="modal" id="modal" *ngIf="modal" (click)="onClickOverModal($event)">
+      <div class="popup">
+        <button class="btn btn-operator">
+          <i class="material-icons phone-icon">phone</i>
+          Звонок оператору
+        </button>
+        <button class="btn btn-operator">
+          <i class="material-icons phone-icon">phone</i>
+          Звонок исполнителю
+        </button>
       </div>
     </div>
 

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
+import {MasterService} from '../../../services/master.service';
 
 @Component({
   selector: 'app-contractor',
@@ -8,6 +9,8 @@ import {Router} from '@angular/router';
   styleUrls: ['./contractor.component.css']
 })
 export class ContractorComponent implements OnInit {
+
+  master;
 
   /**
    * Vars for hide/show html containers
@@ -18,7 +21,8 @@ export class ContractorComponent implements OnInit {
   private navRev: HTMLElement;
 
   constructor(private location: Location,
-              private router: Router) {
+              private router: Router,
+              private masterService: MasterService) {
   }
 
   ngOnInit() {
@@ -26,6 +30,8 @@ export class ContractorComponent implements OnInit {
     this.revCont = document.getElementById('revCont');
     this.navInfo = document.getElementById('navInfo');
     this.navRev = document.getElementById('navRev');
+    this.master = this.masterService.currentMaster;
+    console.log(this.masterService.currentMaster);
   }
 
   /**
