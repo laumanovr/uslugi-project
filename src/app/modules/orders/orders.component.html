@@ -15,7 +15,7 @@
     <div *ngIf="!authorized" class="authorized">
       <p class="notif-title">Вход в систему</p>
       <p class="notif-text m-t-20">Для просмотра заказов необходимо авторизоваться</p>
-      <button class="btn btn-orange m-t-20" (click)="authorized = true">Войти</button>
+      <button class="btn btn-orange m-t-20" (click)="onClickAuth()">Войти</button>
     </div>
 
     <!--Content nav bar-->

@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {Location} from '@angular/common';
 import {ProfileService} from '../../../services/profile.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,23 +9,32 @@ import {ProfileService} from '../../../services/profile.service';
 })
 export class LoginComponent implements OnInit {
 
+  nameVal: string;
+  passVal: string;
+
   constructor(private profileService: ProfileService,
-              private location: Location,
               private router: Router) {
   }
 
   ngOnInit() {
+    this.authCheck();
   }
 
   /**
-   * Handler for navigate back
+   * Create pass
    */
-  onClickBack() {
-    this.location.back();
-  }
-
   onPasswordCreate() {
     this.router.navigate(['password']);
+  }
+
+  /**
+   * Quick authorization check
+   */
+  private authCheck() {
+    // this.profileService.userCreated = true;
+    if (this.profileService.userCreated) {
+      this.router.navigate(['profile']);
+    }
   }
 
 }

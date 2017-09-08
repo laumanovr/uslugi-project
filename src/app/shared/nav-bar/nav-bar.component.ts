@@ -64,7 +64,7 @@ export class NavBarComponent implements OnInit {
    * Navigate to profile
    */
   onClickProfile() {
-    this.router.navigate(['profile']);
+    this.router.navigate(['registration']);
   }
 
   /**

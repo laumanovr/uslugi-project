@@ -49,6 +49,13 @@ export class OrdersComponent implements OnInit {
   }
 
   /**
+   * Navigate to auth page
+   */
+  onClickAuth() {
+    this.router.navigate(['login']);
+  }
+
+  /**
    * Handler to hide/show Info container
    */
   onClickTap1() {

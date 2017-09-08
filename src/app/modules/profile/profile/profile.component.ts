@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ProfileService} from '../../services/profile.service';
 import {Router} from '@angular/router';
+import {Location} from '@angular/common';
+import {ProfileService} from '../../../services/profile.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,20 +10,22 @@ import {Router} from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
 
+
   constructor(private router: Router,
-              private profileService: ProfileService) { }
+              private location: Location,
+              private profileService: ProfileService) {
+  }
 
   ngOnInit() {
-    this.authCheck();
   }
 
   /**
-   * Quick authorization check
+   * Handler for navigate back
    */
-  private authCheck() {
-    this.profileService.userCreated = true;
-    if (this.profileService.userCreated) {
-      this.router.navigate(['']);
-    }
+  onClickBack() {
+    this.location.back();
   }
+
+
+
 }
