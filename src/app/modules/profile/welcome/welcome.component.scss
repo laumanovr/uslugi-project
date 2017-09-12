@@ -1,0 +1,52 @@
+.common-wrapper {
+  background-color: white;
+}
+
+.reg-img {
+  background: url("../../../../assets/img/registration.jpg")  no-repeat center;
+  background-size: contain;
+  height: 93%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reg-title {
+  margin-top: 90px;
+  font-size: 18px;
+}
+
+.reg-checkbox {
+  width: 15px;
+  height: 15px;
+  background-color: #d0d0d0;
+  border-radius: 4px;
+}
+
+.reg-accept {
+  font-size: 14px;
+}
+
+.reg-url {
+  color: #2196F3;
+}
+
+.reg-btn-1 {
+  height: 42px;
+  width: 170px;
+  background-color: #FFC107;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.reg-btn-2 {
+  @extend .reg-btn-1;
+  background-color: #E5E5E5;
+}
+
+.reg-row-centering {
+  align-items: center;
+}

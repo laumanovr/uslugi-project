@@ -1,52 +1,90 @@
-.common-wrapper {
+::-webkit-input-placeholder {
+  color: #9F9F9F;
+}
+
+.contacts-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+  height: 100%;
+  margin-left: 10px;
   background-color: white;
 }
 
-.reg-img {
-  background: url("../../../../assets/img/registration.jpg")  no-repeat center;
-  background-size: contain;
-  height: 93%;
+.contacts-content {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.reg-title {
-  margin-top: 90px;
-  font-size: 18px;
-}
-
-.reg-checkbox {
-  width: 15px;
-  height: 15px;
-  background-color: #d0d0d0;
-  border-radius: 4px;
-}
-
-.reg-accept {
-  font-size: 14px;
-}
-
-.reg-url {
-  color: #2196F3;
-}
-
-.reg-btn-1 {
-  height: 42px;
-  width: 170px;
-  background-color: #FFC107;
-  border: none;
-  border-radius: 4px;
+.contacts-headTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  width: 100%;
+  height: 80px;
+  background: #2196f3;
+  color: white;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 16px;
 }
 
-.reg-btn-2 {
-  @extend .reg-btn-1;
+.qr-c-name {
+  margin-top: 30px;
+  border: none;
+  border-bottom: 1px #D1D1D1 solid;
+  width: 328px;
+}
+
+.qr-c-btn {
+  border: none;
+  border-radius: 5px;
   background-color: #E5E5E5;
+  color: #9F9F9F;
+  height: 42px;
+  width: 328px;
+  font-weight: 500;
+  font-size: 15px;
+  margin: 30px auto;
 }
 
-.reg-row-centering {
-  align-items: center;
+/*Responsive styles*/
+@media screen and (max-width: 500px) {
+  .service-list {
+    flex-direction: column;
+  }
+
+  .service {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .qr-c-btn {
+    width: 90%;
+  }
+
+  .qr-c-name {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .header {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  .contacts-content-wrapper {
+    width: 100%;
+    margin: 0 0 60px 0;
+  }
+
+  .contacts-content {
+    width: 100%;
+  }
 }

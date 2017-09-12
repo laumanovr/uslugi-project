@@ -1,23 +1,34 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ProfileService} from '../../../services/profile.service';
 import {Router} from '@angular/router';
+import {RequestService} from '../../../services/request.service';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
-  nameVal: string;
+  phoneVal: string;
   passVal: string;
 
+  private subscription: Subscription;
+
   constructor(private profileService: ProfileService,
+              private requestService: RequestService,
               private router: Router) {
   }
 
   ngOnInit() {
     this.authCheck();
+  }
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   /**
@@ -28,10 +39,34 @@ export class LoginComponent implements OnInit {
   }
 
   /**
+   * Navigate to registration page
+   */
+  onRegistration() {
+    this.router.navigate(['registration']);
+  }
+
+  /**
+   * User checking
+   */
+  onLogin() {
+    const phone = '&mobile=' + this.phoneVal;
+    const pass = '&password=' + this.passVal;
+    const url = 'http://namba.usta.asia/api.php?todo=check_password_client' + phone + pass;
+    this.subscription = this.requestService.get(url).subscribe(resp => {
+      const respStatus = resp.json()[0];
+      if (respStatus === 'true') {
+        this.router.navigate(['profile']);
+        this.requestService.get('https://usluga.namba1.co/api.php?todo=getClientData').subscribe(resp2 => {
+          console.log(resp2);
+        });
+      }
+    });
+  }
+
+  /**
    * Quick authorization check
    */
   private authCheck() {
-    // this.profileService.userCreated = true;
     if (this.profileService.userCreated) {
       this.router.navigate(['profile']);
     }

@@ -8,6 +8,7 @@ import {ProfileComponent} from './profile/profile.component';
 import {LoginComponent} from './login/login.component';
 import {FormsModule} from '@angular/forms';
 import { RegistrationComponent } from './registration/registration.component';
+import {WelcomeComponent} from './welcome/welcome.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { RegistrationComponent } from './registration/registration.component';
     PasswordComponent,
     PasswordCreateComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    WelcomeComponent
   ]
 })
 export class ProfileModule { }

@@ -23,8 +23,7 @@ export class OrdersComponent implements OnInit {
   /**
    * Vars to hide/show html containers
    */
-  private tap1: HTMLElement;
-  private tap2: HTMLElement;
+  tap = true;
   private nav1: HTMLElement;
   private nav2: HTMLElement;
 
@@ -35,8 +34,6 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit() {
     this.authCheck();
-    this.tap1 = document.getElementById('tap1');
-    this.tap2 = document.getElementById('tap2');
     this.nav1 = document.getElementById('navTap1');
     this.nav2 = document.getElementById('navTap2');
   }
@@ -59,20 +56,18 @@ export class OrdersComponent implements OnInit {
    * Handler to hide/show Info container
    */
   onClickTap1() {
-    this.tap1.style.display = 'block';
-    this.tap2.style.display = 'none';
     this.nav2.style.border = 'none';
     this.nav1.style.borderBottom = '3px #2196F3 solid';
+    this.tap = !this.tap;
   }
 
   /**
    * Handler to hide/show Reviews container
    */
   onClickTap2() {
-    this.tap2.style.display = 'block';
-    this.tap1.style.display = 'none';
     this.nav1.style.border = 'none';
     this.nav2.style.borderBottom = '3px #2196F3 solid';
+    this.tap = !this.tap;
   }
 
   /**

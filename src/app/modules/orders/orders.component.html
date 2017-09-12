@@ -19,18 +19,14 @@
     </div>
 
     <!--Content nav bar-->
-    <div class="row list-nav-cont" *ngIf="authorized">
+    <div class="row list-nav-cont">
       <p class="list-nav-info" id="navTap1" (click)="onClickTap1()">АКТИВНЫЕ</p>
       <p class="list-nav-rev" id="navTap2" (click)="onClickTap2()">ВЫПОЛНЕННЫЕ</p>
     </div>
 
     <div class="row" *ngIf="authorized">
       <!--Tap 1-->
-      <div class="tap-1" id="tap1">
-        <!--Title-->
-        <p class="tap1-title">АКТИВНЫЕ</p>
-
-        <!--Order container-->
+      <div *ngIf="tap" class="tap-1">
         <div class="order">
           <div class="row order-desc-1">
             <div class="list-date">
@@ -67,16 +63,11 @@
             <i class="material-icons info-icon">info_outline</i>
             <p>Требуется ваше подтверждение</p>
           </div>
-
         </div>
       </div>
 
       <!--Tap 2-->
-      <div class="tap-2" id="tap2">
-        <!--Title-->
-        <p class="tap1-title">ЗАВЕРШЕННЫЕ</p>
-
-        <!--Order container-->
+      <div *ngIf="!tap" class="tap-1">
         <div class="order">
           <div class="row order-desc-1">
             <div class="list-date">
@@ -113,7 +104,6 @@
             <i class="material-icons info-icon">done_all</i>
             <p>Заказ выполнен</p>
           </div>
-
         </div>
       </div>
 

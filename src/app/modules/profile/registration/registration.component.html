@@ -1,23 +1,33 @@
-<div class="row main">
+<div class="row main" style="height: 100vh">
   <!--Nav bar-->
   <div class="nav-bar">
     <app-nav-bar></app-nav-bar>
   </div>
 
-  <div class="common-wrapper">
-
-    <div class="reg-img">
-      <p class="reg-title">Добро пожаловать на сервис Услуга.KG</p>
-      <div class="row m-t-20 reg-row-centering">
-        <input class="reg-checkbox" type="checkbox" checked>
-        <p class="reg-accept m-l-10">Я согласен с <span class="reg-url">Пользовательским соглашением</span></p>
-      </div>
-      <div class="row m-t-20">
-        <button class="reg-btn-1">Регистрация</button>
-        <button class="reg-btn-2 m-l-20">Войти</button>
-      </div>
+  <div class="contacts-content-wrapper">
+    <div class="header">
+      <i class="material-icons header-icon" (click)="onClickBack()">arrow_back</i>
+      <span class="header-title">Регистрация</span>
     </div>
+    <div class="contacts-content">
+      <input class="qr-c-name" name="name" type="text" id="address" autocomplete="off" placeholder="Имя"
+             [(ngModel)]="nameValue" #name="ngModel" minlength="2" maxlength="30" required (keyup)="checkFormValid()"/>
 
+      <input class="qr-c-name" name="phone" type="text" id="phone" autocomplete="off" placeholder="Номер телефона"
+             [(ngModel)]="phoneValue" #phone="ngModel" minlength="10" maxlength="10" required (keyup)="checkFormValid()">
+
+      <input class="qr-c-name" name="email" type="email" id="email" autocomplete="off"
+             placeholder="E-mail (не обязательно)" maxlength="40"
+             [(ngModel)]="emailValue" #email="ngModel" email="">
+
+      <input class="qr-c-name" name="pass" type="text" id="pass" autocomplete="off"
+             placeholder="Пароль" maxlength="40"
+             [(ngModel)]="passValue" #pass="ngModel" email="" (keyup)="checkFormValid()">
+
+      <button id="btn"  class="qr-c-btn" (click)="onClickRegBTn()">
+        Далее
+      </button>
+    </div>
   </div>
-
 </div>
+
