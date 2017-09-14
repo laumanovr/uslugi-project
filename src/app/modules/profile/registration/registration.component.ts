@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {Subscription} from 'rxjs/Subscription';
@@ -9,7 +9,7 @@ import {RequestService} from '../../../services/request.service';
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss']
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent implements OnInit, OnDestroy {
 
   emailValue: string;
   nameValue: string;
@@ -25,6 +25,12 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   /**
@@ -47,19 +53,20 @@ export class RegistrationComponent implements OnInit {
   }
 
   onClickRegBTn() {
-    this.sendUserToApi();
-  }
-
-  private sendUserToApi() {
-    const urlPart = 'http://namba.usta.asia/api.php?todo=create_client';
+    const urlPart = 'https://usluga.namba1.co/api.php?todo=create_client';
     const name = '&firstname=' + this.nameValue;
     const phone = '&mobile=' + this.phoneValue;
     const pass = '&password=' + this.passValue;
     const url = urlPart + name + phone + pass;
     this.subscription = this.requestService.get(url).subscribe(resp => {
       console.log(resp.json());
-      console.log(document.cookie);
+      this.router.navigate(['profile']);
     });
+  }
+
+  onCheckBox() {
+    const checkBox = (<HTMLInputElement>document.getElementById('checkBox')).checked;
+    console.log(checkBox);
   }
 
 }

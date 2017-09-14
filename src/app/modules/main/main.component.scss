@@ -9,20 +9,21 @@
   background-color: white;
   border-radius: 5px;
   width: 45%;
+  height: 250px;
   margin: 20px 0;
   margin-left: 3%;
 }
 
 .service-img {
   width: 80%;
-  height: 80%;
+  height: 80% !important;
 }
 
 .service-title {
   bottom: 10px;
-  padding: 10px 20px;
   border-top: 1px #E5E5E5 solid;
   box-shadow: 0 -1px 1px #d0d0d0;
+  padding-left: 10px;
 }
 
 /*Responsive styles*/
@@ -33,6 +34,7 @@
 
   .service {
     width: 90%;
+    height: 185px;
     margin-left: auto;
     margin-right: auto;
   }

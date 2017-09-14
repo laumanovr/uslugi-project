@@ -25,6 +25,6 @@ export class ChooseTypeComponent implements OnInit {
   }
 
   onClick() {
-    this.router.navigate(['contractor-info']);
+    this.router.navigate(['master-call']);
   }
 }

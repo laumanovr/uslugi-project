@@ -46,12 +46,13 @@ export class ContactsComponent implements OnInit, OnDestroy {
     if (!this.emailValue) {
       this.emailValue = '';
     }
-    const urlPart = 'http://namba.usta.asia/api.php?todo=create_client';
+    const urlPart = 'https://usluga.namba1.co/api.php?todo=create_client';
     const name = '&firstname=' + this.nameValue;
     const phone = '&mobile=' + this.phoneValue;
     const url = urlPart + name + phone;
     this.subscriptions.push(
       this.request.get(url).subscribe(data => {
+        console.log(data);
         const urlSms = 'http://namba.usta.asia/api.php?todo=sendSms&mobile=' + this.phoneValue;
         this.request.get(urlSms).subscribe(data2 => {
           console.log(data2.json());

@@ -89,6 +89,13 @@ export class OrdersComponent implements OnInit {
   }
 
   /**
+   * Handler to navigate to review page
+   */
+  onClickReview() {
+    this.router.navigate(['review']);
+  }
+
+  /**
    * Quick authorization check
    */
   private authCheck() {

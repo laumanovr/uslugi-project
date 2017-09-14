@@ -9,7 +9,6 @@ import {FormsModule} from '@angular/forms';
 import {CodeComponent} from './code/code.component';
 import {ChooseTypeComponent} from './choose-type/choose-type.component';
 import {MasterComponent} from './master/master.component';
-import {ContractorComponent} from './contractor-info/contractor.component';
 
 @NgModule({
   imports: [
@@ -25,7 +24,6 @@ import {ContractorComponent} from './contractor-info/contractor.component';
     CodeComponent,
     ChooseTypeComponent,
     MasterComponent,
-    ContractorComponent
   ]
 })
 export class MainModule { }

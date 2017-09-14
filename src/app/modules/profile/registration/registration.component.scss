@@ -51,6 +51,25 @@
   margin: 30px auto;
 }
 
+.reg-row-centering {
+  align-items: center;
+}
+
+.reg-checkbox {
+  width: 15px;
+  height: 15px;
+  background-color: #d0d0d0;
+  border-radius: 4px;
+}
+
+.reg-accept {
+  font-size: 14px;
+}
+
+.reg-url {
+  color: #2196F3;
+}
+
 /*Responsive styles*/
 @media screen and (max-width: 500px) {
   .service-list {

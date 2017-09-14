@@ -19,9 +19,9 @@
           <p class="prof-key">E-mail:</p>
         </div>
         <div class="col-2">
-          <p class="prof-val">Владимир</p>
-          <p class="prof-val">0(550)12-33-22</p>
-          <p class="prof-val">usluga@mail.com</p>
+          <p class="prof-val">{{user?.name}}</p>
+          <p class="prof-val">{{user?.phone}}</p>
+          <p class="prof-val">{{user?.email}}</p>
         </div>
       </div>
 
@@ -37,10 +37,10 @@
 
       <p class="prof-title m-t-50">Управление</p>
       <div class="row prof-border-1 m-t-10">
-        <span class="nav-text">Создать пароль</span>
+        <span class="nav-text" (click)="onClickCreatePass()">Создать пароль</span>
         <span class="arrow-right"></span>
       </div>
-      <p class="nav-text-2 prof-border-2">Выйти</p>
+      <p class="nav-text-2 prof-border-2" (click)="onClickQuite()">Выйти</p>
     </div>
 
   </div>

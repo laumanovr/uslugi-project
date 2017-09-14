@@ -37,7 +37,7 @@
 
           <div class="cl-con-1">
             <span class="cl-con-left">Рейтинг:</span><span class="cl-con-right">{{master?.rating}} из 5<span
-            class="cl-con-com"> ({{master?.reviews}} отзывов)</span></span>
+            class="cl-con-com"> ({{master?.reviews.length}} отзывов)</span></span>
           </div>
           <div class="cl-con-1">
             <span class="cl-con-left">График работы:</span><span class="cl-con-right">{{master?.schedule}}</span>
@@ -64,7 +64,7 @@
     <!--Content nav bar-->
     <div class="row nav-cont">
       <p class="nav-info" id="masterInfo" (click)="onClickInfo()">Информация</p>
-      <p class="nav-rev" id="masterRev" (click)="onClickRev()">Отзывы(13)</p>
+      <p class="nav-rev" id="masterRev" (click)="onClickRev()">Отзывы({{masterDesc.reviews.length}})</p>
     </div>
 
     <!--Content-->
@@ -143,22 +143,20 @@
         </div>
         <div class="m-l-40">
           <p class="cl-info-text-3">{{masterDesc.rating}} из 5</p>
-          <p class="cl-info-text-3">{{masterDesc.reviews}}</p>
+          <p class="cl-info-text-3">{{masterDesc.reviews.length}}</p>
         </div>
       </div>
 
       <!--Array of reviews-->
-      <div class="cl-review m-t-20">
+      <div class="cl-review m-t-20" *ngFor="let review of masterDesc.reviews">
         <div class="row m-10">
-          <p class="cl-review-mark">4</p>
+          <p class="cl-review-mark">{{review.stars}}</p>
           <div class="cl-review-descrip">
-            <p class="cl-review-title">Ремонт бойлера</p>
-            <p class="cl-review-date">03.08.2017</p>
+            <p class="cl-review-title">{{review.service}}</p>
+            <p class="cl-review-date">{{review.orderdate}}</p>
           </div>
         </div>
-        <p class="p-10">Значимость этих проблем настолько очевидна, что реализация намеченных плановых заданий в
-          значительной
-          степени обуславливает создание модели развития. </p>
+        <p class="p-10">{{review.comment}}</p>
       </div>
 
     </div>

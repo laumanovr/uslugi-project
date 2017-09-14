@@ -3,6 +3,7 @@ import {RequestService} from '../../services/request.service';
 import {Router} from '@angular/router';
 import {MasterService} from '../../services/master.service';
 import {Subscription} from 'rxjs/Subscription';
+import {ProfileService} from '../../services/profile.service';
 
 @Component({
   selector: 'app-main',
@@ -13,29 +14,28 @@ export class MainComponent implements OnInit, OnDestroy {
 
   services;
 
-  private subscription: Subscription;
-  private subscription2: Subscription;
+  private subscriptions: Subscription[] = [];
 
   constructor(private router: Router,
               private requestService: RequestService,
-              private masterService: MasterService) {
+              private masterService: MasterService,
+              private profileService: ProfileService) {
   }
 
   ngOnInit() {
-    console.log(document.cookie);
     this.getListOfMasters();
-    this.subscription2 = this.requestService.get('https://usluga.namba1.co/api.php?todo=getClientData')
+    this.subscriptions.push(this.requestService.get('https://usluga.namba1.co/api.php?todo=getClientData')
       .subscribe(resp => {
-        console.log(resp);
-      });
+        const userAuth = resp.json()[2].name;
+        if (userAuth !== '' && userAuth !== 'undefined') {
+          this.profileService.userCreated = true;
+        }
+      }));
   }
 
   ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
-    if (this.subscription2) {
-      this.subscription2.unsubscribe();
+    while (this.subscriptions.length) {
+      this.subscriptions.pop().unsubscribe();
     }
   }
 
@@ -48,9 +48,9 @@ export class MainComponent implements OnInit, OnDestroy {
    * Get list of masters from api
    */
   private getListOfMasters() {
-    this.subscription = this.requestService.get('https://usluga.namba1.co/api.php?todo=getservices')
+    this.subscriptions.push(this.requestService.get('https://usluga.namba1.co/api.php?todo=getservices')
       .subscribe((data) => {
         this.services = data.json();
-      });
+      }));
   }
 }

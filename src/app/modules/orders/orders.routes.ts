@@ -1,6 +1,7 @@
 import {RouterModule, Routes} from '@angular/router';
 import {OrdersComponent} from './orders.component';
 import {DescriptionComponent} from './description/description.component';
+import {ReviewComponent} from './review/review.component';
 
 const ordersRoutes: Routes = [
   {
@@ -10,6 +11,10 @@ const ordersRoutes: Routes = [
   {
     path: 'description',
     component: DescriptionComponent
+  },
+  {
+    path: 'review',
+    component: ReviewComponent
   }
 ];
 

@@ -24,7 +24,12 @@
              placeholder="Пароль" maxlength="40"
              [(ngModel)]="passValue" #pass="ngModel" email="" (keyup)="checkFormValid()">
 
-      <button id="btn"  class="qr-c-btn" (click)="onClickRegBTn()">
+      <div class="row m-t-20 reg-row-centering">
+        <input id="checkBox" class="reg-checkbox" type="checkbox" (click)="onCheckBox()">
+        <p class="reg-accept m-l-10">Я согласен с <span class="reg-url">Пользовательским соглашением</span></p>
+      </div>
+
+      <button id="btn" class="qr-c-btn" (click)="onClickRegBTn()">
         Далее
       </button>
     </div>

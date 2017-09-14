@@ -11,6 +11,12 @@
       <p class="header-title">Мои заказы</p>
     </div>
 
+    <!--Content nav bar-->
+    <div class="row list-nav-cont">
+      <p class="list-nav-info" id="navTap1" (click)="onClickTap1()">АКТИВНЫЕ</p>
+      <p class="list-nav-rev" id="navTap2" (click)="onClickTap2()">ВЫПОЛНЕННЫЕ</p>
+    </div>
+
     <!--Not authorized notification-->
     <div *ngIf="!authorized" class="authorized">
       <p class="notif-title">Вход в систему</p>
@@ -18,12 +24,7 @@
       <button class="btn btn-orange m-t-20" (click)="onClickAuth()">Войти</button>
     </div>
 
-    <!--Content nav bar-->
-    <div class="row list-nav-cont">
-      <p class="list-nav-info" id="navTap1" (click)="onClickTap1()">АКТИВНЫЕ</p>
-      <p class="list-nav-rev" id="navTap2" (click)="onClickTap2()">ВЫПОЛНЕННЫЕ</p>
-    </div>
-
+    <!--Content-->
     <div class="row" *ngIf="authorized">
       <!--Tap 1-->
       <div *ngIf="tap" class="tap-1">
@@ -98,7 +99,7 @@
           <button class="order-btn">Подробнее</button>
           <div class="row order-btn-con">
             <button class="order-btn1">Написать</button>
-            <button class="order-btn2">Позвонить</button>
+            <button class="order-btn2" (click)="onClickReview()">Оценить</button>
           </div>
           <div class="row order-complete">
             <i class="material-icons info-icon">done_all</i>
