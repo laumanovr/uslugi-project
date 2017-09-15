@@ -6,7 +6,7 @@ import {AppRouting} from './app.routes';
 import {OrdersModule} from './modules/orders/orders.module';
 import {NavBarModule} from './shared/nav-bar/nav-bar.module';
 import {HttpModule} from '@angular/http';
-import {RequestService} from './services/request.service';
+import {CustomRequest} from './services/request.service';
 import {ProfileModule} from './modules/profile/profile.module';
 import {ProfileService} from './services/profile.service';
 import {FormsModule} from '@angular/forms';
@@ -28,7 +28,7 @@ import {MasterService} from './services/master.service';
     ProfileModule
   ],
   providers: [
-    RequestService,
+    CustomRequest,
     ProfileService,
     MasterService
   ],

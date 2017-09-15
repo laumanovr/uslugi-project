@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
 import {MasterService} from '../../../services/master.service';
-import {RequestService} from '../../../services/request.service';
+import {CustomRequest} from '../../../services/request.service';
 
 @Component({
   selector: 'app-master',
@@ -11,17 +11,17 @@ import {RequestService} from '../../../services/request.service';
 })
 export class MasterComponent implements OnInit {
 
-  master;
   modal = false;
+  master;
 
   constructor(private location: Location,
               private router: Router,
               private masterService: MasterService,
-              private requestService: RequestService) {
+              private requestService: CustomRequest) {
   }
 
   ngOnInit() {
-    this.master = this.masterService.currentMaster;
+    this.master = this.masterService.selectedMaster;
   }
 
   /**
@@ -33,17 +33,17 @@ export class MasterComponent implements OnInit {
 
   onCall() {
     this.modal = true;
-    // const serviceId = this.masterService.currentService;
-    // const masterId = this.master.id;
-    // const url = 'http://namba.usta.asia/api.php?todo=createorder';
-    // const body = {
-    //   serviceid: serviceId,
-    //   agent: masterId
-    // };
-    // this.requestService.post(url, body).subscribe(data => {
-    //   console.log(data);
-    //   this.modal = true;
-    // });
+    const url = 'https://usluga.namba1.co/api.php?todo=createorder';
+    const body = {
+      serviceid: this.masterService.selectedService,
+      agent: this.masterService.selectedMaster.id,
+      mobile: this.masterService.currentPhone,
+    };
+    this.requestService.post(url, body).subscribe(data => {
+      console.log(data.json());
+      this.masterService.fromMasterPage = true;
+      this.modal = true;
+    });
   }
 
   onNavContractors() {

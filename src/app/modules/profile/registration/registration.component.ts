@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {Subscription} from 'rxjs/Subscription';
-import {RequestService} from '../../../services/request.service';
+import {CustomRequest} from '../../../services/request.service';
 
 @Component({
   selector: 'app-registration',
@@ -17,14 +17,16 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   passValue: string;
 
   private button: HTMLElement;
+  private checkBox = true;
   private subscription: Subscription;
 
   constructor(private router: Router,
               private location: Location,
-              private requestService: RequestService) {
+              private requestService: CustomRequest) {
   }
 
   ngOnInit() {
+    (<HTMLInputElement>document.getElementById('checkBox')).checked = true;
   }
 
   ngOnDestroy() {
@@ -59,14 +61,17 @@ export class RegistrationComponent implements OnInit, OnDestroy {
     const pass = '&password=' + this.passValue;
     const url = urlPart + name + phone + pass;
     this.subscription = this.requestService.get(url).subscribe(resp => {
-      console.log(resp.json());
-      this.router.navigate(['profile']);
+      const userCreated = resp.json()[0];
+      if (userCreated === 'ok') {
+        this.router.navigate(['profile']);
+      } else {
+        console.log(resp.json()[1]);
+      }
     });
   }
 
   onCheckBox() {
     const checkBox = (<HTMLInputElement>document.getElementById('checkBox')).checked;
-    console.log(checkBox);
   }
 
 }

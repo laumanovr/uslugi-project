@@ -1,8 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ProfileService} from '../../../services/profile.service';
 import {Router} from '@angular/router';
-import {RequestService} from '../../../services/request.service';
 import {Subscription} from 'rxjs/Subscription';
+import {Location} from '@angular/common';
+import {CustomRequest} from '../../../services/request.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
 
   constructor(private profileService: ProfileService,
-              private requestService: RequestService,
+              private requestService: CustomRequest,
+              private location: Location,
               private router: Router) {
   }
 
@@ -29,6 +31,13 @@ export class LoginComponent implements OnInit, OnDestroy {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+  }
+
+  /**
+   * Handler for navigate back
+   */
+  onClickBack() {
+    this.location.back();
   }
 
   /**
@@ -51,14 +60,11 @@ export class LoginComponent implements OnInit, OnDestroy {
   onLogin() {
     const phone = '&mobile=' + this.phoneVal;
     const pass = '&password=' + this.passVal;
-    const url = 'http://namba.usta.asia/api.php?todo=check_password_client' + phone + pass;
+    const url = 'https://usluga.namba1.co/api.php?todo=check_password_client' + phone + pass;
     this.subscription = this.requestService.get(url).subscribe(resp => {
       const respStatus = resp.json()[0];
       if (respStatus === 'true') {
         this.router.navigate(['profile']);
-        this.requestService.get('https://usluga.namba1.co/api.php?todo=getClientData').subscribe(resp2 => {
-          console.log(resp2);
-        });
       }
     });
   }

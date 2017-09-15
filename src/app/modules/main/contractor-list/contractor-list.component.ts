@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
-import {ActivatedRoute, Router} from '@angular/router';
-import {RequestService} from '../../../services/request.service';
+import {Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 import {MasterService} from '../../../services/master.service';
+import {CustomRequest} from '../../../services/request.service';
 
 @Component({
   selector: 'app-contractor-list',
@@ -23,18 +23,16 @@ export class ContractorListComponent implements OnInit, OnDestroy {
 
   constructor(private location: Location,
               private router: Router,
-              private route: ActivatedRoute,
               private masterService: MasterService,
-              private requestService: RequestService) {
+              private requestService: CustomRequest) {
   }
 
   ngOnInit() {
-    this.subscription = this.route.queryParams.subscribe(params => {
-      this.requestService.get('http://namba.usta.asia/api.php?todo=getAgents&serviceid=' + params['id'])
-        .subscribe(data => {
-          this.masters = data.json();
-        });
-    });
+    this.subscription = this.requestService.get('https://usluga.namba1.co/api.php?todo=getAgents&serviceid='
+      + this.masterService.selectedService)
+      .subscribe(data => {
+        this.masters = data.json();
+      });
   }
 
   ngOnDestroy() {
@@ -51,7 +49,6 @@ export class ContractorListComponent implements OnInit, OnDestroy {
    * Handler for show modal window
    */
   onClickDesc(master) {
-    console.log(master);
     this.masterDesc = master;
     this.modal = true;
   }
@@ -92,8 +89,11 @@ export class ContractorListComponent implements OnInit, OnDestroy {
    * Handler for navigate to profile page
    */
   onClickChoose(master) {
-    console.log(master);
-    this.masterService.currentMaster = master;
-    this.router.navigate(['contacts']);
+    this.masterService.selectedMaster = master;
+    if (this.masterService.fromMasterPage) {
+      this.router.navigate(['master-call']);
+    } else {
+      this.router.navigate(['contacts']);
+    }
   }
 }

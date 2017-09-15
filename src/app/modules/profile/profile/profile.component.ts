@@ -1,9 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {Location} from '@angular/common';
 import {ProfileService} from '../../../services/profile.service';
 import {Subscription} from 'rxjs/Subscription';
-import {RequestService} from '../../../services/request.service';
+import {CustomRequest} from '../../../services/request.service';
 
 @Component({
   selector: 'app-profile',
@@ -16,8 +15,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
 
   constructor(private router: Router,
-              private location: Location,
-              private requestService: RequestService,
+              private requestService: CustomRequest,
               private profileService: ProfileService) {
   }
 
@@ -31,21 +29,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
   }
 
-  /**
-   * Handler for navigate back
-   */
-  onClickBack() {
-    this.location.back();
-  }
-
   onClickCreatePass() {
-    this.router.navigate(['password-create']);
+    this.router.navigate(['password']);
   }
 
   onClickQuite() {
     const url = 'https://usluga.namba1.co/api.php?todo=deleteSession';
     this.subscriptions.push(this.requestService.get(url).subscribe(resp => {
-      location.reload();
+      this.router.navigate(['login']);
     }));
   }
 

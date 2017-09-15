@@ -3,7 +3,7 @@ import {Http, Headers, RequestOptions} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable()
-export class RequestService {
+export class CustomRequest {
 
   private header = new Headers({
   });

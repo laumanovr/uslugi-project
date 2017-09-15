@@ -16,6 +16,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 320px;
 }
 
 .contacts-headTitle {
@@ -49,6 +50,12 @@
   font-weight: 500;
   font-size: 15px;
   margin: 30px auto;
+}
+
+.cont-notif {
+  font-size: 14px;
+  color: #dc2b14;
+  margin-top: 10px;
 }
 
 /*Responsive styles*/

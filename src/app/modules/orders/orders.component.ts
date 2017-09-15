@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
 import {ProfileService} from '../../services/profile.service';
+import {Subscription} from 'rxjs/Subscription';
+import {CustomRequest} from '../../services/request.service';
 
 @Component({
   selector: 'app-orders',
@@ -27,13 +29,17 @@ export class OrdersComponent implements OnInit {
   private nav1: HTMLElement;
   private nav2: HTMLElement;
 
+  private subscription: Subscription;
+
   constructor(private location: Location,
               private router: Router,
-              private profileService: ProfileService) {
+              private profileService: ProfileService,
+              private request: CustomRequest) {
   }
 
   ngOnInit() {
     this.authCheck();
+    this.getOrdersFromApi();
     this.nav1 = document.getElementById('navTap1');
     this.nav2 = document.getElementById('navTap2');
   }
@@ -104,4 +110,10 @@ export class OrdersComponent implements OnInit {
     }
   }
 
+  private getOrdersFromApi() {
+    const url = 'https://usluga.namba1.co/api.php?todo=getOrders&type=active';
+    this.subscription = this.request.get(url).subscribe(resp => {
+      console.log(resp.json()[1]);
+    });
+  }
 }
