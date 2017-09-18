@@ -62,6 +62,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     const pass = '&password=' + this.passVal;
     const url = 'https://usluga.namba1.co/api.php?todo=check_password_client' + phone + pass;
     this.subscription = this.requestService.get(url).subscribe(resp => {
+      console.log(resp.json());
       const respStatus = resp.json()[0];
       if (respStatus === 'true') {
         this.router.navigate(['profile']);

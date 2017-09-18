@@ -15,8 +15,9 @@ export class ContactsComponent implements OnInit, OnDestroy {
 
   nameValue: string;
   phoneValue: string;
-  notif: string;
   phonePlaceholder = 'Номер телефона';
+  modal = false;
+  password = false;
 
   private button: HTMLElement;
   private subscriptions: Subscription[] = [];
@@ -55,12 +56,6 @@ export class ContactsComponent implements OnInit, OnDestroy {
     }
   }
 
-  phoneValid() {
-    if (!this.phoneValue) {
-      this.notif = '';
-    }
-  }
-
   /**
    * Handler to change the button colors
    */
@@ -74,6 +69,14 @@ export class ContactsComponent implements OnInit, OnDestroy {
     }
   }
 
+  onLogin() {
+    this.router.navigate(['login']);
+  }
+
+  onPassCreate() {
+    this.router.navigate(['password-create']);
+  }
+
   private createUser() {
     const urlPart = 'https://usluga.namba1.co/api.php?todo=create_client';
     const name = '&firstname=' + this.nameValue;
@@ -81,12 +84,18 @@ export class ContactsComponent implements OnInit, OnDestroy {
     const url = urlPart + phone + name;
     this.subscriptions.push(
       this.request.get(url).subscribe(resp => {
-        console.log(resp.json());
-        const userCreated = resp.json()[0];
-        if (userCreated === 'ok') {
-          this.sendSms();
-        } else if (userCreated === 'error') {
-          this.notif = resp.json()[1];
+        const userCreated = resp.json()[1];
+        switch (userCreated) {
+          case 'no password':
+            this.modal = true;
+            break;
+          case 'number is registered':
+            this.password = true;
+            this.modal = true;
+            break;
+          case 'ok':
+            this.sendSms();
+            break;
         }
       }));
   }

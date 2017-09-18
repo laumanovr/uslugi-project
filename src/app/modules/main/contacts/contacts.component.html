@@ -15,14 +15,25 @@
 
       <input class="qr-c-name" name="phone" type="text" id="phone" autocomplete="off" placeholder="{{phonePlaceholder}}"
              [(ngModel)]="phoneValue" #phone="ngModel" minlength="10" maxlength="10" required
-             (keyup)="checkBtnValid(); phoneValid()">
-
-      <label class="cont-notif">{{notif}}</label>
+             (keyup)="checkBtnValid()">
 
       <button id="btn" [disabled]="name.invalid || phone.invalid" class="qr-c-btn" (click)="onNext()">
         Далее
       </button>
+
     </div>
   </div>
 </div>
 
+<!--Password create popup-->
+<div class="modal" id="modal" *ngIf="modal">
+  <div class="popup" *ngIf="!password">
+    <p>Данный номер уже зарегистрирован, чтобы продолжить необходимо создать пароль</p>
+    <button class="btn" (click)="onPassCreate()">Создать</button>
+  </div>
+
+  <div class="popup" *ngIf="password">
+    <p>Указанный номер уже зарегистрирован, чтобы продолжить необходимо авторизоваться</p>
+    <button class="btn" (click)="onLogin()">Войти</button>
+  </div>
+</div>

@@ -36,6 +36,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   onClickQuite() {
     const url = 'https://usluga.namba1.co/api.php?todo=deleteSession';
     this.subscriptions.push(this.requestService.get(url).subscribe(resp => {
+      this.profileService.userCreated = false;
       this.router.navigate(['login']);
     }));
   }
