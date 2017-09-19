@@ -11,18 +11,22 @@ import {CustomRequest} from '../../../services/request.service';
 })
 export class RegistrationComponent implements OnInit, OnDestroy {
 
+  codeValue: string;
   emailValue: string;
   nameValue: string;
   phoneValue: string;
   passValue: string;
+  modal = false;
+  password = false;
+  phoneBusy = false;
 
   private button: HTMLElement;
   private checkBox = true;
-  private subscription: Subscription;
+  private subscriptions: Subscription[] = [];
 
   constructor(private router: Router,
               private location: Location,
-              private requestService: CustomRequest) {
+              private request: CustomRequest) {
   }
 
   ngOnInit() {
@@ -30,8 +34,8 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
+    while (this.subscriptions.length) {
+      this.subscriptions.pop().unsubscribe();
     }
   }
 
@@ -40,6 +44,10 @@ export class RegistrationComponent implements OnInit, OnDestroy {
    */
   onClickBack() {
     this.location.back();
+  }
+
+  onCheckBox() {
+    const checkBox = (<HTMLInputElement>document.getElementById('checkBox')).checked;
   }
 
   /**
@@ -55,23 +63,43 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   }
 
   onClickRegBTn() {
+    this.sendSms();
+  }
+
+  checkPhone() {
+    console.log('Checking');
+  }
+
+  private sendSms() {
+    const urlSms = 'https://usluga.namba1.co/api.php?todo=sendSms&mobile=' + this.phoneValue;
+    this.subscriptions.push(this.request.get(urlSms).subscribe(resp => {
+      console.log(resp.json());
+      if (resp.statusText === 'OK') {
+        this.createUser();
+      }
+    }));
+  }
+
+  private createUser() {
     const urlPart = 'https://usluga.namba1.co/api.php?todo=create_client';
     const name = '&firstname=' + this.nameValue;
     const phone = '&mobile=' + this.phoneValue;
-    const pass = '&password=' + this.passValue;
-    const url = urlPart + name + phone + pass;
-    this.subscription = this.requestService.get(url).subscribe(resp => {
-      const userCreated = resp.json()[0];
-      if (userCreated === 'ok') {
-        this.router.navigate(['profile']);
-      } else {
-        console.log(resp.json()[1]);
-      }
-    });
-  }
-
-  onCheckBox() {
-    const checkBox = (<HTMLInputElement>document.getElementById('checkBox')).checked;
+    const url = urlPart + phone + name;
+    this.subscriptions.push(
+      this.request.get(url).subscribe(resp => {
+        const userCreated = resp.json()[1];
+        switch (userCreated) {
+          case 'no password':
+            this.modal = true;
+            break;
+          case 'number is registered':
+            this.password = true;
+            this.modal = true;
+            break;
+          case 'ok':
+            break;
+        }
+      }));
   }
 
 }

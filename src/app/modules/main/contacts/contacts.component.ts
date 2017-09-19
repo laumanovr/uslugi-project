@@ -5,6 +5,7 @@ import {Subscription} from 'rxjs/Subscription';
 import {CustomRequest} from '../../../services/request.service';
 import {ProfileService} from '../../../services/profile.service';
 import {MasterService} from '../../../services/master.service';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-contacts',
@@ -48,7 +49,9 @@ export class ContactsComponent implements OnInit, OnDestroy {
   }
 
   onNext() {
-    this.master.currentPhone = this.phoneValue;
+    this.master.orderPhone = this.phoneValue;
+    this.master.orderName = this.nameValue;
+    this.profile.phone = this.phoneValue;
     if (this.profile.userCreated) {
       this.router.navigate(['choose']);
     } else {
@@ -70,11 +73,13 @@ export class ContactsComponent implements OnInit, OnDestroy {
   }
 
   onLogin() {
+    this.profile.fromOrderCreate = true;
     this.router.navigate(['login']);
   }
 
   onPassCreate() {
-    this.router.navigate(['password-create']);
+    this.profile.fromOrderCreate = true;
+    this.sendSms('create pass');
   }
 
   private createUser() {
@@ -94,17 +99,25 @@ export class ContactsComponent implements OnInit, OnDestroy {
             this.modal = true;
             break;
           case 'ok':
-            this.sendSms();
+            this.sendSms('default');
             break;
         }
       }));
   }
 
-  private sendSms() {
+  private sendSms(route) {
     const urlSms = 'https://usluga.namba1.co/api.php?todo=sendSms&mobile=' + this.phoneValue;
     this.subscriptions.push(this.request.get(urlSms).subscribe(resp => {
+      console.log(resp.json());
       if (resp.statusText === 'OK') {
-        this.router.navigate(['sms-code']);
+        switch (route) {
+          case 'default':
+            this.router.navigate(['sms-code']);
+            break;
+          case 'create pass':
+            this.router.navigate(['password-create']);
+            break;
+        }
       }
     }));
   }
@@ -112,6 +125,8 @@ export class ContactsComponent implements OnInit, OnDestroy {
   private checkPhonePlaceholder() {
     if (this.profile.userCreated) {
       this.phonePlaceholder = 'Контактный телефон';
+      this.phoneValue = this.profile.phone;
+      this.nameValue = this.profile.name;
     }
   }
 }

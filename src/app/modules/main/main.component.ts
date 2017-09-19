@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {MasterService} from '../../services/master.service';
 import {Subscription} from 'rxjs/Subscription';
 import {CustomRequest} from '../../services/request.service';
+import {ProfileService} from '../../services/profile.service';
 
 @Component({
   selector: 'app-main',
@@ -17,11 +18,13 @@ export class MainComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router,
               private requestService: CustomRequest,
-              private masterService: MasterService) {
+              private masterService: MasterService,
+              private profile: ProfileService) {
   }
 
   ngOnInit() {
     this.masterService.fromMasterPage = false;
+    this.profile.fromOrderCreate = false;
     this.getListOfMasters();
   }
 

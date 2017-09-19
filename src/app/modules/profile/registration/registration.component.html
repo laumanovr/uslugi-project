@@ -9,12 +9,16 @@
       <i class="material-icons header-icon" (click)="onClickBack()">arrow_back</i>
       <span class="header-title">Регистрация</span>
     </div>
-    <div class="contacts-content">
-      <input class="qr-c-name" name="name" type="text" id="address" autocomplete="off" placeholder="Имя"
-             [(ngModel)]="nameValue" #name="ngModel" minlength="2" maxlength="30" required (keyup)="checkFormValid()"/>
 
+    <div class="contacts-content">
       <input class="qr-c-name" name="phone" type="text" id="phone" autocomplete="off" placeholder="Номер телефона"
-             [(ngModel)]="phoneValue" #phone="ngModel" minlength="10" maxlength="10" required (keyup)="checkFormValid()">
+             [(ngModel)]="phoneValue" #phone="ngModel" minlength="10" maxlength="10" required
+             (blur)="checkPhone()">
+
+      <label class="phone-notif" *ngIf="phoneBusy">Указанный номер уже зарегистрирован</label>
+
+      <input class="qr-c-name" name="name" type="text" id="address" autocomplete="off" placeholder="Имя"
+             [(ngModel)]="nameValue" #name="ngModel" minlength="2" maxlength="30" required>
 
       <input class="qr-c-name" name="email" type="email" id="email" autocomplete="off"
              placeholder="E-mail (не обязательно)" maxlength="40"
@@ -22,7 +26,11 @@
 
       <input class="qr-c-name" name="pass" type="text" id="pass" autocomplete="off"
              placeholder="Пароль" maxlength="40"
-             [(ngModel)]="passValue" #pass="ngModel" email="" (keyup)="checkFormValid()">
+             [(ngModel)]="passValue" #pass="ngModel">
+
+      <input class="qr-c-name" name="pass" type="text" id="code" autocomplete="off"
+             placeholder="Смс код" maxlength="4"
+             [(ngModel)]="codeValue" #pass="ngModel">
 
       <div class="row m-t-20 reg-row-centering">
         <input id="checkBox" class="reg-checkbox" type="checkbox" (click)="onCheckBox()">
@@ -36,3 +44,15 @@
   </div>
 </div>
 
+<!--Password create popup-->
+<div class="modal" id="modal" *ngIf="modal">
+  <div class="popup" *ngIf="!password">
+    <p class="popup-title">Данный номер уже зарегистрирован, чтобы продолжить необходимо создать пароль</p>
+    <button class="popup-btn" (click)="onPassCreate()">Создать</button>
+  </div>
+
+  <div class="popup" *ngIf="password">
+    <p class="popup-title">Указанный номер уже зарегистрирован, чтобы продолжить необходимо авторизоваться</p>
+    <button class="popup-btn" (click)="onLogin()">Войти</button>
+  </div>
+</div>

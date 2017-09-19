@@ -38,6 +38,7 @@ export class OrdersComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.profileService.fromOrderCreate = false;
     this.authCheck();
     this.getOrdersFromApi();
     this.nav1 = document.getElementById('navTap1');

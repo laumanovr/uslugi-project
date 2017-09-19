@@ -7,6 +7,7 @@ export class ProfileService {
   phone: string;
   email: string;
   userCreated = false;
+  fromOrderCreate = false;
 
   constructor() {
   }

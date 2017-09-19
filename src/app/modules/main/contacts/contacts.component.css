@@ -58,6 +58,29 @@
   margin-top: 10px;
 }
 
+.popup-title {
+  color: black;
+  padding: 20px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.popup-btn {
+  border: none;
+  border-radius: 5px;
+  background-color: #FFC107;
+  color: black;
+  height: 42px;
+  width: 250px;
+  font-weight: 500;
+  font-size: 15px;
+  /*margin: 30px auto;*/
+}
+
+.popup {
+  height: 200px;
+}
+
 /*Responsive styles*/
 @media screen and (max-width: 500px) {
   .service-list {

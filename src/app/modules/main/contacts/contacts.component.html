@@ -28,12 +28,12 @@
 <!--Password create popup-->
 <div class="modal" id="modal" *ngIf="modal">
   <div class="popup" *ngIf="!password">
-    <p>Данный номер уже зарегистрирован, чтобы продолжить необходимо создать пароль</p>
-    <button class="btn" (click)="onPassCreate()">Создать</button>
+    <p class="popup-title">Данный номер уже зарегистрирован, чтобы продолжить необходимо создать пароль</p>
+    <button class="popup-btn" (click)="onPassCreate()">Создать</button>
   </div>
 
   <div class="popup" *ngIf="password">
-    <p>Указанный номер уже зарегистрирован, чтобы продолжить необходимо авторизоваться</p>
-    <button class="btn" (click)="onLogin()">Войти</button>
+    <p class="popup-title">Указанный номер уже зарегистрирован, чтобы продолжить необходимо авторизоваться</p>
+    <button class="popup-btn" (click)="onLogin()">Войти</button>
   </div>
 </div>

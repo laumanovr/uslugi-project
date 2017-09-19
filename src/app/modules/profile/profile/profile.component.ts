@@ -16,11 +16,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router,
               private requestService: CustomRequest,
-              private profileService: ProfileService) {
+              private profile: ProfileService) {
   }
 
   ngOnInit() {
-    this.getDataFromApi();
+    this.getUser();
   }
 
   ngOnDestroy() {
@@ -36,12 +36,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
   onClickQuite() {
     const url = 'https://usluga.namba1.co/api.php?todo=deleteSession';
     this.subscriptions.push(this.requestService.get(url).subscribe(resp => {
-      this.profileService.userCreated = false;
+      this.profile.userCreated = false;
       this.router.navigate(['login']);
     }));
   }
 
-  private getDataFromApi() {
+  private getUser() {
     const url = 'https://usluga.namba1.co/api.php?todo=getClientData';
     this.subscriptions.push(this.requestService.get(url).subscribe(resp => {
       console.log(resp);

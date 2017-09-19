@@ -37,7 +37,7 @@ export class MasterComponent implements OnInit {
     const body = {
       serviceid: this.masterService.selectedService,
       agent: this.masterService.selectedMaster.id,
-      mobile: this.masterService.currentPhone,
+      mobile: this.masterService.orderPhone,
     };
     this.requestService.post(url, body).subscribe(data => {
       console.log(data.json());
@@ -47,6 +47,7 @@ export class MasterComponent implements OnInit {
   }
 
   onNavContractors() {
+    this.masterService.fromMasterPage = true;
     this.router.navigate(['contractors']);
   }
 

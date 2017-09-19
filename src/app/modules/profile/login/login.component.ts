@@ -64,8 +64,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subscription = this.requestService.get(url).subscribe(resp => {
       console.log(resp.json());
       const respStatus = resp.json()[0];
-      if (respStatus === 'true') {
-        this.router.navigate(['profile']);
+      if (respStatus === 'ok') {
+        this.profileService.userCreated = true;
+        this.checkRoutes();
       }
     });
   }
@@ -79,4 +80,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
   }
 
+  private checkRoutes() {
+    if (this.profileService.fromOrderCreate) {
+      this.router.navigate(['choose']);
+    } else {
+      this.router.navigate(['profile']);
+    }
+  }
 }
