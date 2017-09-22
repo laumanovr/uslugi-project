@@ -2,10 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
-import {CustomRequest} from '../../../services/request.service';
-import {ProfileService} from '../../../services/profile.service';
-import {MasterService} from '../../../services/master.service';
-import {Observable} from 'rxjs/Observable';
+import {CommonService} from '../../../services/common.service';
 
 @Component({
   selector: 'app-contacts',
@@ -25,9 +22,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
 
   constructor(private location: Location,
               private router: Router,
-              private profile: ProfileService,
-              private request: CustomRequest,
-              private master: MasterService) {
+              private common: CommonService) {
   }
 
   ngOnInit() {
@@ -49,10 +44,10 @@ export class ContactsComponent implements OnInit, OnDestroy {
   }
 
   onNext() {
-    this.master.orderPhone = this.phoneValue;
-    this.master.orderName = this.nameValue;
-    this.profile.phone = this.phoneValue;
-    if (this.profile.userCreated) {
+    this.common.orderPhone = this.phoneValue;
+    this.common.orderName = this.nameValue;
+    this.common.phone = this.phoneValue;
+    if (this.common.userCreated) {
       this.router.navigate(['choose']);
     } else {
       this.createUser();
@@ -73,22 +68,30 @@ export class ContactsComponent implements OnInit, OnDestroy {
   }
 
   onLogin() {
-    this.profile.fromOrderCreate = true;
+    this.common.fromOrderCreate = true;
     this.router.navigate(['login']);
   }
 
   onPassCreate() {
-    this.profile.fromOrderCreate = true;
+    this.common.fromOrderCreate = true;
     this.sendSms('create pass');
   }
 
+  onClickOverModal(event) {
+    const modalWindow = document.getElementById('modal');
+    if (event.target === modalWindow) {
+      this.modal = false;
+    }
+  }
+
   private createUser() {
-    const urlPart = 'https://usluga.namba1.co/api.php?todo=create_client';
+    const urlPart = 'create_client';
     const name = '&firstname=' + this.nameValue;
     const phone = '&mobile=' + this.phoneValue;
     const url = urlPart + phone + name;
     this.subscriptions.push(
-      this.request.get(url).subscribe(resp => {
+      this.common.get(url).subscribe(resp => {
+        console.log(resp.json());
         const userCreated = resp.json()[1];
         switch (userCreated) {
           case 'no password':
@@ -98,7 +101,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
             this.password = true;
             this.modal = true;
             break;
-          case 'ok':
+          case 'client':
             this.sendSms('default');
             break;
         }
@@ -106,8 +109,8 @@ export class ContactsComponent implements OnInit, OnDestroy {
   }
 
   private sendSms(route) {
-    const urlSms = 'https://usluga.namba1.co/api.php?todo=sendSms&mobile=' + this.phoneValue;
-    this.subscriptions.push(this.request.get(urlSms).subscribe(resp => {
+    const urlSms = 'sendSms&mobile=' + this.phoneValue;
+    this.subscriptions.push(this.common.get(urlSms).subscribe(resp => {
       console.log(resp.json());
       if (resp.statusText === 'OK') {
         switch (route) {
@@ -123,10 +126,10 @@ export class ContactsComponent implements OnInit, OnDestroy {
   }
 
   private checkPhonePlaceholder() {
-    if (this.profile.userCreated) {
+    if (this.common.userCreated) {
       this.phonePlaceholder = 'Контактный телефон';
-      this.phoneValue = this.profile.phone;
-      this.nameValue = this.profile.name;
+      this.phoneValue = this.common.phone;
+      this.nameValue = this.common.name;
     }
   }
 }

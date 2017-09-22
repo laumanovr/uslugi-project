@@ -1,9 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ProfileService} from '../../../services/profile.service';
+import {CommonService} from '../../../services/common.service';
 import {Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 import {Location} from '@angular/common';
-import {CustomRequest} from '../../../services/request.service';
 
 @Component({
   selector: 'app-login',
@@ -17,8 +16,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
 
-  constructor(private profileService: ProfileService,
-              private requestService: CustomRequest,
+  constructor(private common: CommonService,
               private location: Location,
               private router: Router) {
   }
@@ -60,12 +58,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   onLogin() {
     const phone = '&mobile=' + this.phoneVal;
     const pass = '&password=' + this.passVal;
-    const url = 'https://usluga.namba1.co/api.php?todo=check_password_client' + phone + pass;
-    this.subscription = this.requestService.get(url).subscribe(resp => {
+    const url = 'check_password_client' + phone + pass;
+    this.subscription = this.common.get(url).subscribe(resp => {
       console.log(resp.json());
       const respStatus = resp.json()[0];
       if (respStatus === 'ok') {
-        this.profileService.userCreated = true;
+        this.common.userCreated = true;
         this.checkRoutes();
       }
     });
@@ -75,13 +73,13 @@ export class LoginComponent implements OnInit, OnDestroy {
    * Quick authorization check
    */
   private authCheck() {
-    if (this.profileService.userCreated) {
+    if (this.common.userCreated) {
       this.router.navigate(['profile']);
     }
   }
 
   private checkRoutes() {
-    if (this.profileService.fromOrderCreate) {
+    if (this.common.fromOrderCreate) {
       this.router.navigate(['choose']);
     } else {
       this.router.navigate(['profile']);

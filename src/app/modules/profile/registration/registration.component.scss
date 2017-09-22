@@ -78,6 +78,57 @@
   padding: 10px 0 0 20px;
 }
 
+.popup {
+  height: 260px;
+}
+
+.reg-pop-title {
+  font-weight: bold;
+}
+
+.btn-orange {
+  width: 250px;
+  position: absolute;
+  bottom: 30px;
+}
+
+.sms-inp {
+  margin-top: 30px;
+  padding: 7px;
+  border: none;
+  border-bottom: 1px #D1D1D1 solid;
+  width: 200px;
+  font-size: 16px;
+}
+
+.sms-inp::-webkit-input-placeholder {
+  font-size: 16px;
+}
+
+.reg-pop-repeat {
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  margin-top: 20px;
+  color: #686868;
+}
+
+.reg-pop-counter {
+  font-size: 14px;
+  color: #979797;
+  margin-top: 6px;
+}
+
+.reg-pop-btn {
+  background-color: white;
+  border: none;
+  border-bottom: 1px solid rgba(36, 164, 255, 0.58);
+  color: #2196F3;
+  font-weight: bold;
+  margin-top: 30px;
+  font-size: 14px;
+}
+
 /*Responsive styles*/
 @media screen and (max-width: 500px) {
   .service-list {

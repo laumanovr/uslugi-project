@@ -3,6 +3,7 @@ import {Location} from '@angular/common';
 import {Router} from '@angular/router';
 import {MasterService} from '../../../services/master.service';
 import {CustomRequest} from '../../../services/request.service';
+import {CommonService} from '../../../services/common.service';
 
 @Component({
   selector: 'app-master',
@@ -13,15 +14,15 @@ export class MasterComponent implements OnInit {
 
   modal = false;
   master;
+  secondCall = false;
 
   constructor(private location: Location,
               private router: Router,
-              private masterService: MasterService,
-              private requestService: CustomRequest) {
+              private common: CommonService) {
   }
 
   ngOnInit() {
-    this.master = this.masterService.selectedMaster;
+    this.master = this.common.selectedMaster;
   }
 
   /**
@@ -33,21 +34,11 @@ export class MasterComponent implements OnInit {
 
   onCall() {
     this.modal = true;
-    const url = 'https://usluga.namba1.co/api.php?todo=createorder';
-    const body = {
-      serviceid: this.masterService.selectedService,
-      agent: this.masterService.selectedMaster.id,
-      mobile: this.masterService.orderPhone,
-    };
-    this.requestService.post(url, body).subscribe(data => {
-      console.log(data.json());
-      this.masterService.fromMasterPage = true;
-      this.modal = true;
-    });
+    this.checkFirstCall();
   }
 
   onNavContractors() {
-    this.masterService.fromMasterPage = true;
+    this.common.fromMasterPage = true;
     this.router.navigate(['contractors']);
   }
 
@@ -64,5 +55,23 @@ export class MasterComponent implements OnInit {
     if (event.target === modalWindow) {
       this.modal = false;
     }
+  }
+
+  private checkFirstCall() {
+    if (!this.secondCall) {
+      this.createClient();
+      this.secondCall = true;
+    }
+  }
+
+  private createClient() {
+    const url = 'createorder';
+    const body = '&serviceid=' + this.common.selectedService + '&agent=' + this.common.selectedMaster.id + '&mobile=' +
+      this.common.orderPhone;
+    this.common.post(url, body).subscribe(data => {
+      console.log(data.json());
+      this.common.fromMasterPage = true;
+      this.modal = true;
+    });
   }
 }

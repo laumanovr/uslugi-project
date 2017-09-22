@@ -17,6 +17,12 @@
             [(ngModel)]="codeValue" #code="ngModel" minlength="4" maxlength="4" required>
       <br>
       <button class="code-btn" [disabled]="code.invalid" (click)="onClick()">Далее</button>
+
+      <div class="row resend-cont">
+        <p class="resend-text">Не пришло смс?</p>
+        <button class="resend-btn" (click)="onSendSms()">Отправить повторно</button>
+      </div>
+
     </div>
   </div>
 </div>

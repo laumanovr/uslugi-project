@@ -3,7 +3,7 @@ import {Location} from '@angular/common';
 import {Router} from '@angular/router';
 import {CustomRequest} from '../../../services/request.service';
 import {Subscription} from 'rxjs/Subscription';
-import {ProfileService} from '../../../services/profile.service';
+import {CommonService} from '../../../services/common.service';
 
 @Component({
   selector: 'app-password',
@@ -17,8 +17,7 @@ export class PasswordComponent implements OnInit, OnDestroy {
 
   constructor(private location: Location,
               private router: Router,
-              private request: CustomRequest,
-              private profileService: ProfileService) {
+              private common: CommonService) {
   }
 
   ngOnInit() {
@@ -35,11 +34,11 @@ export class PasswordComponent implements OnInit, OnDestroy {
   }
 
   onSendSms() {
-    const url = 'https://usluga.namba1.co/api.php?todo=sendSms&mobile=' + this.phoneVal;
-    this.subscription = this.request.get(url).subscribe(resp => {
+    const url = 'sendSms&mobile=' + this.phoneVal;
+    this.subscription = this.common.get(url).subscribe(resp => {
       console.log(resp.json());
       if (resp.statusText === 'OK') {
-        this.profileService.phone = this.phoneVal;
+        this.common.phone = this.phoneVal;
         this.router.navigate(['password-create']);
       }
     });

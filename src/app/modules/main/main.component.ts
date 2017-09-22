@@ -1,9 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {MasterService} from '../../services/master.service';
 import {Subscription} from 'rxjs/Subscription';
-import {CustomRequest} from '../../services/request.service';
-import {ProfileService} from '../../services/profile.service';
+import {CommonService} from '../../services/common.service';
 
 @Component({
   selector: 'app-main',
@@ -17,14 +15,12 @@ export class MainComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
 
   constructor(private router: Router,
-              private requestService: CustomRequest,
-              private masterService: MasterService,
-              private profile: ProfileService) {
+              private common: CommonService) {
   }
 
   ngOnInit() {
-    this.masterService.fromMasterPage = false;
-    this.profile.fromOrderCreate = false;
+    this.common.fromMasterPage = false;
+    this.common.fromOrderCreate = false;
     this.getListOfMasters();
   }
 
@@ -35,7 +31,7 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   onClick(id) {
-    this.masterService.selectedService = id;
+    this.common.selectedService = id;
     this.router.navigate(['contractors']);
   }
 
@@ -43,7 +39,7 @@ export class MainComponent implements OnInit, OnDestroy {
    * Get list of masters from api
    */
   private getListOfMasters() {
-    this.subscriptions.push(this.requestService.get('https://usluga.namba1.co/api.php?todo=getservices')
+    this.subscriptions.push(this.common.get('getservices')
       .subscribe((data) => {
         this.services = data.json();
       }));

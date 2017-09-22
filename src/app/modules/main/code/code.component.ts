@@ -2,8 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
-import {ProfileService} from '../../../services/profile.service';
-import {CustomRequest} from '../../../services/request.service';
+import {CommonService} from '../../../services/common.service';
 
 @Component({
   selector: 'app-code',
@@ -13,20 +12,19 @@ import {CustomRequest} from '../../../services/request.service';
 export class CodeComponent implements OnInit, OnDestroy {
 
   codeValue: string;
-  subscription: Subscription;
+  private subscriptions: Subscription[] = [];
 
   constructor(private location: Location,
               private router: Router,
-              private request: CustomRequest,
-              private profileService: ProfileService) {
+              private common: CommonService) {
   }
 
   ngOnInit() {
   }
 
   ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
+    while (this.subscriptions.length) {
+      this.subscriptions.pop().unsubscribe();
     }
   }
 
@@ -38,13 +36,20 @@ export class CodeComponent implements OnInit, OnDestroy {
   }
 
   onClick() {
-    const url = 'https://usluga.namba1.co/api.php?todo=checkSms&code=' + this.codeValue + '&mobile=' + this.profileService.phone;
-    this.subscription = this.request.get(url).subscribe(data => {
+    const url = 'checkSms&code=' + this.codeValue + '&mobile=' + this.common.phone;
+    this.subscriptions.push(this.common.get(url).subscribe(data => {
       if (data.statusText === 'OK') {
-        this.profileService.userCreated = true;
+        this.common.userCreated = true;
         this.router.navigate(['choose']);
       }
-    });
+    }));
+  }
+
+  onSendSms() {
+    const urlSms = 'smsSend&mobile=' + this.common.phone;
+    this.subscriptions.push(this.common.get(urlSms).subscribe(resp => {
+      console.log(resp.json());
+    }));
   }
 
 }

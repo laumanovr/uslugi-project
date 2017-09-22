@@ -41,6 +41,28 @@
   margin: 30px auto;
 }
 
+.resend-cont {
+  width: 320px;
+  line-height: 30px;
+}
+
+.resend-text {
+  font-size: 14px;
+  color: #979797;
+}
+
+.resend-btn {
+  border: none;
+  background-color: #f2f2f2;
+  border-radius: 4px;
+  height: 30px;
+  width: 200px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  margin-left: 10px;
+  color: #6a6a6a;
+}
+
 /*Responsive styles*/
 @media screen and (max-width: 500px) {
   .code-btn {

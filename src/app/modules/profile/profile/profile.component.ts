@@ -1,8 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {ProfileService} from '../../../services/profile.service';
+import {CommonService} from '../../../services/common.service';
 import {Subscription} from 'rxjs/Subscription';
-import {CustomRequest} from '../../../services/request.service';
 
 @Component({
   selector: 'app-profile',
@@ -15,8 +14,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
 
   constructor(private router: Router,
-              private requestService: CustomRequest,
-              private profile: ProfileService) {
+              private common: CommonService) {
   }
 
   ngOnInit() {
@@ -34,16 +32,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   onClickQuite() {
-    const url = 'https://usluga.namba1.co/api.php?todo=deleteSession';
-    this.subscriptions.push(this.requestService.get(url).subscribe(resp => {
-      this.profile.userCreated = false;
+    const url = 'deleteSession';
+    this.subscriptions.push(this.common.get(url).subscribe(resp => {
+      this.common.userCreated = false;
       this.router.navigate(['login']);
     }));
   }
 
   private getUser() {
-    const url = 'https://usluga.namba1.co/api.php?todo=getClientData';
-    this.subscriptions.push(this.requestService.get(url).subscribe(resp => {
+    const url = 'getClientData';
+    this.subscriptions.push(this.common.get(url).subscribe(resp => {
       console.log(resp);
       this.user = resp.json()[2];
     }));

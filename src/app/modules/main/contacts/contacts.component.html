@@ -26,7 +26,7 @@
 </div>
 
 <!--Password create popup-->
-<div class="modal" id="modal" *ngIf="modal">
+<div class="modal" id="modal" *ngIf="modal" (click)="onClickOverModal($event)">
   <div class="popup" *ngIf="!password">
     <p class="popup-title">Данный номер уже зарегистрирован, чтобы продолжить необходимо создать пароль</p>
     <button class="popup-btn" (click)="onPassCreate()">Создать</button>

@@ -5,8 +5,7 @@ import {Observable} from 'rxjs/Observable';
 @Injectable()
 export class CustomRequest {
 
-  private header = new Headers({
-  });
+  private header = new Headers({});
 
   // Options for request
   private options = new RequestOptions({
@@ -16,7 +15,7 @@ export class CustomRequest {
   constructor(private http: Http) {
   }
 
-  get(url: string): Observable<any> {
+  get(url: string) {
     return this.http.get(url);
   }
 

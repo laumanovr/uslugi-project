@@ -28,10 +28,6 @@
              placeholder="Пароль" maxlength="40"
              [(ngModel)]="passValue" #pass="ngModel">
 
-      <input class="qr-c-name" name="pass" type="text" id="code" autocomplete="off"
-             placeholder="Смс код" maxlength="4"
-             [(ngModel)]="codeValue" #pass="ngModel">
-
       <div class="row m-t-20 reg-row-centering">
         <input id="checkBox" class="reg-checkbox" type="checkbox" (click)="onCheckBox()">
         <p class="reg-accept m-l-10">Я согласен с <span class="reg-url">Пользовательским соглашением</span></p>
@@ -44,15 +40,21 @@
   </div>
 </div>
 
-<!--Password create popup-->
-<div class="modal" id="modal" *ngIf="modal">
-  <div class="popup" *ngIf="!password">
-    <p class="popup-title">Данный номер уже зарегистрирован, чтобы продолжить необходимо создать пароль</p>
-    <button class="popup-btn" (click)="onPassCreate()">Создать</button>
-  </div>
+<!--Sms code popup-->
+<div class="modal" id="modal" *ngIf="modal" (click)="onClickOverModal($event)">
+  <div class="popup">
+    <p class="reg-pop-title m-t-30">Подтверждение номера</p>
 
-  <div class="popup" *ngIf="password">
-    <p class="popup-title">Указанный номер уже зарегистрирован, чтобы продолжить необходимо авторизоваться</p>
-    <button class="popup-btn" (click)="onLogin()">Войти</button>
+    <input class="sms-inp" name="pass" type="text" id="code" autocomplete="off"
+           placeholder="cмс код" maxlength="4"
+           [(ngModel)]="codeValue" #pass="ngModel">
+
+    <p class="reg-pop-repeat" *ngIf="!smsRepeat">Повторная отправка через</p>
+
+    <p class="reg-pop-counter" *ngIf="!smsRepeat">00:{{nullDigit}}{{countdown}}</p>
+
+    <button class="reg-pop-btn" *ngIf="smsRepeat">Отправить код заново</button>
+
+    <button class="btn-orange" (click)="onNext()">Далее</button>
   </div>
 </div>

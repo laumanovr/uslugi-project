@@ -8,7 +8,7 @@ import {NavBarModule} from './shared/nav-bar/nav-bar.module';
 import {HttpModule} from '@angular/http';
 import {CustomRequest} from './services/request.service';
 import {ProfileModule} from './modules/profile/profile.module';
-import {ProfileService} from './services/profile.service';
+import {CommonService} from './services/common.service';
 import {FormsModule} from '@angular/forms';
 import {MainModule} from './modules/main/main.module';
 import {MasterService} from './services/master.service';
@@ -29,7 +29,7 @@ import {MasterService} from './services/master.service';
   ],
   providers: [
     CustomRequest,
-    ProfileService,
+    CommonService,
     MasterService
   ],
   bootstrap: [AppComponent]

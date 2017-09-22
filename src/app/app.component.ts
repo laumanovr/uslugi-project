@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {CustomRequest} from './services/request.service';
 import {Subscription} from 'rxjs/Subscription';
-import {ProfileService} from './services/profile.service';
+import {CommonService} from './services/common.service';
 
 @Component({
   selector: 'app-root',
@@ -12,20 +11,19 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
 
-  constructor(private request: CustomRequest,
-              private profile: ProfileService) {
+  constructor(private common: CommonService) {
   }
 
   ngOnInit() {
-    this.subscription = this.request.get('https://usluga.namba1.co/api.php?todo=getClientData')
+    this.subscription = this.common.get('getClientData')
       .subscribe(resp => {
-        console.log(resp.json());
+        console.log(resp.json()[2]);
         const user = resp.json()[2];
         const userAuth = resp.json()[2].name;
         if (userAuth !== '' && userAuth !== 'undefined') {
-          this.profile.userCreated = true;
-          this.profile.phone = '0' + user.phone;
-          this.profile.name = user.name;
+          this.common.userCreated = true;
+          this.common.phone = '0' + user.phone;
+          this.common.name = user.name;
         }
       });
   }

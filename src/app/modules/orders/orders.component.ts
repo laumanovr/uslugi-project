@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
-import {ProfileService} from '../../services/profile.service';
+import {CommonService} from '../../services/common.service';
 import {Subscription} from 'rxjs/Subscription';
-import {CustomRequest} from '../../services/request.service';
 
 @Component({
   selector: 'app-orders',
@@ -15,30 +14,34 @@ export class OrdersComponent implements OnInit {
   /**
    * Var to show/hide modal the authorized window
    */
-  authorized = false;
+  authorized = true;
 
   /**
    * Var to show/hide modal the modal window
    */
   modal = false;
 
+  orders;
   /**
    * Vars to hide/show html containers
    */
   tap = true;
+
   private nav1: HTMLElement;
   private nav2: HTMLElement;
-
+  private months = [
+    'янв', 'фев', 'мар', 'апр', 'мая', 'июня', 'июля',
+    'авг', 'сен', 'окт', 'ноя', 'дек'
+  ];
   private subscription: Subscription;
 
   constructor(private location: Location,
               private router: Router,
-              private profileService: ProfileService,
-              private request: CustomRequest) {
+              private common: CommonService) {
   }
 
   ngOnInit() {
-    this.profileService.fromOrderCreate = false;
+    this.common.fromOrderCreate = false;
     this.authCheck();
     this.getOrdersFromApi();
     this.nav1 = document.getElementById('navTap1');
@@ -106,15 +109,29 @@ export class OrdersComponent implements OnInit {
    * Quick authorization check
    */
   private authCheck() {
-    if (this.profileService.userCreated) {
+    if (this.common.userCreated) {
       this.authorized = true;
     }
   }
 
   private getOrdersFromApi() {
-    const url = 'https://usluga.namba1.co/api.php?todo=getOrders&type=active';
-    this.subscription = this.request.get(url).subscribe(resp => {
-      console.log(resp.json()[1]);
+    const url = 'getOrders&type=active';
+    this.subscription = this.common.get(url).subscribe(resp => {
+      this.orders = resp.json()[1];
+      this.setMonth(this.orders);
     });
+  }
+
+  private setMonth(orders) {
+    for (const order of orders) {
+      console.log(order);
+      const monthString = order.orderDate.slice(3, 5) - 1;
+      const monthNumber = Number(monthString);
+      this.months.forEach((item, i, months) => {
+        if (i === monthNumber) {
+          order.month = item;
+        }
+      });
+    }
   }
 }

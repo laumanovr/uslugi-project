@@ -2,8 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
-import {MasterService} from '../../../services/master.service';
-import {CustomRequest} from '../../../services/request.service';
+import {CommonService} from '../../../services/common.service';
 
 @Component({
   selector: 'app-contractor-list',
@@ -23,13 +22,11 @@ export class ContractorListComponent implements OnInit, OnDestroy {
 
   constructor(private location: Location,
               private router: Router,
-              private masterService: MasterService,
-              private requestService: CustomRequest) {
+              private common: CommonService) {
   }
 
   ngOnInit() {
-    this.subscription = this.requestService.get('https://usluga.namba1.co/api.php?todo=getAgents&serviceid='
-      + this.masterService.selectedService)
+    this.subscription = this.common.get('getAgents&serviceid=' + this.common.selectedService)
       .subscribe(data => {
         this.masters = data.json();
       });
@@ -89,8 +86,8 @@ export class ContractorListComponent implements OnInit, OnDestroy {
    * Handler for navigate to profile page
    */
   onClickChoose(master) {
-    this.masterService.selectedMaster = master;
-    if (this.masterService.fromMasterPage) {
+    this.common.selectedMaster = master;
+    if (this.common.fromMasterPage) {
       this.router.navigate(['master-call']);
     } else {
       this.router.navigate(['contacts']);
