@@ -12,14 +12,14 @@
     </div>
 
     <!--Not authorized notification-->
-    <div *ngIf="!authorized" class="authorized">
+    <div *ngIf="noOrders" class="authorized">
       <p class="notif-title">Вход в систему</p>
       <p class="notif-text m-t-20">Для просмотра заказов необходимо авторизоваться</p>
       <button class="btn btn-orange m-t-20" (click)="onClickAuth()">Войти</button>
     </div>
 
     <!--Content-->
-    <div *ngIf="authorized">
+    <div *ngIf="!noOrders">
       <!--Content nav bar-->
       <div class="row list-nav-cont">
         <p class="list-nav-info" id="navTap1" (click)="onClickTap1()">АКТИВНЫЕ</p>
@@ -28,10 +28,10 @@
 
       <div class="row">
         <!--Tap 1-->
-        <div class="tap-1 row" *ngIf="tap">
+        <div class="row tap-1" *ngIf="tap">
 
           <div class="order" *ngFor="let order of orders">
-            <div class="row order-desc-1" >
+            <div class="row order-desc-1">
               <div class="list-date">
                 <p class="list-day">{{order.day}}</p>
                 <p class="list-month">{{order?.month}}</p>
@@ -39,61 +39,79 @@
 
               <div class="list-desc">
                 <p class="order-title">{{order.serviceName}}</p>
-
                 <div class="row">
-                  <div>
-                    <p class="order-key">Адрес:</p>
-                    <p class="order-key">Дата:</p>
-                    <p class="order-key">Время:</p>
-                    <p class="order-key">Оплата:</p>
-                  </div>
-                  <div class="m-l-20">
-                    <p class="order-prop">Ул. Медерова, 56</p>
-                    <p class="order-prop">01.08.2017</p>
-                    <p class="order-prop">10:00 - 12:00</p>
-                    <p class="order-prop">1500 сом <span class="order-key">(предварительно)</span></p>
-                  </div>
+                  <p class="order-key">Адрес:</p>
+                  <p class="order-prop">{{order.address}}</p>
+                </div>
+                <div class="row">
+                  <p class="order-key">Дата:</p>
+                  <p class="order-prop">{{order.orderDate}}</p>
+                </div>
+                <div class="row">
+                  <p class="order-key">Время:</p>
+                  <p class="order-prop">{{order.time}}</p>
+                </div>
+                <div class="row">
+                  <p class="order-key">Оплата:</p>
+                  <p class="order-prop">{{order.total}} сом <span class="order-key">(предварительно)</span></p>
                 </div>
               </div>
             </div>
 
             <button class="order-btn" (click)="onClickDesc()">Подробнее</button>
+
             <div class="row order-btn-con">
               <button class="order-btn1">Написать</button>
               <button class="order-btn2" (click)="modal = true">Позвонить</button>
             </div>
-            <div class="row order-accept">
+
+            <div class="row order-not-accept" *ngIf="order.status === 'not_accepted'"
+                 (click)="onAcceptOrder(order.id)">
               <i class="material-icons info-icon">info_outline</i>
               <p>Требуется ваше подтверждение</p>
             </div>
+
+            <div class="row order-accept" *ngIf="order.status === 'accepted'">
+              <i class="material-icons info-icon">done</i>
+              <p>Заказ принят. Ожидайте исполнения</p>
+            </div>
+
+            <div class="row order-aborted" *ngIf="order.status === 'aborted'">
+              <i class="material-icons info-icon">error</i>
+              <p>Заказ отменен</p>
+            </div>
+
+            <button class="btn m-10" (click)="onCompleteOrder(order.id)">Завершить (для тестов)</button>
+
           </div>
         </div>
 
         <!--Tap 2-->
-        <div *ngIf="!tap" class="tap-1">
-          <div class="order">
+        <div class="row tap-1" *ngIf="!tap">
+          <div class="order" *ngFor="let order of ordersCompleted">
             <div class="row order-desc-1">
               <div class="list-date">
-                <p class="list-day">01</p>
-                <p class="list-month">АВГ</p>
+                <p class="list-day">{{order.day}}</p>
+                <p class="list-month">{{order?.month}}</p>
               </div>
 
               <div class="list-desc">
-                <p class="order-title">Ремонт бойлера</p>
-
+                <p class="order-title">{{order.serviceName}}</p>
                 <div class="row">
-                  <div>
-                    <p class="order-key">Адрес:</p>
-                    <p class="order-key">Дата:</p>
-                    <p class="order-key">Время:</p>
-                    <p class="order-key">Оплата:</p>
-                  </div>
-                  <div class="m-l-20">
-                    <p class="order-prop">Ул. Медерова, 56</p>
-                    <p class="order-prop">01.08.2017</p>
-                    <p class="order-prop">10:00 - 12:00</p>
-                    <p class="order-prop">1500 сом <span class="order-key">(предварительно)</span></p>
-                  </div>
+                  <p class="order-key">Адрес:</p>
+                  <p class="order-prop">{{order.address}}</p>
+                </div>
+                <div class="row">
+                  <p class="order-key">Дата:</p>
+                  <p class="order-prop">{{order.orderDate}}</p>
+                </div>
+                <div class="row">
+                  <p class="order-key">Время:</p>
+                  <p class="order-prop">{{order.time}}</p>
+                </div>
+                <div class="row">
+                  <p class="order-key">Оплата:</p>
+                  <p class="order-prop">{{order.total}} сом <span class="order-key">(предварительно)</span></p>
                 </div>
               </div>
             </div>

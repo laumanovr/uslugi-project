@@ -14,14 +14,16 @@ export class OrdersComponent implements OnInit {
   /**
    * Var to show/hide modal the authorized window
    */
-  authorized = true;
+  noOrders = true;
 
   /**
    * Var to show/hide modal the modal window
    */
   modal = false;
 
-  orders;
+  orders = [];
+  ordersCompleted = [];
+
   /**
    * Vars to hide/show html containers
    */
@@ -42,10 +44,32 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit() {
     this.common.fromOrderCreate = false;
-    this.authCheck();
-    this.getOrdersFromApi();
-    this.nav1 = document.getElementById('navTap1');
-    this.nav2 = document.getElementById('navTap2');
+    this.getOrdersFromApi('getOrders&type=active');
+    this.getOrdersFromApi('getOrders&type=inactive');
+  }
+
+  onAcceptOrder(id) {
+    const url = 'updateorder' + '&orderid=' + id + '&status=accepted';
+    this.common.get(url).subscribe(data => {
+    });
+  }
+
+  // Todo: implement later
+  onAbortOrder(id) {
+    const url = 'updateorder' + '&orderid=' + id + '&status=aborted';
+    this.common.get(url).subscribe(data => {
+      console.log(data.json());
+      this.getOrdersFromApi('getOrders&type=active');
+    });
+  }
+
+  // Todo: delete later, made for tests
+  onCompleteOrder(id) {
+    const url = 'updateorder' + '&orderid=' + id + '&status=completed';
+    this.common.get(url).subscribe(data => {
+      console.log(data.json());
+      this.getOrdersFromApi('getOrders&type=active');
+    });
   }
 
   /**
@@ -105,29 +129,37 @@ export class OrdersComponent implements OnInit {
     this.router.navigate(['review']);
   }
 
-  /**
-   * Quick authorization check
-   */
-  private authCheck() {
-    if (this.common.userCreated) {
-      this.authorized = true;
-    }
+  private getOrdersFromApi(url) {
+    this.subscription = this.common.get(url).subscribe(data => {
+      const resp = data.json();
+      console.log(resp[1]);
+      if (resp[0] === 'ok') {
+        this.noOrders = false;
+        const orders = resp[1];
+        this.sortOrders(orders);
+        this.nav1 = document.getElementById('navTap1');
+        this.nav2 = document.getElementById('navTap2');
+      }
+    });
   }
 
-  private getOrdersFromApi() {
-    const url = 'getOrders&type=active';
-    this.subscription = this.common.get(url).subscribe(resp => {
-      this.orders = resp.json()[1];
-      this.setMonth(this.orders);
-    });
+  private sortOrders(orders) {
+    for (const order of orders) {
+      if (order.status === 'completed') {
+        this.ordersCompleted.push(order);
+      } else {
+        this.orders.push(order);
+        console.log(this.orders);
+      }
+    }
+    this.setMonth(orders);
   }
 
   private setMonth(orders) {
     for (const order of orders) {
-      console.log(order);
       const monthString = order.orderDate.slice(3, 5) - 1;
       const monthNumber = Number(monthString);
-      this.months.forEach((item, i, months) => {
+      this.months.forEach((item, i) => {
         if (i === monthNumber) {
           order.month = item;
         }
