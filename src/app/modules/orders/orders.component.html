@@ -58,7 +58,7 @@
               </div>
             </div>
 
-            <button class="order-btn" (click)="onClickDesc()">Подробнее</button>
+            <button class="order-btn" (click)="onClickDesc(order)">Подробнее</button>
 
             <div class="row order-btn-con">
               <button class="order-btn1">Написать</button>
@@ -66,7 +66,7 @@
             </div>
 
             <div class="row order-not-accept" *ngIf="order.status === 'not_accepted'"
-                 (click)="onAcceptOrder(order.id)">
+                 (click)="onClickDesc(order)">
               <i class="material-icons info-icon">info_outline</i>
               <p>Требуется ваше подтверждение</p>
             </div>
@@ -88,38 +88,40 @@
 
         <!--Tap 2-->
         <div class="row tap-1" *ngIf="!tap">
-          <div class="order" *ngFor="let order of ordersCompleted">
+          <div class="order" *ngFor="let orderComp of ordersCompleted">
             <div class="row order-desc-1">
               <div class="list-date">
-                <p class="list-day">{{order.day}}</p>
-                <p class="list-month">{{order?.month}}</p>
+                <p class="list-day">{{orderComp.day}}</p>
+                <p class="list-month">{{orderComp?.month}}</p>
               </div>
 
               <div class="list-desc">
-                <p class="order-title">{{order.serviceName}}</p>
+                <p class="order-title">{{orderComp.serviceName}}</p>
                 <div class="row">
                   <p class="order-key">Адрес:</p>
-                  <p class="order-prop">{{order.address}}</p>
+                  <p class="order-prop">{{orderComp.address}}</p>
                 </div>
                 <div class="row">
                   <p class="order-key">Дата:</p>
-                  <p class="order-prop">{{order.orderDate}}</p>
+                  <p class="order-prop">{{orderComp.orderDate}}</p>
                 </div>
                 <div class="row">
                   <p class="order-key">Время:</p>
-                  <p class="order-prop">{{order.time}}</p>
+                  <p class="order-prop">{{orderComp.time}}</p>
                 </div>
                 <div class="row">
                   <p class="order-key">Оплата:</p>
-                  <p class="order-prop">{{order.total}} сом <span class="order-key">(предварительно)</span></p>
+                  <p class="order-prop">{{orderComp.total}} сом <span class="order-key">(предварительно)</span></p>
                 </div>
               </div>
             </div>
 
-            <button class="order-btn">Подробнее</button>
+            <button class="order-btn" (click)="onClickDesc(orderComp)">Подробнее</button>
             <div class="row order-btn-con">
               <button class="order-btn1">Написать</button>
-              <button class="order-btn2" (click)="onClickReview()">Оценить</button>
+              <button class="order-btn2" (click)="onClickReview(orderComp)" [disabled]="orderComp.stars?.length">
+                Оценить
+              </button>
             </div>
             <div class="row order-complete">
               <i class="material-icons info-icon">done_all</i>
@@ -128,22 +130,96 @@
           </div>
         </div>
 
-        <!--Call popup-->
-        <div class="modal" id="modal" *ngIf="modal" (click)="onClickOverModal($event)">
-          <div class="popup">
-            <button class="btn btn-operator">
-              <i class="material-icons phone-icon">phone</i>
-              Звонок оператору
-            </button>
-            <button class="btn btn-operator">
-              <i class="material-icons phone-icon">phone</i>
-              Звонок исполнителю
-            </button>
-          </div>
-        </div>
-
       </div>
 
     </div>
+  </div>
+</div>
+
+<!--Review popup-->
+<div class="modal" id="modalRev" *ngIf="modalReview" (click)="onClickOverModalRev($event)">
+  <div class="rev-popup">
+
+    <p class="rev-title">Оставить отзыв</p>
+    <p class="rev-label">Ваша оценка</p>
+    <div class="row rev-marks">
+      <div #markElem class="rev-mark" *ngFor="let mark of [1, 2, 3, 4, 5]" (click)="onClickMark(markElem)">{{mark}}
+      </div>
+    </div>
+    <p class="rev-label m-t-30">Что было сделано</p>
+    <input class="rev-input" [(ngModel)]="revTitle" #title="ngModel" type="text" autocomplete="off">
+    <p class="rev-label">Описание</p>
+    <textarea class="rev-input" [(ngModel)]="revDescription" #decription="ngModel" type="text"
+              autocomplete="off"></textarea>
+    <button class="btn rev-btn" (click)="onSendOrderMark()">Отправить</button>
+
+  </div>
+</div>
+
+<!--Call popup-->
+<div class="modal" id="modal" *ngIf="modal" (click)="onClickOverModal($event)">
+  <div class="popup">
+    <button class="btn btn-operator">
+      <i class="material-icons phone-icon">phone</i>
+      Звонок оператору
+    </button>
+    <button class="btn btn-operator">
+      <i class="material-icons phone-icon">phone</i>
+      Звонок исполнителю
+    </button>
+  </div>
+</div>
+
+<!--Description popup-->
+<div class="modal" id="modalDesc" *ngIf="modalDesc" (click)="onClickOverModalDesc($event)">
+  <div class="desc-popup">
+    <p class="rev-title">Детали заказа</p>
+    <div class="rev-desc" *ngIf="selectedOrder.status === 'not_accepted'">
+      <p class="rev-desc-text">Если вы ознакомились и согласны с деталями заказа нажмите кнопку "Подтвердить"</p>
+      <button class="rev-desc-btn btn-orange" (click)="onAcceptOrder(selectedOrder.id)">Подтвердить</button>
+    </div>
+
+    <!--Master-->
+    <p class="rev-title-2">Исполнитель</p>
+    <div class="row master-con">
+      <img class="master-img m-20" src="{{selectedOrder?.agentImages[0]}}">
+      <div class="m-10">
+        <p>{{selectedOrder.agent?.accountname}} {{selectedOrder.agent?.accountsurname}}</p>
+        <p class="master-con-name">{{selectedOrder.agent?.profession}}</p>
+      </div>
+      <i class="material-icons icon-verified">verified_user</i>
+    </div>
+
+    <!--Order info-->
+    <p class="rev-title-2">Информация о заказе</p>
+    <p class="rev-text">Разнообразный и богатый опыт консультации с широким активом обеспечивает широкому кругу (специалистов) участие в
+      формировании системы обучения кадров.</p>
+
+    <div class="list-desc">
+      <div class="row">
+        <p class="order-key">Адрес:</p>
+        <p class="order-prop">{{selectedOrder.address}}</p>
+      </div>
+      <div class="row">
+        <p class="order-key">Дата:</p>
+        <p class="order-prop">{{selectedOrder.orderDate}}</p>
+      </div>
+      <div class="row">
+        <p class="order-key">Время:</p>
+        <p class="order-prop">{{selectedOrder.time}}</p>
+      </div>
+      <div class="row">
+        <p class="order-key">Оплата:</p>
+        <p class="order-prop">{{selectedOrder.total}} сом <span class="order-key">(предварительно)</span></p>
+      </div>
+    </div>
+
+    <!--Attached files-->
+    <p class="rev-title-2">Прикрепленные файлы</p>
+    <div class="row rev-images">
+      <img class="rev-attached-img" *ngFor="let photo of selectedOrder.orderImagesArray" src="{{photo}}">
+    </div>
+
+
   </div>
 </div>

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
 import {CommonService} from '../../services/common.service';
@@ -9,7 +9,7 @@ import {Subscription} from 'rxjs/Subscription';
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss']
 })
-export class OrdersComponent implements OnInit {
+export class OrdersComponent implements OnInit, OnDestroy {
 
   /**
    * Var to show/hide modal the authorized window
@@ -20,22 +20,30 @@ export class OrdersComponent implements OnInit {
    * Var to show/hide modal the modal window
    */
   modal = false;
+  modalReview = false;
+  modalDesc = false;
 
   orders = [];
   ordersCompleted = [];
+
+  revTitle: string;
+  revDescription: string;
+  selectedOrder;
 
   /**
    * Vars to hide/show html containers
    */
   tap = true;
 
+  private currentMark: HTMLElement;
   private nav1: HTMLElement;
   private nav2: HTMLElement;
   private months = [
     'янв', 'фев', 'мар', 'апр', 'мая', 'июня', 'июля',
     'авг', 'сен', 'окт', 'ноя', 'дек'
   ];
-  private subscription: Subscription;
+  private orderMarkId: string;
+  private subscriptions: Subscription[] = [];
 
   constructor(private location: Location,
               private router: Router,
@@ -45,12 +53,18 @@ export class OrdersComponent implements OnInit {
   ngOnInit() {
     this.common.fromOrderCreate = false;
     this.getOrdersFromApi('getOrders&type=active');
-    this.getOrdersFromApi('getOrders&type=inactive');
+  }
+
+  ngOnDestroy() {
+    while (this.subscriptions.length) {
+      this.subscriptions.pop().unsubscribe();
+    }
   }
 
   onAcceptOrder(id) {
     const url = 'updateorder' + '&orderid=' + id + '&status=accepted';
     this.common.get(url).subscribe(data => {
+
     });
   }
 
@@ -86,10 +100,39 @@ export class OrdersComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
+  onClickReview(order) {
+    console.log(order);
+    this.orderMarkId = order.id;
+    this.modalReview = true;
+  }
+
+  onClickMark(mark) {
+    if (!this.currentMark) {
+      this.currentMark = mark;
+      this.currentMark.classList.add('rev-active');
+    } else if (this.currentMark.classList.contains('rev-active')) {
+      this.currentMark.classList.remove('rev-active');
+      this.currentMark = mark;
+      this.currentMark.classList.add('rev-active');
+    }
+  }
+
+  onSendOrderMark() {
+    const order = '&orderId=' + this.orderMarkId;
+    const score = '&score=' + this.currentMark.innerHTML;
+    const comment = '$comment=' + this.revTitle + '\/n' + this.revDescription;
+    const url = 'markStars' + order + score + comment;
+    this.subscriptions.push(this.common.get(url).subscribe(data => {
+      // console.log(data.json());
+    }));
+  }
+
   /**
    * Handler to hide/show Info container
    */
   onClickTap1() {
+    this.nav1 = document.getElementById('navTap1');
+    this.nav2 = document.getElementById('navTap2');
     this.nav2.style.border = 'none';
     this.nav1.style.borderBottom = '3px #2196F3 solid';
     this.tap = !this.tap;
@@ -99,6 +142,8 @@ export class OrdersComponent implements OnInit {
    * Handler to hide/show Reviews container
    */
   onClickTap2() {
+    this.nav1 = document.getElementById('navTap1');
+    this.nav2 = document.getElementById('navTap2');
     this.nav1.style.border = 'none';
     this.nav2.style.borderBottom = '3px #2196F3 solid';
     this.tap = !this.tap;
@@ -115,41 +160,49 @@ export class OrdersComponent implements OnInit {
     }
   }
 
-  /**
-   * Handler to navigate to order description page
-   */
-  onClickDesc() {
-    this.router.navigate(['description']);
+  onClickOverModalRev(event) {
+    const modalWindow = document.getElementById('modalRev');
+    if (event.target === modalWindow) {
+      this.modalReview = false;
+    }
+  }
+
+  onClickOverModalDesc(event) {
+    const modalWindow = document.getElementById('modalDesc');
+    if (event.target === modalWindow) {
+      this.modalDesc = false;
+    }
   }
 
   /**
-   * Handler to navigate to review page
+   * Handler to navigate to orderComp description page
    */
-  onClickReview() {
-    this.router.navigate(['review']);
+  onClickDesc(order) {
+    console.log(order);
+    this.selectedOrder = order;
+    this.modalDesc = true;
   }
 
   private getOrdersFromApi(url) {
-    this.subscription = this.common.get(url).subscribe(data => {
+    this.subscriptions.push(this.common.get(url).subscribe(data => {
       const resp = data.json();
-      console.log(resp[1]);
       if (resp[0] === 'ok') {
         this.noOrders = false;
         const orders = resp[1];
         this.sortOrders(orders);
-        this.nav1 = document.getElementById('navTap1');
-        this.nav2 = document.getElementById('navTap2');
+
       }
-    });
+    }));
   }
 
   private sortOrders(orders) {
     for (const order of orders) {
       if (order.status === 'completed') {
         this.ordersCompleted.push(order);
+        // console.log(this.ordersCompleted);
       } else {
         this.orders.push(order);
-        console.log(this.orders);
+        // console.log(this.orders);
       }
     }
     this.setMonth(orders);
@@ -166,4 +219,5 @@ export class OrdersComponent implements OnInit {
       });
     }
   }
+
 }

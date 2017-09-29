@@ -135,6 +135,160 @@
   font-size: 14px;
 }
 
+.rev-popup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 30%;
+  left: 40%;
+  width: 320px;
+  height: 350px;
+  background-color: white;
+  border-radius: 4px;
+}
+
+.rev-title {
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.rev-label {
+  color: #7E7E7E;
+  text-align: left;
+  margin-top: 20px;
+  margin-left: 30px;
+  width: 100%;
+  font-size: 14px;
+}
+
+.rev-marks {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.rev-mark {
+  width: 40px;
+  height: 40px;
+  color: #9F9F9F;
+  border: 1px #E5E5E5 solid;
+  border-radius: 4px;
+  margin: 0 10px;
+  text-align: center;
+  line-height: 40px;
+}
+
+.rev-input {
+  border: none;
+  border-bottom: 1px #D1D1D1 solid;
+  width: 300px;
+  height: auto;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.rev-btn {
+  height: 42px;
+  width: 90%;
+  background-color: #FFC107;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  margin-top: 20px;
+}
+
+.rev-active {
+  color: #FFC107;
+  border-color: #FFC107;
+}
+
+.desc-popup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 20%;
+  left: 40%;
+  width: 320px;
+  height: 600px;
+  background-color: white;
+  border-radius: 4px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.rev-desc {
+  background-color: #FFC107;
+  width: 100%;
+  margin-top: 20px;
+  box-shadow: 0 0 6px #6a6a6a;
+}
+
+.rev-desc-text {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 14px;
+  padding: 0 8px;
+}
+
+.rev-desc-btn {
+  display: block;
+  margin: 16px auto;
+  height: 42px;
+  width: 90%;
+  background-color: white;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.rev-title-2 {
+  font-weight: bold;
+  width: 100%;
+  text-align: left;
+  padding-left: 26px;
+  margin-top: 30px;
+}
+
+.rev-text {
+  margin: 16px;
+  font-size: 14px;
+}
+
+.rev-attached-img {
+  height: 70px;
+  width: 70px;
+  margin: 16px 5px;
+}
+
+.rev-images {
+  width: 98%;
+}
+
+.master-con {
+  align-items: center;
+  border: 1px #E5E5E5 solid;
+  border-radius: 5px;
+  width: 94%;
+  height: 82px;
+  margin-top: 16px;
+}
+
+.master-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.master-con-name {
+  font-size: 12px;
+  color: #7E7E7E;
+}
+
 .order-not-accept {
   @extend .order-accept;
   color: #FFC107;

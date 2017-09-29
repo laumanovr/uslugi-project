@@ -29,6 +29,7 @@ export class ContractorListComponent implements OnInit, OnDestroy {
     this.subscription = this.common.get('getAgents&serviceid=' + this.common.selectedService)
       .subscribe(data => {
         this.masters = data.json();
+        console.log(this.masters);
       });
   }
 
