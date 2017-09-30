@@ -1,0 +1,119 @@
+<div class="row ms-wrap" *ngIf="shortDesc" (click)="modal = true">
+  <img class="ms-img m-20" src="{{master?.photo}}">
+  <div class="m-10">
+    <div class="row">
+      <p>{{master?.name}}</p>
+      <i class="material-icons icon-verified" *ngIf="master?.verifed_user">beenhere</i>
+    </div>
+    <p class="ms-name">{{master?.profession}}</p>
+  </div>
+</div>
+
+<!--Description popup-->
+<div class="modal" id="modal" *ngIf="modal" (click)="onOverModal($event)">
+  <div class="ms-popup">
+
+    <!--Content nav bar-->
+    <div class="row nav-cont">
+      <p class="nav-info" id="masterInfo" (click)="onInfo()">Информация</p>
+      <p class="nav-rev" id="masterRev" (click)="onReviews()">Отзывы({{master.reviews.length}})</p>
+    </div>
+
+    <!--Content-->
+    <div class="row">
+
+      <div *ngIf="!reviews">
+
+        <!--Title-->
+        <div class="ms-pop-name">
+          <img class="ms-pop-img" src="{{master?.photo}}">
+          <div class="m-10">
+            <div class="row">
+              <p>{{master?.name}}</p>
+              <i class="material-icons icon-verified" *ngIf="master?.verifed_user">beenhere</i>
+            </div>
+            <p class="ms-name">{{master?.profession}}</p>
+          </div>
+        </div>
+
+        <!--Photo gallery-->
+        <div class="row m-l-20">
+          <img class="cl-work-img" *ngFor="let photo of master?.whork_images" src="{{photo}}">
+        </div>
+
+        <!--Registration-->
+        <div class="cl-reg-cont">
+          <p class="cl-title">Регистрация</p>
+          <div class="row">
+            <div class="column">
+              <i class="material-icons" *ngIf="master?.registration.docs_verifed">check</i>
+              <i class="material-icons" *ngIf="master?.registration.interview_passed">check</i>
+              <i class="material-icons" *ngIf="master?.registration.test_passed">check</i>
+            </div>
+            <div class="column">
+              <p class="cl-text">Документы подтверждены</p>
+              <p class="cl-text">Собеседование пройдено</p>
+              <p class="cl-text">Тестирование прошел</p>
+            </div>
+          </div>
+        </div>
+
+        <!--Contractor info-->
+        <div class="cl-reg-cont">
+          <p class="cl-title">Информация об исполнителе</p>
+          <span class="cl-info-text">Опыт работы</span>
+          <span class="cl-info-text-2">{{master?.experience}}</span>
+          <br>
+          <span class="cl-info-text">Образование</span>
+          <span class="cl-info-text-2">{{master?.education}}</span>
+          <br>
+          <span class="cl-info-text">Район обслуживания</span>
+          <span class="cl-info-text-2">{{master?.work_location}}</span>
+          <br>
+          <span class="cl-info-text">График работы</span>
+          <span class="cl-info-text-2">{{master?.schedule}}</span>
+        </div>
+
+        <!--Service list-->
+        <div class="cl-reg-cont">
+          <p class="cl-title">Виды оказываемых услуг</p>
+          <div class="row" *ngFor="let service of master?.service_list">
+            <p class="cl-info-text">{{service.name}} труб</p>
+            <p class="cl-info-text-3">{{service.price}}</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!--Reviews-->
+    <div *ngIf="reviews">
+
+      <!--Title-->
+      <p class="cl-title m-20">Отзывы пользователей</p>
+      <div class="row m-l-20">
+        <div>
+          <p class="cl-info-text">Рейтинг:</p>
+          <p class="cl-info-text">Отзывов:</p>
+        </div>
+        <div class="m-l-40">
+          <p class="cl-info-text-3">{{master.rating}} из 5</p>
+          <p class="cl-info-text-3">{{master.reviews.length}}</p>
+        </div>
+      </div>
+
+      <!--Array of reviews-->
+      <div class="cl-review m-t-20" *ngFor="let review of master.reviews">
+        <div class="row m-10">
+          <p class="cl-review-mark">{{review.stars}}</p>
+          <div class="cl-review-descrip">
+            <p class="cl-review-title">{{review.service}}</p>
+            <p class="cl-review-date">{{review.orderdate}}</p>
+          </div>
+        </div>
+        <p class="p-10">{{review.comment}}</p>
+      </div>
+
+    </div>
+  </div>
+</div>

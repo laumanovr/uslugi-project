@@ -12,14 +12,15 @@
 
     <h3 class="master-title">Исполнитель</h3>
 
-    <div class="row master-con">
-      <img class="master-img m-20" src="{{master?.photo}}">
-      <div class="m-10">
-        <p>{{master?.name}}</p>
-        <p class="master-con-name">{{master?.profession}}</p>
-      </div>
-      <i class="material-icons icon-verified" *ngIf="master?.verifed_user">verified_user</i>
-    </div>
+    <!--<div class="row master-con">-->
+      <!--<img class="master-img m-20" src="{{master?.photo}}">-->
+      <!--<div class="m-10">-->
+        <!--<p>{{master?.name}}</p>-->
+        <!--<p class="master-con-name">{{master?.profession}}</p>-->
+      <!--</div>-->
+      <!--<i class="material-icons icon-verified" *ngIf="master?.verifed_user">verified_user</i>-->
+    <!--</div>-->
+    <app-master-desc [master]="master"></app-master-desc>
 
     <button class="master-btn" (click)="onCall()">Позвонить</button>
 

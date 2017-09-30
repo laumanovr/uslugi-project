@@ -11,13 +11,10 @@ import {CommonService} from '../../../services/common.service';
 })
 export class ContractorListComponent implements OnInit, OnDestroy {
 
+  master;
   masters;
-  masterDesc;
-  modal = false;
+  popup = false;
   reviews = false;
-
-  private navInfo: HTMLElement;
-  private navRev: HTMLElement;
   private subscription: Subscription;
 
   constructor(private location: Location,
@@ -39,48 +36,17 @@ export class ContractorListComponent implements OnInit, OnDestroy {
     }
   }
 
+  closePopup(event) {
+    this.popup = false;
+  }
+
   onClickBack() {
     this.location.back();
   }
 
-  /**
-   * Handler for show modal window
-   */
-  onClickDesc(master) {
-    this.masterDesc = master;
-    this.modal = true;
-  }
-
-  /**
-   * When the user clicks anywhere outside of the modal, close it
-   * @param event
-   */
-  onClickOverModal(event) {
-    const modalWindow = document.getElementById('modal');
-    if (event.target === modalWindow) {
-      this.modal = false;
-      this.reviews = false;
-    }
-  }
-
-  /**
-   * Handler for hide/show Reviews container
-   */
-  onClickRev() {
-    this.navInfo = document.getElementById('masterInfo');
-    this.navRev = document.getElementById('masterRev');
-    this.reviews = true;
-    this.navInfo.style.border = 'none';
-    this.navRev.style.borderBottom = '3px #2196F3 solid';
-  }
-
-  /**
-   * Handler for hide/show Info container
-   */
-  onClickInfo() {
-    this.reviews = false;
-    this.navInfo.style.borderBottom = '3px #2196F3 solid';
-    this.navRev.style.borderBottom = 'none';
+  onDesc(master) {
+    this.master = master;
+    this.popup = true;
   }
 
   /**
@@ -94,4 +60,5 @@ export class ContractorListComponent implements OnInit, OnDestroy {
       this.router.navigate(['contacts']);
     }
   }
+
 }
