@@ -17,7 +17,6 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription = this.common.get('getClientData')
       .subscribe(resp => {
-        console.log(resp.json()[2]);
         const user = resp.json()[2];
         const userAuth = resp.json()[2].name;
         if (userAuth !== '' && userAuth !== 'undefined') {

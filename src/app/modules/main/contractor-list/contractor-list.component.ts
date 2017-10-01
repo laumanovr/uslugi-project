@@ -15,6 +15,8 @@ export class ContractorListComponent implements OnInit, OnDestroy {
   masters;
   popup = false;
   reviews = false;
+  private sortCrutch1 = false;
+  private sortCrutch2 = false;
   private subscription: Subscription;
 
   constructor(private location: Location,
@@ -26,7 +28,6 @@ export class ContractorListComponent implements OnInit, OnDestroy {
     this.subscription = this.common.get('getAgents&serviceid=' + this.common.selectedService)
       .subscribe(data => {
         this.masters = data.json();
-        console.log(this.masters);
       });
   }
 
@@ -50,22 +51,30 @@ export class ContractorListComponent implements OnInit, OnDestroy {
   }
 
   onSortByRating() {
-    this.masters.sort((a, b) => {
-      if (a.rating > b.rating) {
-        return -1;
-      } else {
-        return 1;
-      }
-    });
+    if (!this.sortCrutch1) {
+      this.masters.sort((a, b) => {
+        if (a.rating > b.rating) {
+          return -1;
+        } else {
+          return 1;
+        }
+      });
+      this.sortCrutch1 = true;
+      this.sortCrutch2 = false;
+    }
   }
 
   onSortByPopular() {
-    this.masters.sort((a, b) => {
-      if (a.reviews.length > b.reviews.length) {
-        return -1;
-      }
-      return 1;
-    });
+    if (!this.sortCrutch2) {
+      this.masters.sort((a, b) => {
+        if (a.reviews.length > b.reviews.length) {
+          return -1;
+        }
+        return 1;
+      });
+      this.sortCrutch1 = false;
+      this.sortCrutch2 = true;
+    }
   }
 
   onSortByPrice() {
@@ -80,6 +89,8 @@ export class ContractorListComponent implements OnInit, OnDestroy {
       }
       return -1;
     });
+    this.sortCrutch1 = false;
+    this.sortCrutch2 = false;
   }
 
   /**
