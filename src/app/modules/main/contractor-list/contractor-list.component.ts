@@ -49,6 +49,39 @@ export class ContractorListComponent implements OnInit, OnDestroy {
     this.popup = true;
   }
 
+  onSortByRating() {
+    this.masters.sort((a, b) => {
+      if (a.rating > b.rating) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+  }
+
+  onSortByPopular() {
+    this.masters.sort((a, b) => {
+      if (a.reviews.length > b.reviews.length) {
+        return -1;
+      }
+      return 1;
+    });
+  }
+
+  onSortByPrice() {
+    // for (const master of this.masters) {
+    //   const min = Number(master.price.substring(0, master.price.indexOf('-')));
+    //   const max = Number(master.price.substring(master.price.indexOf('-') + 1));
+    //   master.price = min + max / 2;
+    // }
+    this.masters.sort((a, b) => {
+      if (a.price > b.price) {
+        return 1;
+      }
+      return -1;
+    });
+  }
+
   /**
    * Handler for navigate to profile page
    */

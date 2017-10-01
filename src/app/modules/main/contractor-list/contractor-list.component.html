@@ -16,8 +16,13 @@
       <div class="cl-sort-city">
         <p>Бишкек</p>
       </div>
-      <div class="cl-sort-city">
-        <p>Рейтинг</p>
+      <div class="dropdown">
+        <p class="dropbtn">Сортировать</p>
+        <div class="dropdown-content">
+          <p class="option" (click)="onSortByRating()">По рейтингу</p>
+          <p class="option" (click)="onSortByPopular()">По популярности</p>
+          <p class="option" (click)="onSortByPrice()">По цене</p>
+        </div>
       </div>
     </div>
 

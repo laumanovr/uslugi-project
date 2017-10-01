@@ -42,7 +42,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   private getUser() {
     const url = 'getClientData';
     this.subscriptions.push(this.common.get(url).subscribe(resp => {
-      console.log(resp);
+      console.log(resp.json());
       this.user = resp.json()[2];
     }));
   }
