@@ -9,8 +9,7 @@
   width: 20%;
   height: 40px;
   background-color: white;
-  text-align: left;
-  padding-left: 20px;
+  text-align: center;
   margin: 20px;
   line-height: 40px;
   border: 2px #646464 !important;
@@ -237,13 +236,11 @@
 }
 
 /*Dropdown*/
-dropbtn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
+.dropbtn {
   border: none;
   cursor: pointer;
+  text-align: center;
+  width: 100%;
 }
 
 .dropdown {
@@ -252,8 +249,6 @@ dropbtn {
   width: 20%;
   height: 40px;
   background-color: white;
-  text-align: left;
-  padding-left: 20px;
   margin: 20px;
   line-height: 40px;
   border: 2px #646464 !important;
@@ -277,6 +272,7 @@ dropbtn {
   text-decoration: none;
   display: block;
   user-select: none;
+  white-space: nowrap;
 }
 
 .dropdown-content .option:hover {background-color: #f1f1f1}
@@ -285,8 +281,16 @@ dropbtn {
   display: block;
 }
 
+.dropdown:active .dropdown-content {
+  display: block;
+}
+
 .dropdown:hover {
   background-color: #f9f9f9;
+}
+
+.location {
+  text-align: center;
 }
 
 /*Responsive styles*/

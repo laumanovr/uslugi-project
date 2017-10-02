@@ -6,7 +6,6 @@ export class CommonService {
 
   name: string;
   phone: string;
-  email: string;
   userCreated = false;
   fromOrderCreate = false;
   fromMasterPage = false;

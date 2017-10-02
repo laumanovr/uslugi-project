@@ -12,14 +12,6 @@
 
     <h3 class="master-title">Исполнитель</h3>
 
-    <!--<div class="row master-con">-->
-      <!--<img class="master-img m-20" src="{{master?.photo}}">-->
-      <!--<div class="m-10">-->
-        <!--<p>{{master?.name}}</p>-->
-        <!--<p class="master-con-name">{{master?.profession}}</p>-->
-      <!--</div>-->
-      <!--<i class="material-icons icon-verified" *ngIf="master?.verifed_user">verified_user</i>-->
-    <!--</div>-->
     <app-master-desc [master]="master"></app-master-desc>
 
     <button class="master-btn" (click)="onCall()">Позвонить</button>
@@ -39,11 +31,12 @@
     <!--Call popup-->
     <div class="modal" id="modal" *ngIf="modal" (click)="onClickOverModal($event)">
       <div class="popup">
-        <button class="btn btn-operator">
+        <p class="phone-call">Наберите номер: <span class="phone-number">1412</span></p>
+        <button class="btn-operator">
           <i class="material-icons phone-icon">phone</i>
           Звонок оператору
         </button>
-        <button class="btn btn-operator">
+        <button class="btn-operator">
           <i class="material-icons phone-icon">phone</i>
           Звонок исполнителю
         </button>

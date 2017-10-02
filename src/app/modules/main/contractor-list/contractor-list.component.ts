@@ -11,6 +11,7 @@ import {CommonService} from '../../../services/common.service';
 })
 export class ContractorListComponent implements OnInit, OnDestroy {
 
+  dropdown = false;
   master;
   masters;
   popup = false;

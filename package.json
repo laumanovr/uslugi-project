@@ -5,10 +5,16 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start global": "ng serve --host 192.168.0.130 --port 8080",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "clean dist on windows": "rmdir /Q /S dist",
+    "clean dist on unix": "rm -rf dist",
+    "build_prod": "ng build --prod",
+    "build_prod aot": "ng build --prod --aot",
+    "start_prod (required server)": "http-server ./dist -p 5556"
   },
   "private": true,
   "dependencies": {

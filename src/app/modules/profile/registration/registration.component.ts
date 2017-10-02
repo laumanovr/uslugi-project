@@ -12,7 +12,6 @@ import {CommonService} from '../../../services/common.service';
 export class RegistrationComponent implements OnInit, OnDestroy {
 
   codeValue: string;
-  emailValue: string;
   nameValue: string;
   phoneValue: string;
   passValue: string;
@@ -135,8 +134,9 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   private smsSend() {
     const urlSms = 'sendSms&mobile=' + this.phoneValue;
     this.subscriptions.push(this.common.get(urlSms).subscribe(resp => {
-      console.log(resp.json());
       if (resp.statusText === 'OK') {
+        // Todo for test
+        alert('Ваш смс код: ' + resp.json()[2]);
       }
     }));
   }

@@ -68,7 +68,9 @@
 }
 
 .btn-operator {
-  display: flex;
+  outline: none;
+  border: none;
+  display: none;
   align-items: center;
   height: 42px;
   width: 80%;
@@ -78,6 +80,14 @@
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
   font-size: 15px;
+}
+
+.phone-call {
+  margin-top: 20%;
+}
+
+.phone-number {
+  font-weight: bold;
 }
 
 .phone-icon {
@@ -108,6 +118,14 @@
 
   .master-title-2, .master-link-elem {
     margin-left: 30px;
+  }
+
+  .phone-call {
+    display: none;
+  }
+
+  .btn-operator {
+    display: flex;
   }
 }
 

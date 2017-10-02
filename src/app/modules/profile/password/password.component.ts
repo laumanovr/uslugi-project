@@ -36,8 +36,9 @@ export class PasswordComponent implements OnInit, OnDestroy {
   onSendSms() {
     const url = 'sendSms&mobile=' + this.phoneVal;
     this.subscription = this.common.get(url).subscribe(resp => {
-      console.log(resp.json());
       if (resp.statusText === 'OK') {
+        // Todo for test
+        alert('смс код: ' + resp.json()[2]);
         this.common.phone = this.phoneVal;
         this.router.navigate(['password-create']);
       }
