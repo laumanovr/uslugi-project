@@ -38,7 +38,7 @@
 
         <!--Photo gallery-->
         <div class="row m-l-20">
-          <img class="cl-work-img" *ngFor="let photo of master?.whork_images" src="{{photo}}">
+          <img class="cl-work-img" *ngFor="let photo of master?.whork_images" src="{{photo}}" (click)="onOpenPhoto(photo)">
         </div>
 
         <!--Registration-->
@@ -115,5 +115,14 @@
       </div>
 
     </div>
+  </div>
+</div>
+
+<!--Photo modal window-->
+<div class="photo-modal" id="photo" *ngIf="imgPopup" (click)="onOverPhoto($event)">
+  <div class="photo-content">
+    <a class="prev-next" (click)="onPrevPhoto()">❮</a>
+    <img class="photo-elem" src="{{imgClicked}}">
+    <a class="prev-next" (click)="onNextPhoto()">❯</a>
   </div>
 </div>

@@ -93,7 +93,6 @@
   margin: 10px auto;
 }
 
-
 .cl-review-title {
   font-weight: bold;
 }
@@ -147,6 +146,45 @@
 .material-icons {
   color: #2196F3;
   font-size: 16px;
+}
+
+// Photo popup
+.photo-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: black;
+}
+
+.photo-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  width: 600px;
+}
+
+.photo-elem {
+  width: 100%;
+}
+
+.prev-next {
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  transition: 0.6s ease;
+  margin: 0 20px;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 /*Responsive styles*/

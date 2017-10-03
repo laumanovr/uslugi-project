@@ -12,10 +12,12 @@ import {CommonService} from './services/common.service';
 import {FormsModule} from '@angular/forms';
 import {MainModule} from './modules/main/main.module';
 import {MasterService} from './services/master.service';
+import { LightboxDirective } from './directives/lightbox.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LightboxDirective,
   ],
   imports: [
     AppRouting,
