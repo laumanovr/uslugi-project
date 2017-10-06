@@ -44,4 +44,5 @@ export class MainComponent implements OnInit, OnDestroy {
         this.services = data.json();
       }));
   }
+
 }

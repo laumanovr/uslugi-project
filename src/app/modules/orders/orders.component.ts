@@ -11,6 +11,16 @@ import {Subscription} from 'rxjs/Subscription';
 })
 export class OrdersComponent implements OnInit, OnDestroy {
 
+  // Todo: for development
+  photos = [
+    'http://placehold.it/600/810b14',
+    'http://placehold.it/600/92c952',
+    'http://placehold.it/600/771796',
+    'http://placehold.it/600/24f355',
+    'http://placehold.it/600/d32776',
+    'http://placehold.it/600/474645'
+  ];
+
   /**
    * Var to show/hide modal the authorized window
    */
@@ -190,7 +200,6 @@ export class OrdersComponent implements OnInit, OnDestroy {
         this.noOrders = false;
         const orders = resp[1];
         this.sortOrders(orders);
-
       }
     }));
   }

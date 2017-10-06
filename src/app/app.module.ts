@@ -12,12 +12,11 @@ import {CommonService} from './services/common.service';
 import {FormsModule} from '@angular/forms';
 import {MainModule} from './modules/main/main.module';
 import {MasterService} from './services/master.service';
-import { LightboxDirective } from './directives/lightbox.directive';
+import {SwipeModule} from './shared/swipe/swipe.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LightboxDirective,
   ],
   imports: [
     AppRouting,
@@ -27,7 +26,8 @@ import { LightboxDirective } from './directives/lightbox.directive';
     MainModule,
     OrdersModule,
     NavBarModule,
-    ProfileModule
+    ProfileModule,
+    SwipeModule,
   ],
   providers: [
     CustomRequest,

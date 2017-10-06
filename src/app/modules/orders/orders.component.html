@@ -217,7 +217,8 @@
     <!--Attached files-->
     <p class="rev-title-2">Прикрепленные файлы</p>
     <div class="row rev-images">
-      <img class="rev-attached-img" *ngFor="let photo of selectedOrder.orderImagesArray" src="{{photo}}">
+      <!--<img class="rev-attached-img" *ngFor="let photo of selectedOrder.orderImagesArray" src="{{photo}}">-->
+      <app-swipe [photos]="photos"></app-swipe>
     </div>
 
 
