@@ -11,9 +11,6 @@ export class MasterDescComponent implements OnInit {
   @Input() modal = false;
   @Input() shortDesc = true;
   @Output() modalClose = new EventEmitter<boolean>();
-  count = 0;
-  imgPopup = false;
-  imgClicked;
   reviews = false;
   private navInfo: HTMLElement;
   private navRev: HTMLElement;
@@ -22,33 +19,6 @@ export class MasterDescComponent implements OnInit {
   }
 
   ngOnInit() {
-  }
-
-  onOpenPhoto(selectedImg) {
-    this.imgPopup = true;
-    this.imgClicked = selectedImg;
-    this.checkImgIndex(selectedImg);
-  }
-
-  onNextPhoto() {
-    if (this.count < this.master.whork_images.length - 1) {
-      this.count++;
-      this.imgClicked = this.master.whork_images[this.count];
-    }
-  }
-
-  onPrevPhoto() {
-    if (this.count !== 0) {
-      this.count--;
-      this.imgClicked = this.master.whork_images[this.count];
-    }
-  }
-
-  onOverPhoto(event) {
-    const modalWindow = document.getElementById('photo');
-    if (event.target === modalWindow) {
-      this.imgPopup = false;
-    }
   }
 
   /**
@@ -81,14 +51,6 @@ export class MasterDescComponent implements OnInit {
     this.reviews = false;
     this.navInfo.style.borderBottom = '3px #2196F3 solid';
     this.navRev.style.borderBottom = 'none';
-  }
-
-  private checkImgIndex(img) {
-    this.master.whork_images.forEach((val, i) => {
-      if (val === img) {
-        this.count = i;
-      }
-    });
   }
 
 }
