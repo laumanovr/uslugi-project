@@ -70,6 +70,14 @@ export class NavBarComponent implements OnInit {
   }
 
   /**
+   * Navigate to operator
+   */
+  onClickOperator() {
+    this.router.navigate(['operator']);
+  }
+
+
+  /**
    * Handler to check out location and painting icons
    */
   private checkLocation() {

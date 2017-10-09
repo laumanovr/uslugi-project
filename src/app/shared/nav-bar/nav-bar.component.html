@@ -17,7 +17,7 @@
         <span id="profileIcon" class="icon">{{ico.profile}}</span>Мой профиль
       </li>
 
-      <li id="support">
+      <li id="support" (click)="onClickOperator()">
         <span id="supportIcon" class="icon">{{ico.support}}</span>Онлайн-поддержка
       </li>
     </ul>
@@ -41,6 +41,6 @@
       <span id="profileIconBottom" class="bottom-icon icon">{{ico.profile}}</span>
   </div>
   <div class="bottom-elem">
-    <span id="supportIconBottom" class="bottom-icon icon">{{ico.support}}</span>
+    <span id="supportIconBottom" (click)="onClickOperator()" class="bottom-icon icon">{{ico.support}}</span>
   </div>
 </div>
