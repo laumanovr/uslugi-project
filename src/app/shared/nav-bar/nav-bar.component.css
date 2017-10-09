@@ -81,6 +81,7 @@ li {
   bottom: -4px;
   background-color: rgb(241, 241, 241);
   box-shadow: 0px 0px 4.95px 0.05px rgba(0, 1, 2, 0.15);
+  z-index: 1;
 }
 
 .bottom-elem {

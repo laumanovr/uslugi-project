@@ -94,6 +94,10 @@ a {
   margin-bottom: 10px;
 }
 
+.m-b-30 {
+  margin-bottom: 30px;
+}
+
 .p-10 {
   padding: 10px;
 }
@@ -234,6 +238,11 @@ a {
   }
 
   .content-wrapper {
+    width: 100%;
+    margin: 0;
+  }
+
+  .common-wrapper {
     width: 100%;
     margin: 0;
   }
