@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MainComponent } from './main.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {MainComponent} from './main.component';
 import {NavBarModule} from '../../shared/nav-bar/nav-bar.module';
 import {MainRouting} from './main.routes';
 import {ContractorListComponent} from './contractor-list/contractor-list.component';
@@ -28,4 +28,5 @@ import {MasterDescModule} from '../../shared/master-desc/master-desc.module';
     MasterComponent,
   ]
 })
-export class MainModule { }
+export class MainModule {
+}

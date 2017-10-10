@@ -7,7 +7,7 @@ import {CommonService} from '../../../services/common.service';
 @Component({
   selector: 'app-contractor-list',
   templateUrl: './contractor-list.component.html',
-  styleUrls: ['./contractor-list.component.css']
+  styleUrls: ['./contractor-list.component.scss']
 })
 export class ContractorListComponent implements OnInit, OnDestroy {
 

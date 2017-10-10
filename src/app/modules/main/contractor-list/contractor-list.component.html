@@ -13,9 +13,13 @@
 
     <!--Sorting-->
     <div class="cl-sort">
-      <p class="cl-sort-city">Бишкек</p>
+      <p class="cl-sort-city">г. Бишкек</p>
       <div class="dropdown">
-        <p class="dropbtn">Сортировать</p>
+        <div class="row" (click)="dropdown = !dropdown">
+          <p class="dropbtn">Сортировать</p>
+          <div [ngClass]="{'drop-icon':!dropdown, 'drop-icon-2':dropdown}"></div>
+        </div>
+
         <div class="dropdown-content">
           <p class="option" (click)="onSortByRating()">По рейтингу</p>
           <p class="option" (click)="onSortByPopular()">По популярности</p>

@@ -2,7 +2,6 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {Subscription} from 'rxjs/Subscription';
-import {CustomRequest} from '../../../services/request.service';
 import {CommonService} from '../../../services/common.service';
 
 @Component({

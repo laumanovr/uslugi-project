@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
-import {CustomRequest} from '../../../services/request.service';
 import {Subscription} from 'rxjs/Subscription';
 import {CommonService} from '../../../services/common.service';
 

@@ -8,14 +8,14 @@
 
     <!--Header-->
     <div class="header">
-      <p class="header-title">Главная</p>
+      <div class="logo"></div>
     </div>
 
     <!--Service list-->
     <div class="service-list">
 
       <div class="service" *ngFor="let service of services" (click)="onClick(service.id)">
-        <img class="service-img" src="{{service.image}}">
+        <div class="service-img" [style.background-image]="'url(' + service.image+ ')'"></div>
         <p class="service-title">{{service?.servicename}}</p>
       </div>
 

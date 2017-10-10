@@ -115,18 +115,21 @@ a {
   font-size: 16px;
   border: none;
   outline: none;
+  box-shadow: 0 4px 6px 0 rgba(0,0,0,0.2);
 }
 
 .header-title {
-  width: 90%;
+  width: 85%;
   text-align: center;
   font-family: 'Roboto', sans-serif;
   font-weight: 600;
+  padding-right: 20px;
 }
 
 .header-icon {
   color: white;
   font-size: 24px;
+  margin-left: 20px;
 }
 
 /*Main wrapper*/
@@ -234,7 +237,7 @@ a {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 50px;
+    height: 56px;
   }
 
   .content-wrapper {

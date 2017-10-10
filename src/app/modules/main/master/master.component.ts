@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
-import {MasterService} from '../../../services/master.service';
-import {CustomRequest} from '../../../services/request.service';
 import {CommonService} from '../../../services/common.service';
 
 @Component({
