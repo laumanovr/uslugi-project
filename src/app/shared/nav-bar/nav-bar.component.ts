@@ -29,6 +29,7 @@ export class NavBarComponent implements OnInit {
   profileIconBottom: HTMLElement;
   supportLink: HTMLElement;
   supportIcon: HTMLElement;
+  supportIconBottom: HTMLElement;
 
   constructor(private router: Router) {
   }
@@ -44,7 +45,8 @@ export class NavBarComponent implements OnInit {
     this.profileIcon = document.getElementById('profileIcon');
     this.profileIconBottom = document.getElementById('profileIconBottom');
     this.supportLink = document.getElementById('support');
-    this.supportIcon = document.getElementById('HTMLElement');
+    this.supportIcon = document.getElementById('supportIcon');
+    this.supportIconBottom = document.getElementById('supportIconBottom');
     this.checkLocation();
   }
 
@@ -98,6 +100,12 @@ export class NavBarComponent implements OnInit {
         this.profileLink.className += 'activeli';
         this.profileIcon.style.color = '#2196f3';
         this.profileIconBottom.style.color = '#2196f3';
+        break;
+      case '/operator':
+      case '/chat':
+        this.supportLink.className += 'activeli';
+        this.supportIcon.style.color = '#2196f3';
+        this.supportIconBottom.style.color = '#2196f3';
         break;
     }
   }
