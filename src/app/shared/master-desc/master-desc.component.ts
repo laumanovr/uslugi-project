@@ -12,6 +12,9 @@ export class MasterDescComponent implements OnInit {
   @Input() shortDesc = true;
   @Output() modalClose = new EventEmitter<boolean>();
   reviews = false;
+  imgPopup = false;
+  imgClicked;
+  private count = 0;
   private navInfo: HTMLElement;
   private navRev: HTMLElement;
 
@@ -51,6 +54,42 @@ export class MasterDescComponent implements OnInit {
     this.reviews = false;
     this.navInfo.style.borderBottom = '3px #2196F3 solid';
     this.navRev.style.borderBottom = 'none';
+  }
+
+  onOpenPhoto(selectedImg) {
+    this.imgPopup = true;
+    this.imgClicked = selectedImg;
+    this.checkImgIndex(selectedImg);
+  }
+
+  onNextPhoto() {
+    if (this.count < this.master.whork_images.length - 1) {
+      this.count++;
+      this.imgClicked = this.master.whork_images[this.count];
+    }
+  }
+
+  onPrevPhoto() {
+    if (this.count !== 0) {
+      this.count--;
+      this.imgClicked = this.master.whork_images[this.count];
+    }
+  }
+
+  onOverPhoto(event) {
+    const modalWindow = document.getElementById('photo');
+    if (event.target === modalWindow) {
+      this.imgPopup = false;
+    }
+  }
+
+
+  private checkImgIndex(img) {
+    this.master.whork_images.forEach((val, i) => {
+      if (val === img) {
+        this.count = i;
+      }
+    });
   }
 
 }

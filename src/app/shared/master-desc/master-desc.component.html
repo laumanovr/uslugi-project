@@ -22,11 +22,10 @@
     <!--Content-->
     <div class="row">
 
-      <div *ngIf="!reviews">
-
+      <div class="ms-wrap-2" *ngIf="!reviews">
         <!--Title-->
         <div class="ms-pop-name">
-          <img class="ms-pop-img" src="{{master?.photo}}">
+          <div class="ms-pop-img" [style.backgroundImage]="'url('+ master?.photo +')'"></div>
           <div class="m-10">
             <div class="row">
               <p>{{master?.name}}</p>
@@ -38,7 +37,8 @@
 
         <!--Photo gallery-->
         <div class="master-swipe-cont">
-          <app-swipe [photos]="master.whork_images"></app-swipe>
+          <div class="master-photo" *ngFor="let photo of master.whork_images"
+               [style.backgroundImage]="'url('+ photo +')'" (click)="onOpenPhoto(photo)"></div>
         </div>
 
         <!--Registration-->
@@ -115,5 +115,15 @@
       </div>
 
     </div>
+  </div>
+</div>
+
+<!--Photo modal window-->
+<div class="photo-modal" id="photo" *ngIf="imgPopup" (click)="onOverPhoto($event)">
+  <i class="material-icons close-icon" (click)="imgPopup = false">clear</i>
+  <div class="photo-content">
+    <a class="nav-prev" (click)="onPrevPhoto()">❮</a>
+    <img class="photo-elem" src="{{imgClicked}}">
+    <a class="nav-next" (click)="onNextPhoto()">❯</a>
   </div>
 </div>

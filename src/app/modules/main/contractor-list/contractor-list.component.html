@@ -7,7 +7,8 @@
 
   <div class="common-wrapper">
     <div class="header">
-      <i class="material-icons header-icon" (click)="onClickBack()">arrow_back</i>
+      <i class="material-icons header-icon" *ngIf="!popup" (click)="onClickBack()">arrow_back</i>
+      <i class="material-icons header-icon" *ngIf="popup" (click)="closePopup()">clear</i>
       <p class="header-title">Выбор исполнителя</p>
     </div>
 
@@ -20,7 +21,7 @@
           <div [ngClass]="{'drop-icon':!dropdown, 'drop-icon-2':dropdown}"></div>
         </div>
 
-        <div class="dropdown-content">
+        <div class="dropdown-content" *ngIf="dropdown">
           <p class="option" (click)="onSortByRating()">По рейтингу</p>
           <p class="option" (click)="onSortByPopular()">По популярности</p>
           <p class="option" (click)="onSortByPrice()">По цене</p>

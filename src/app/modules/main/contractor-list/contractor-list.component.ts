@@ -52,6 +52,7 @@ export class ContractorListComponent implements OnInit, OnDestroy {
   }
 
   onSortByRating() {
+    this.dropdown = false;
     if (!this.sortCrutch1) {
       this.masters.sort((a, b) => {
         if (a.rating > b.rating) {
@@ -66,6 +67,7 @@ export class ContractorListComponent implements OnInit, OnDestroy {
   }
 
   onSortByPopular() {
+    this.dropdown = false;
     if (!this.sortCrutch2) {
       this.masters.sort((a, b) => {
         if (a.reviews.length > b.reviews.length) {
@@ -79,11 +81,7 @@ export class ContractorListComponent implements OnInit, OnDestroy {
   }
 
   onSortByPrice() {
-    // for (const master of this.masters) {
-    //   const min = Number(master.price.substring(0, master.price.indexOf('-')));
-    //   const max = Number(master.price.substring(master.price.indexOf('-') + 1));
-    //   master.price = min + max / 2;
-    // }
+    this.dropdown = false;
     this.masters.sort((a, b) => {
       if (a.price > b.price) {
         return 1;

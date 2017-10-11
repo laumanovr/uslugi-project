@@ -1,25 +1,31 @@
 .cl-sort {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
   margin-top: 16px;
   padding: 0 20px;
 }
 
 .cl-sort-city {
-  width: 40%;
+  position: relative;
+  width: 160px;
   height: 40px;
   padding-left: 20px;
   background-color: white;
   line-height: 40px;
   border: 2px #646464 !important;
   border-radius: 4px;
+  margin-right: 5%;
 }
 
 /*Dropdown*/
 .dropdown {
   @extend .cl-sort-city;
-  position: absolute;
-  right: 20px;
+  margin-right: 0;
+  margin-left: 5%;
+  //margin-left: auto;
+  //margin-right: 20px;
 }
 
 .dropbtn {
@@ -41,13 +47,12 @@
 }
 
 .dropdown-content {
-  display: none;
+  display: block;
   position: absolute;
   left: 0;
   background-color: #f9f9f9;
-  min-width: 160px;
-  width: 100%;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  width: 160px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   z-index: 1;
 }
 
@@ -62,13 +67,13 @@
 
 .dropdown-content .option:hover {background-color: #f1f1f1}
 
-.dropdown:hover .dropdown-content {
-  display: block;
-}
+//.dropdown:hover .dropdown-content {
+//  display: block;
+//}
 
-.dropdown:active .dropdown-content {
-  display: block;
-}
+//.dropdown:active .dropdown-content {
+//  display: block;
+//}
 
 .dropdown:hover {
   background-color: #f9f9f9;
@@ -85,10 +90,9 @@
 
 .cl {
   background-color: white;
-  width: 40%;
+  width: 45%;
   border-radius: 5px;
-  margin: 20px;
-  align-self: flex-start;
+  margin: 16px;
 }
 
 .cl-name {
@@ -177,8 +181,8 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
+  width: 80%;
+  margin: 0 auto;
 }
 
 /*Popup*/
@@ -201,6 +205,7 @@
 .cl-reg-cont {
   width: 100%;
   margin: 40px 20px;
+  margin-bottom: 50px;
 }
 
 .cl-title {
@@ -293,13 +298,11 @@
   color: #9F9F9F;
 }
 
-
 /*Responsive styles*/
 @media screen and (max-width: 500px) {
   .cl-main {
     flex-direction: column;
     align-items: center;
-    margin-bottom: 50px;
   }
 
   .cl {
@@ -334,14 +337,36 @@
 }
 
 @media screen and (max-width: 800px) {
+  // Override common styles
   .header {
-    margin: 0;
-    padding: 0;
-    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1;
   }
 
   .common-wrapper {
     width: 100%;
     margin: 0 0 60px 0;
   }
+
+  .cl-main {
+    width: 100%;
+  }
+
+  .cl-sort {
+    justify-content: inherit;
+    margin-top: 72px;
+  }
+
+  .cl-sort-city {
+    width: 40%;
+    margin-left: 0;
+  }
+
+  .dropdown {
+    margin-right: 0;
+    position: absolute;
+    right: 20px;
+  }
+
 }
