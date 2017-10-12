@@ -52,13 +52,17 @@
   }
 
   .choose {
-    width: 85%;
+    width: 90%;
     margin-left: 0;
     margin-bottom: 10px;
   }
 }
 
 @media screen and (max-width: 800px) {
+  .nav-bar {
+    display: none;
+  }
+
   .header {
     margin: 0;
     padding: 0;

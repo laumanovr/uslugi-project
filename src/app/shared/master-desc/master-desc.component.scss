@@ -279,4 +279,24 @@
     font-size: 20px;
   }
 
+  .ms-wrap-2 {
+    margin: 40px 0 50px 0;
+  }
+
+  .ms-wrap-3 {
+    margin: 70px 0;
+  }
+
+}
+
+@media screen and (max-width: 800px){
+  .ms-wrap {
+    width: 90%;
+  }
+
+  .nav-cont {
+    position: fixed;
+    background-color: white;
+  }
+
 }

@@ -82,6 +82,13 @@
 }
 
 /*Responsive styles*/
+@media screen and (max-width: 800px) {
+  .nav-bar {
+    display: none;
+  }
+}
+
+
 @media screen and (max-width: 500px) {
   .service-list {
     flex-direction: column;
@@ -111,7 +118,7 @@
 
   .contacts-content-wrapper {
     width: 100%;
-    margin: 0 0 60px 0;
+    margin: 0;
   }
 
   .contacts-content {

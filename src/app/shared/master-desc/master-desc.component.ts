@@ -45,6 +45,8 @@ export class MasterDescComponent implements OnInit {
     this.navRev = document.getElementById('masterRev');
     this.navInfo.style.border = 'none';
     this.navRev.style.borderBottom = '3px #2196F3 solid';
+    this.navRev.style.color = 'black';
+    this.navInfo.style.color = '#9F9F9F';
   }
 
   /**
@@ -54,6 +56,8 @@ export class MasterDescComponent implements OnInit {
     this.reviews = false;
     this.navInfo.style.borderBottom = '3px #2196F3 solid';
     this.navRev.style.borderBottom = 'none';
+    this.navInfo.style.color = 'black';
+    this.navRev.style.color = '#9F9F9F';
   }
 
   onOpenPhoto(selectedImg) {

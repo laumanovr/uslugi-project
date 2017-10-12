@@ -9,7 +9,7 @@
 
 .cl-sort-city {
   position: relative;
-  width: 160px;
+  width: 140px;
   height: 40px;
   padding-left: 20px;
   background-color: white;
@@ -338,6 +338,10 @@
 
 @media screen and (max-width: 800px) {
   // Override common styles
+  .nav-bar {
+    display: none;
+  }
+
   .header {
     position: fixed;
     top: 0;
@@ -346,7 +350,6 @@
 
   .common-wrapper {
     width: 100%;
-    margin: 0 0 60px 0;
   }
 
   .cl-main {
@@ -359,7 +362,7 @@
   }
 
   .cl-sort-city {
-    width: 40%;
+    width: 38%;
     margin-left: 0;
   }
 
