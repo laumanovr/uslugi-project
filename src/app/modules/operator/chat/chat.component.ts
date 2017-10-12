@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import RTCPeerConnection from 'webrtc-adapter';
+import JsSIP from 'jssip';
 
 @Component({
     selector: 'app-chat',
