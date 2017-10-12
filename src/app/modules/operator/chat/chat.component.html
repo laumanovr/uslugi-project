@@ -18,18 +18,32 @@
     <div class="chat-wrap">
       <p class="chat-time">Сегодня</p>
 
-      <div class="chat-bubble">
-        Добрый день, Владимир!
-        Спасибо, что воспользовались
-        нашим сервисом. Меня зовут
-        Вика и я буду курировать ваш
-        заказ
+      <div class="chat-bubble" *ngFor="let i of messages">
+        <div>{{i.date|date:'shortTime'}}</div>
+        <div *ngIf="i.type === 'text'">
+          {{i.content}}
+        </div>
+        <div *ngIf="i.type === 'image'">
+          <img src="{{i.content}}"/>
+        </div>
+        <div *ngIf="i.type === 'desc'">
+          <p class="message-title">Описание:</p>
+          <p>{{i.content.desc}}</p>
+          <p class="message-title m-t-20">Адрес:</p>
+          <p>{{i.content.address}}</p>
+          <p class="message-title m-t-20">Дата:</p>
+          <p>{{i.content.date}}</p>
+          <p class="message-title m-t-20">Время:</p>
+          <p>{{i.content.time}}</p>
+          <p class="message-title m-t-20">Примерная стоимость:</p>
+          <p class="m-b-10">{{i.content.price}} </p>
+        </div>
       </div>
 
       <p class="chat-choose">Как вы хотите переговорить</p>
 
       <button class="chat-btn-1">Обсудить по телефону</button>
-      <button class="chat-btn-1">Обсудить в чате</button>
+      <button (click)="newChat()" class="chat-btn-1">Обсудить в чате</button>
 
       <div class="row message-wrap-2">
         <p class="message-time">13:08</p>
