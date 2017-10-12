@@ -279,6 +279,11 @@
     font-size: 20px;
   }
 
+  .nav-cont {
+    position: fixed;
+    background-color: white;
+  }
+
   .ms-wrap-2 {
     margin: 40px 0 50px 0;
   }
@@ -293,10 +298,4 @@
   .ms-wrap {
     width: 90%;
   }
-
-  .nav-cont {
-    position: fixed;
-    background-color: white;
-  }
-
 }
