@@ -22,6 +22,10 @@ export class ChatComponent implements OnInit {
         }, date: new Date()}
     ];
 
+    name = 'Виктория';
+
+    status = 'Онлайн';
+
     constructor() {
     }
 
