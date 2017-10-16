@@ -12,6 +12,7 @@ export class MasterComponent implements OnInit {
 
   modal = false;
   master;
+  popup = false;
   secondCall = false;
 
   constructor(private location: Location,
@@ -21,6 +22,11 @@ export class MasterComponent implements OnInit {
 
   ngOnInit() {
     this.master = this.common.selectedMaster;
+  }
+
+  closePopup(event) {
+    console.log(event);
+    this.popup = false;
   }
 
   /**

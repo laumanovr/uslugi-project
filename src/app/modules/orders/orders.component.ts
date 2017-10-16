@@ -11,16 +11,6 @@ import {Subscription} from 'rxjs/Subscription';
 })
 export class OrdersComponent implements OnInit, OnDestroy {
 
-  // Todo: for development
-  photos = [
-    'http://placehold.it/600/810b14',
-    'http://placehold.it/600/92c952',
-    'http://placehold.it/600/771796',
-    'http://placehold.it/600/24f355',
-    'http://placehold.it/600/d32776',
-    'http://placehold.it/600/474645'
-  ];
-
   /**
    * Var to show/hide modal the authorized window
    */
@@ -111,7 +101,6 @@ export class OrdersComponent implements OnInit, OnDestroy {
   }
 
   onClickReview(order) {
-    console.log(order);
     this.orderMarkId = order.id;
     this.modalReview = true;
   }
@@ -127,13 +116,16 @@ export class OrdersComponent implements OnInit, OnDestroy {
     }
   }
 
+  onClose() {
+    this.modalDesc = false;
+  }
+
   onSendOrderMark() {
     const order = '&orderId=' + this.orderMarkId;
     const score = '&score=' + this.currentMark.innerHTML;
     const comment = '$comment=' + this.revTitle + '\/n' + this.revDescription;
     const url = 'markStars' + order + score + comment;
     this.subscriptions.push(this.common.get(url).subscribe(data => {
-      // console.log(data.json());
     }));
   }
 
@@ -188,7 +180,6 @@ export class OrdersComponent implements OnInit, OnDestroy {
    * Handler to navigate to orderComp description page
    */
   onClickDesc(order) {
-    console.log(order);
     this.selectedOrder = order;
     this.modalDesc = true;
   }
@@ -208,15 +199,17 @@ export class OrdersComponent implements OnInit, OnDestroy {
     for (const order of orders) {
       if (order.status === 'completed') {
         this.ordersCompleted.push(order);
-        // console.log(this.ordersCompleted);
       } else {
         this.orders.push(order);
-        // console.log(this.orders);
       }
     }
     this.setMonth(orders);
   }
 
+  /**
+   * Created self solution, but you can implement toLocaleString()
+   * @param orders
+   */
   private setMonth(orders) {
     for (const order of orders) {
       const monthString = order.orderDate.slice(3, 5) - 1;

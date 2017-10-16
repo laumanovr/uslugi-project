@@ -4,7 +4,7 @@ import {OrdersRouting} from './orders.routes';
 import {OrdersComponent} from './orders.component';
 import {NavBarModule} from '../../shared/nav-bar/nav-bar.module';
 import {FormsModule} from '@angular/forms';
-import {SwipeModule} from '../../shared/swipe/swipe.module';
+import {OrderDescModule} from "../../shared/order-desc/order-desc.module";
 
 @NgModule({
   imports: [
@@ -12,7 +12,7 @@ import {SwipeModule} from '../../shared/swipe/swipe.module';
     OrdersRouting,
     NavBarModule,
     FormsModule,
-    SwipeModule
+    OrderDescModule
   ],
   declarations: [
     OrdersComponent,

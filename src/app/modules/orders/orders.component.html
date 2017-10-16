@@ -173,6 +173,15 @@
 <!--Description popup-->
 <div class="modal" id="modalDesc" *ngIf="modalDesc" (click)="onClickOverModalDesc($event)">
   <div class="desc-popup">
+
+    <!--Mobile header-->
+    <div class="row desc-header">
+      <i class="material-icons close-icon" (click)="onClose()">close</i>
+      <p class="desc-head-title">Детали заказа</p>
+      <i class="material-icons mess-icon">forum</i>
+      <i class="material-icons phone-icon-2">phone</i>
+    </div>
+
     <p class="rev-title">Детали заказа</p>
     <div class="rev-desc" *ngIf="selectedOrder.status === 'not_accepted'">
       <p class="rev-desc-text">Если вы ознакомились и согласны с деталями заказа нажмите кнопку "Подтвердить"</p>
@@ -191,8 +200,9 @@
     </div>
 
     <!--Order info-->
-    <p class="rev-title-2">Информация о заказе</p>
-    <p class="rev-text">Разнообразный и богатый опыт консультации с широким активом обеспечивает широкому кругу (специалистов) участие в
+    <p class="rev-title-3">Информация о заказе</p>
+    <p class="rev-text">Разнообразный и богатый опыт консультации с широким активом обеспечивает широкому кругу
+      (специалистов) участие в
       формировании системы обучения кадров.</p>
 
     <div class="list-desc">
@@ -215,12 +225,12 @@
     </div>
 
     <!--Attached files-->
-    <p class="rev-title-2">Прикрепленные файлы</p>
-    <div class="row rev-images">
-      <!--<img class="rev-attached-img" *ngFor="let photo of selectedOrder.orderImagesArray" src="{{photo}}">-->
-      <app-swipe [photos]="photos"></app-swipe>
+    <p class="rev-title-3">Прикрепленные файлы</p>
+    <div class="master-swipe-cont">
+      <div class="master-photo" *ngFor="let photo of selectedOrder.agentImages"
+           [style.backgroundImage]="'url('+ photo +')'" (click)="onOpenPhoto(photo)">
+      </div>
     </div>
-
 
   </div>
 </div>

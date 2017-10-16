@@ -6,13 +6,14 @@
 
   <div class="master-content-wrapper">
     <div class="header">
-      <i class="material-icons header-icon" (click)="onClickBack()">arrow_back</i>
+      <i class="material-icons header-icon" *ngIf="!popup" (click)="onClickBack()">arrow_back</i>
+      <i class="material-icons header-icon" *ngIf="popup" (click)="popup = false">clear</i>
       <span class="header-title">Позвонить исполнителю</span>
     </div>
 
     <h3 class="master-title">Исполнитель</h3>
 
-    <app-master-desc [master]="master"></app-master-desc>
+    <app-master-desc class="master-desc" [master]="master" [modal]="popup" (modalClose)="closePopup($event)" (click)="popup = true"></app-master-desc>
 
     <button class="master-btn" (click)="onCall()">Позвонить</button>
 

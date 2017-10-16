@@ -79,7 +79,10 @@
   margin-top: 20px;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 1em;
+  white-space: nowrap;
+  overflow: hidden;
+  padding-right: 40px;
 }
 
 .phone-call {
@@ -97,6 +100,36 @@
 }
 
 /*Responsive styles*/
+@media screen and (max-width: 800px) {
+  body {
+    background-color: white;
+  }
+
+  .main {
+    height: 96vh;
+  }
+
+  .header {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  .master-content-wrapper {
+    width: 100%;
+    margin: 0;
+  }
+
+
+  .master-desc {
+    width: 100%;
+  }
+
+  .popup {
+    left: 30%;
+  }
+}
+
 @media screen and (max-width: 500px) {
   .master-btn, .master-con {
     width: 90%;
@@ -127,25 +160,13 @@
   .btn-operator {
     display: flex;
   }
-}
 
-@media screen and (max-width: 800px) {
-  body {
+  .popup {
+    position: absolute;
+    left: 7%;
+    width: 85%;
+    height: 140px;
     background-color: white;
-  }
-
-  .main {
-    height: 96vh;
-  }
-
-  .header {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-  }
-
-  .master-content-wrapper {
-    width: 100%;
-    margin: 0;
+    border-radius: 4px;
   }
 }
