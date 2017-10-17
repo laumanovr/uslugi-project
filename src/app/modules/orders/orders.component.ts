@@ -61,13 +61,6 @@ export class OrdersComponent implements OnInit, OnDestroy {
     }
   }
 
-  onAcceptOrder(id) {
-    const url = 'updateorder' + '&orderid=' + id + '&status=accepted';
-    this.common.get(url).subscribe(data => {
-
-    });
-  }
-
   // Todo: implement later
   onAbortOrder(id) {
     const url = 'updateorder' + '&orderid=' + id + '&status=aborted';
@@ -114,10 +107,6 @@ export class OrdersComponent implements OnInit, OnDestroy {
       this.currentMark = mark;
       this.currentMark.classList.add('rev-active');
     }
-  }
-
-  onClose() {
-    this.modalDesc = false;
   }
 
   onSendOrderMark() {

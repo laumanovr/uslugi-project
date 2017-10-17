@@ -1,3 +1,74 @@
-<p>
-  order-desc works!
-</p>
+<!--Description popup-->
+<div class="modal" id="modalDesc">
+  <div class="desc-popup">
+
+    <!--Mobile header-->
+    <div class="row desc-header">
+      <i class="material-icons close-icon" (click)="onClose()">close</i>
+      <p class="desc-head-title">Детали заказа</p>
+      <i class="material-icons mess-icon">forum</i>
+      <i class="material-icons phone-icon-2">phone</i>
+    </div>
+
+    <p class="rev-title">Детали заказа</p>
+    <div class="rev-desc" *ngIf="selectedOrder.status === 'not_accepted'">
+      <p class="rev-desc-text">Если вы ознакомились и согласны с деталями заказа нажмите кнопку "Подтвердить"</p>
+      <button class="rev-desc-btn btn-orange" (click)="onAcceptOrder(selectedOrder.id)">Подтвердить</button>
+    </div>
+
+    <!--Master-->
+    <p class="rev-title-2">Исполнитель</p>
+    <div class="row master-con">
+      <img class="master-img m-20" src="{{selectedOrder?.agentImages[0]}}">
+      <div class="m-10">
+        <p>{{selectedOrder.agent?.accountname}} {{selectedOrder.agent?.accountsurname}}</p>
+        <p class="master-con-name">{{selectedOrder.agent?.profession}}</p>
+      </div>
+      <i class="material-icons icon-verified">verified_user</i>
+    </div>
+
+    <!--Order info-->
+    <p class="rev-title-3">Информация о заказе</p>
+    <p class="rev-text">Разнообразный и богатый опыт консультации с широким активом обеспечивает широкому кругу
+      (специалистов) участие в
+      формировании системы обучения кадров.</p>
+
+    <div class="list-desc">
+      <div class="row">
+        <p class="order-key">Адрес:</p>
+        <p class="order-prop">{{selectedOrder.address}}</p>
+      </div>
+      <div class="row">
+        <p class="order-key">Дата:</p>
+        <p class="order-prop">{{selectedOrder.orderDate}}</p>
+      </div>
+      <div class="row">
+        <p class="order-key">Время:</p>
+        <p class="order-prop">{{selectedOrder.time}}</p>
+      </div>
+      <div class="row">
+        <p class="order-key">Оплата:</p>
+        <p class="order-prop">{{selectedOrder.total}} сом <span class="order-key">(предварительно)</span></p>
+      </div>
+    </div>
+
+    <!--Attached files-->
+    <p class="rev-title-3">Прикрепленные файлы</p>
+    <div class="master-swipe-cont">
+      <div class="master-photo" *ngFor="let photo of selectedOrder.orderImagesArray"
+           [style.backgroundImage]="'url('+ photo +')'" (click)="onOpenPhoto(photo)">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!--Photo modal window-->
+<div class="photo-modal" id="photo" *ngIf="imgPopup" (click)="onOverPhoto($event)">
+  <i class="material-icons close-icon" (click)="imgPopup = false">clear</i>
+  <div class="photo-content">
+    <a class="nav-prev" (click)="onPrevPhoto()">❮</a>
+    <img class="photo-elem" src="{{imgClicked}}">
+    <a class="nav-next" (click)="onNextPhoto()">❯</a>
+  </div>
+</div>
