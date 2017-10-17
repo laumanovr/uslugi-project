@@ -15,8 +15,6 @@ export class OrderDescComponent implements OnInit {
   imgPopup = false;
 
   private count = 0;
-  private navInfo: HTMLElement;
-  private navRev: HTMLElement;
 
   constructor(private common: CommonService) {
   }
