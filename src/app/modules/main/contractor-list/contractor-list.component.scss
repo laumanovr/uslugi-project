@@ -52,7 +52,7 @@
   left: 0;
   background-color: #f9f9f9;
   width: 160px;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
@@ -65,15 +65,9 @@
   white-space: nowrap;
 }
 
-.dropdown-content .option:hover {background-color: #f1f1f1}
-
-//.dropdown:hover .dropdown-content {
-//  display: block;
-//}
-
-//.dropdown:active .dropdown-content {
-//  display: block;
-//}
+.dropdown-content .option:hover {
+  background-color: #f1f1f1
+}
 
 .dropdown:hover {
   background-color: #f9f9f9;
@@ -83,7 +77,6 @@
   text-align: center;
 }
 
-
 .cl-contractor {
   display: block;
 }
@@ -92,7 +85,7 @@
   background-color: white;
   width: 45%;
   border-radius: 5px;
-  margin: 16px;
+  margin: 16px 0 0 16px;
 }
 
 .cl-name {
@@ -201,7 +194,6 @@
   width: 100%;
 }
 
-
 .cl-reg-cont {
   width: 100%;
   margin: 40px 20px;
@@ -246,7 +238,6 @@
   width: 90%;
   margin: 10px auto;
 }
-
 
 .cl-review-title {
   font-weight: bold;
@@ -299,6 +290,51 @@
 }
 
 /*Responsive styles*/
+@media screen and (max-width: 800px) {
+  // Override common styles
+  .nav-bar {
+    display: none;
+  }
+
+  .header {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+  }
+
+  .common-wrapper {
+    width: 100%;
+  }
+
+  .cl {
+    width: 47%;
+    margin: 16px 8px 0 8px;
+  }
+
+  .cl-main {
+    width: 100%;
+    justify-content: space-between;
+    padding-bottom: 16px;
+  }
+
+  .cl-sort {
+    justify-content: inherit;
+    margin-top: 72px;
+  }
+
+  .cl-sort-city {
+    width: 38%;
+    margin-left: 0;
+  }
+
+  .dropdown {
+    margin-right: 0;
+    position: absolute;
+    right: 20px;
+  }
+
+}
+
 @media screen and (max-width: 500px) {
   .cl-main {
     flex-direction: column;
@@ -334,42 +370,4 @@
     background-color: white;
     border-radius: 0;
   }
-}
-
-@media screen and (max-width: 800px) {
-  // Override common styles
-  .nav-bar {
-    display: none;
-  }
-
-  .header {
-    position: fixed;
-    top: 0;
-    z-index: 1;
-  }
-
-  .common-wrapper {
-    width: 100%;
-  }
-
-  .cl-main {
-    width: 100%;
-  }
-
-  .cl-sort {
-    justify-content: inherit;
-    margin-top: 72px;
-  }
-
-  .cl-sort-city {
-    width: 38%;
-    margin-left: 0;
-  }
-
-  .dropdown {
-    margin-right: 0;
-    position: absolute;
-    right: 20px;
-  }
-
 }
