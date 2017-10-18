@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    console.log(this.common.storage);
     this.authCheck();
   }
 
@@ -60,10 +61,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     const pass = '&password=' + this.passVal;
     const url = 'check_password_client' + phone + pass;
     this.subscription = this.common.get(url).subscribe(resp => {
-      console.log(resp.json());
       const respStatus = resp.json()[0];
       if (respStatus === 'ok') {
-        this.common.userCreated = true;
+        this.common.storage.setItem('auth', 'true');
         this.checkRoutes();
       }
     });
@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit, OnDestroy {
    * Quick authorization check
    */
   private authCheck() {
-    if (this.common.userCreated) {
+    if (this.common.userAuth) {
       this.router.navigate(['profile']);
     }
   }

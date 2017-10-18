@@ -47,7 +47,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
     this.common.orderPhone = this.phoneValue;
     this.common.orderName = this.nameValue;
     this.common.phone = this.phoneValue;
-    if (this.common.userCreated) {
+    if (this.common.userAuth) {
       this.router.navigate(['choose']);
     } else {
       this.createUser();
@@ -126,7 +126,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
   }
 
   private checkPhonePlaceholder() {
-    if (this.common.userCreated) {
+    if (this.common.userAuth) {
       this.phonePlaceholder = 'Контактный телефон';
       this.phoneValue = this.common.phone;
       this.nameValue = this.common.name;

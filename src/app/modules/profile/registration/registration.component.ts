@@ -125,7 +125,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
       this.common.get(url).subscribe(data => {
         const resp = data.json()[0];
         if (resp === 'ok') {
-          this.common.userCreated = true;
+          this.common.userAuth = true;
           this.router.navigate(['profile']);
         }
       }));

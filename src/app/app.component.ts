@@ -4,8 +4,7 @@ import {CommonService} from './services/common.service';
 
 @Component({
   selector: 'app-root',
-  template: `
-    <router-outlet></router-outlet>`
+  template: `<router-outlet></router-outlet>`
 })
 export class AppComponent implements OnInit, OnDestroy {
 
@@ -20,7 +19,7 @@ export class AppComponent implements OnInit, OnDestroy {
         const user = resp.json()[2];
         const userAuth = resp.json()[2].name;
         if (userAuth !== '' && userAuth !== 'undefined') {
-          this.common.userCreated = true;
+          this.common.userAuth = true;
           this.common.phone = '0' + user.phone;
           this.common.name = user.name;
         }

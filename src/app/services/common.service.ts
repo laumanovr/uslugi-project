@@ -6,7 +6,7 @@ export class CommonService {
 
   name: string;
   phone: string;
-  userCreated = false;
+  userAuth= false;
   fromOrderCreate = false;
   fromMasterPage = false;
   password = false;
@@ -14,6 +14,11 @@ export class CommonService {
   selectedMaster;
   orderPhone: string;
   orderName: string;
+
+  /**
+   * Local storage
+   */
+  storage = window.localStorage;
 
   /**
    * Main url to get and post data

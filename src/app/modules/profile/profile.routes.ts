@@ -4,6 +4,7 @@ import {PasswordCreateComponent} from './password-create/password-create.compone
 import {ProfileComponent} from './profile/profile.component';
 import {LoginComponent} from './login/login.component';
 import {RegistrationComponent} from './registration/registration.component';
+import {AuthGuard} from '../../guards/auth.guard';
 
 const ordersRoutes: Routes = [
   {
@@ -12,6 +13,7 @@ const ordersRoutes: Routes = [
   },
   {
     path: 'profile',
+    canActivate: [AuthGuard],
     component: ProfileComponent
   },
   {

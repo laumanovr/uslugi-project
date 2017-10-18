@@ -10,6 +10,7 @@ import {CommonService} from './services/common.service';
 import {FormsModule} from '@angular/forms';
 import {MainModule} from './modules/main/main.module';
 import {OperatorModule} from './modules/operator/operator.module';
+import {AuthGuard} from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import {OperatorModule} from './modules/operator/operator.module';
   ],
   providers: [
     CommonService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

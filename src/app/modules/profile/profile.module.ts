@@ -22,6 +22,6 @@ import {RegistrationComponent} from './registration/registration.component';
     PasswordCreateComponent,
     LoginComponent,
     RegistrationComponent,
-  ]
+  ],
 })
 export class ProfileModule { }
