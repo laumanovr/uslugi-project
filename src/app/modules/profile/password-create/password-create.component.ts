@@ -47,7 +47,7 @@ export class PasswordCreateComponent implements OnInit, OnDestroy {
 
   private checkRoutes() {
     if (this.common.fromOrderCreate) {
-      this.common.userAuth = true;
+      this.common.storage.setItem('auth', 'true');
       this.router.navigate(['choose']);
     } else {
       this.router.navigate(['profile']);

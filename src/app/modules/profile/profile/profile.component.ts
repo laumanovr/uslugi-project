@@ -34,7 +34,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   onClickQuite() {
     const url = 'deleteSession';
     this.subscriptions.push(this.common.get(url).subscribe(resp => {
-      this.common.userAuth = false;
+      this.common.storage.setItem('auth', 'false');
       this.router.navigate(['login']);
     }));
   }

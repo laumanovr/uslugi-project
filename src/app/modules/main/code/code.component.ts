@@ -39,7 +39,7 @@ export class CodeComponent implements OnInit, OnDestroy {
     const url = 'checkSms&code=' + this.codeValue + '&mobile=' + this.common.phone;
     this.subscriptions.push(this.common.get(url).subscribe(data => {
       if (data.statusText === 'OK') {
-        this.common.userAuth = true;
+        this.common.storage.setItem('auth', 'true');
         this.router.navigate(['choose']);
       }
     }));

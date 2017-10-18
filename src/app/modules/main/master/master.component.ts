@@ -25,7 +25,6 @@ export class MasterComponent implements OnInit {
   }
 
   closePopup(event) {
-    console.log(event);
     this.popup = false;
   }
 
@@ -70,10 +69,9 @@ export class MasterComponent implements OnInit {
 
   private createClient() {
     const url = 'createorder';
-    const body = '&serviceid=' + this.common.storage.getItem('serviceId') + '&agent=' + this.master.id + '&mobile=' +
-      this.common.orderPhone;
+    const body = '&serviceid=' + this.common.storage.getItem('serviceId') + '&agent=' + this.master.id
+      + '&mobile=' + JSON.parse(this.common.storage.getItem('user')).phone;
     this.common.post(url, body).subscribe(data => {
-      console.log(data.json());
       this.common.fromMasterPage = true;
       this.modal = true;
     });

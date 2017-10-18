@@ -72,7 +72,6 @@ export class LoginComponent implements OnInit, OnDestroy {
    * Quick authorization check
    */
   private authCheck() {
-    console.log(this.common.storage.getItem('auth'));
     if (this.common.storage.getItem('auth')) {
       this.router.navigate(['profile']);
     }

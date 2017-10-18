@@ -5,11 +5,8 @@ import {Http, Headers, RequestOptions} from '@angular/http';
 export class CommonService {
 
   // Must be removed:
-  userAuth = false;
   name: string;
   phone: string;
-  orderPhone: string;
-  orderName: string;
 
   // Used somewhere
   fromOrderCreate = false;

@@ -22,8 +22,6 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   nullDigit: number;
   smsRepeat = false;
 
-  private button: HTMLElement;
-  private checkBox = true;
   private subscriptions: Subscription[] = [];
 
   constructor(private router: Router,
@@ -62,18 +60,6 @@ export class RegistrationComponent implements OnInit, OnDestroy {
 
   onCheckBox() {
     const checkBox = (<HTMLInputElement>document.getElementById('checkBox')).checked;
-  }
-
-  /**
-   * Handler to change the button colors
-   */
-  checkFormValid() {
-    // const buttonDisabled = (<HTMLInputElement> document.getElementById('btn')).disabled;
-    // if (buttonDisabled === false) {
-    //   this.button.style.backgroundColor = '#FFC107';
-    // } else {
-    //   this.button.style.backgroundColor = '#E5E5E5';
-    // }
   }
 
   onClickRegBTn() {
@@ -125,7 +111,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
       this.common.get(url).subscribe(data => {
         const resp = data.json()[0];
         if (resp === 'ok') {
-          this.common.userAuth = true;
+          this.common.storage.setItem('auth', 'true');
           this.router.navigate(['profile']);
         }
       }));
