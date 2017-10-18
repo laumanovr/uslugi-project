@@ -13,8 +13,6 @@ export class CommonService {
   fromMasterPage = false;
   password = false;
 
-
-
   /**
    * Local storage
    */
