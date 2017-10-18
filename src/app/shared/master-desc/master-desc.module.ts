@@ -1,12 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {MasterDescComponent} from './master-desc.component';
-import {SwipeModule} from '../swipe/swipe.module';
+import {NgModule} from "@angular/core";
+import {CommonModule} from "@angular/common";
+import {MasterDescComponent} from "./master-desc.component";
 
 @NgModule({
   imports: [
     CommonModule,
-    SwipeModule
   ],
   declarations: [
     MasterDescComponent
@@ -15,4 +13,5 @@ import {SwipeModule} from '../swipe/swipe.module';
     MasterDescComponent
   ]
 })
-export class MasterDescModule { }
+export class MasterDescModule {
+}
