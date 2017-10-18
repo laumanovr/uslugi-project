@@ -26,7 +26,7 @@ export class ContractorListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscription = this.common.get('getAgents&serviceid=' + this.common.selectedService)
+    this.subscription = this.common.get('getAgents&serviceid=' + this.common.storage.getItem('serviceId'))
       .subscribe(data => {
         this.masters = data.json();
       });
@@ -96,7 +96,7 @@ export class ContractorListComponent implements OnInit, OnDestroy {
    * Handler for navigate to profile page
    */
   onClickChoose(master) {
-    this.common.selectedMaster = master;
+    this.common.storage.setItem('master', JSON.stringify(master));
     if (this.common.fromMasterPage) {
       this.router.navigate(['master-call']);
     } else {

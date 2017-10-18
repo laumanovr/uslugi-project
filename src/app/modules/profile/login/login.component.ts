@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log(this.common.storage);
     this.authCheck();
   }
 
@@ -73,7 +72,8 @@ export class LoginComponent implements OnInit, OnDestroy {
    * Quick authorization check
    */
   private authCheck() {
-    if (this.common.userAuth) {
+    console.log(this.common.storage.getItem('auth'));
+    if (this.common.storage.getItem('auth')) {
       this.router.navigate(['profile']);
     }
   }

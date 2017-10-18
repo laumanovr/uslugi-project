@@ -21,7 +21,7 @@ export class MasterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.master = this.common.selectedMaster;
+    this.master = JSON.parse(this.common.storage.getItem('master'));
   }
 
   closePopup(event) {
@@ -70,7 +70,7 @@ export class MasterComponent implements OnInit {
 
   private createClient() {
     const url = 'createorder';
-    const body = '&serviceid=' + this.common.selectedService + '&agent=' + this.common.selectedMaster.id + '&mobile=' +
+    const body = '&serviceid=' + this.common.storage.getItem('serviceId') + '&agent=' + this.master.id + '&mobile=' +
       this.common.orderPhone;
     this.common.post(url, body).subscribe(data => {
       console.log(data.json());

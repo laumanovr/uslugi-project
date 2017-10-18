@@ -44,10 +44,12 @@ export class ContactsComponent implements OnInit, OnDestroy {
   }
 
   onNext() {
-    this.common.orderPhone = this.phoneValue;
-    this.common.orderName = this.nameValue;
-    this.common.phone = this.phoneValue;
-    if (this.common.userAuth) {
+    const user = {
+      name: this.nameValue,
+      phone: this.phoneValue
+    };
+    this.common.storage.setItem('user', JSON.stringify(user));
+    if (this.common.storage.getItem('auth')) {
       this.router.navigate(['choose']);
     } else {
       this.createUser();
@@ -91,7 +93,6 @@ export class ContactsComponent implements OnInit, OnDestroy {
     const url = urlPart + phone + name;
     this.subscriptions.push(
       this.common.get(url).subscribe(resp => {
-        console.log(resp.json());
         const userCreated = resp.json()[1];
         switch (userCreated) {
           case 'no password':
@@ -111,7 +112,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
   private sendSms(route) {
     const urlSms = 'sendSms&mobile=' + this.phoneValue;
     this.subscriptions.push(this.common.get(urlSms).subscribe(resp => {
-      console.log(resp.json());
+      alert('Ваш смс код: ' + resp.json()[2]);
       if (resp.statusText === 'OK') {
         switch (route) {
           case 'default':
@@ -126,10 +127,10 @@ export class ContactsComponent implements OnInit, OnDestroy {
   }
 
   private checkPhonePlaceholder() {
-    if (this.common.userAuth) {
+    if (this.common.storage.getItem('auth')) {
       this.phonePlaceholder = 'Контактный телефон';
-      this.phoneValue = this.common.phone;
-      this.nameValue = this.common.name;
+      this.phoneValue = '0' +  JSON.parse(this.common.storage.getItem('user')).phone;
+      this.nameValue = JSON.parse(this.common.storage.getItem('user')).name;
     }
   }
 }

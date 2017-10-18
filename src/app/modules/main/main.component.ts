@@ -31,7 +31,6 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   onClick(id) {
-    this.common.selectedService = id;
     this.common.storage.setItem('serviceId', id);
     this.router.navigate(['contractors']);
   }
