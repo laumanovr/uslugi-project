@@ -175,6 +175,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
 
   onModalClose() {
     this.modalDesc = false;
+
   }
 
   private getOrdersFromApi(url) {
