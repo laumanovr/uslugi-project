@@ -148,5 +148,4 @@ export class ContactsComponent implements OnInit, OnDestroy {
     }
   }
 
-  private
 }
