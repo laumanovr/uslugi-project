@@ -33,13 +33,14 @@ export class ContactsComponent implements OnInit, OnDestroy {
     this.checkPhonePlaceholder();
   }
 
-  //check phone input to be completed
+  /**
+   * check phone input to be completed
+   */
   checkPhoneComplete() {
     if (/[0-9]/.test(this.phoneValue[13])) {
       this.phoneComplete = false;
-    } else {
-      this.phoneComplete = true;
     }
+    this.phoneComplete = true;
   }
 
   ngOnDestroy() {
@@ -146,4 +147,6 @@ export class ContactsComponent implements OnInit, OnDestroy {
       this.nameValue = JSON.parse(this.common.storage.getItem('user')).name;
     }
   }
+
+  private
 }

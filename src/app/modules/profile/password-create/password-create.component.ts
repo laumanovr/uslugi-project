@@ -38,8 +38,10 @@ export class PasswordCreateComponent implements OnInit, OnDestroy {
     const url = urlPart + this.codeValue + '&mobile=' + JSON.parse(this.common.storage.getItem('user')).phone
       + '&password=' + this.passValue;
     this.subscription = this.common.get(url).subscribe(data => {
+      console.log(data.json());
       const response = data.json()[0];
       if (response === 'ok') {
+        this.common.storage.setItem('auth', 'true');
         this.checkRoutes();
       }
     });
@@ -49,9 +51,8 @@ export class PasswordCreateComponent implements OnInit, OnDestroy {
     if (this.common.fromOrderCreate) {
       this.common.storage.setItem('auth', 'true');
       this.router.navigate(['choose']);
-    } else {
-      this.router.navigate(['profile']);
     }
+    this.router.navigate(['profile']);
   }
 
 }
