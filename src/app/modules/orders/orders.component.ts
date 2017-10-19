@@ -162,6 +162,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
     const modalWindow = document.getElementById('modalDesc');
     if (event.target === modalWindow) {
       this.modalDesc = false;
+      document.body.style.overflow = 'auto';
     }
   }
 
@@ -171,6 +172,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
   onClickDesc(order) {
     this.selectedOrder = order;
     this.modalDesc = true;
+    document.body.style.overflow = 'hidden';
   }
 
   onModalClose() {

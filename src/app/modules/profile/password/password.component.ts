@@ -11,7 +11,10 @@ import {CommonService} from '../../../services/common.service';
 })
 export class PasswordComponent implements OnInit, OnDestroy {
 
+  public mask = [[0], '(', /[0-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
+
   phoneVal: string;
+  phoneComplete: boolean;
   private subscription: Subscription;
 
   constructor(private location: Location,
@@ -21,6 +24,15 @@ export class PasswordComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.checkPhone();
+  }
+
+  //check phone input to be completed
+  checkPhoneComplete() {
+    if (/[0-9]/.test(this.phoneVal[13])) {
+      this.phoneComplete = false;
+    } else {
+      this.phoneComplete = true;
+    }
   }
 
   ngOnDestroy() {
@@ -34,6 +46,7 @@ export class PasswordComponent implements OnInit, OnDestroy {
   }
 
   onSendSms() {
+    this.phoneVal = this.phoneVal.replace(/[- )(]/g, '');
     const url = 'sendSms&mobile=' + this.phoneVal;
     this.subscription = this.common.get(url).subscribe(resp => {
       if (resp.statusText === 'OK') {
@@ -44,6 +57,7 @@ export class PasswordComponent implements OnInit, OnDestroy {
         this.router.navigate(['password-create']);
       }
     });
+    console.log(this.phoneVal);
   }
 
   private checkPhone() {

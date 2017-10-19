@@ -1,5 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import { TextMaskModule } from 'angular2-text-mask';
 
 import {AppComponent} from './app.component';
 import {AppRouting} from './app.routes';
@@ -24,7 +25,8 @@ import {AuthGuard} from './guards/auth.guard';
     MainModule,
     OrdersModule,
     ProfileModule,
-    OperatorModule
+    OperatorModule,
+    TextMaskModule
   ],
   providers: [
     CommonService,

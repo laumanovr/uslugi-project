@@ -11,12 +11,12 @@
     </div>
 
     <div class="prof-content">
-      <input class="prof-form" type="text" autocomplete="off" placeholder="Номер телефона"
-             minlength="10" maxlength="10" [(ngModel)]="phoneVal" #phone="ngModel" required/>
+      <input [textMask]="{mask: mask}" (keyup)="checkPhoneComplete()" class="prof-form" type="text" autocomplete="off" placeholder="Номер телефона"
+              [(ngModel)]="phoneVal" #phone="ngModel" required/>
       <input class="prof-form" name="pass" type="text" autocomplete="off" placeholder="Пароль"
              minlength="5" maxlength="40" [(ngModel)]="passVal" #pass="ngModel" required/>
       <p class="prof-text-1">Забыли или не создали пароль?<span class="prof-text-2" (click)="onPasswordCreate()"> Создать пароль</span></p>
-      <button [disabled]="phone.invalid || pass.invalid" class="btn-orange m-t-30" (click)="onLogin()">
+      <button [disabled]="phone.invalid || pass.invalid || phoneComplete" class="btn-orange m-t-30" (click)="onLogin()">
         Войти
       </button>
 

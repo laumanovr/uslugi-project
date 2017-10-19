@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import { TextMaskModule } from 'angular2-text-mask';
 import {ProfileRouting} from './profile.routes';
 import {NavBarModule} from '../../shared/nav-bar/nav-bar.module';
 import {PasswordComponent} from './password/password.component';
@@ -14,7 +15,8 @@ import {RegistrationComponent} from './registration/registration.component';
     CommonModule,
     ProfileRouting,
     NavBarModule,
-    FormsModule
+    FormsModule,
+    TextMaskModule
   ],
   declarations: [
     ProfileComponent,

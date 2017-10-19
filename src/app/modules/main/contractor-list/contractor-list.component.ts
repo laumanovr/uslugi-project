@@ -40,6 +40,7 @@ export class ContractorListComponent implements OnInit, OnDestroy {
 
   closePopup(event) {
     this.popup = false;
+    document.body.style.overflow = 'auto';
   }
 
   onClickBack() {
@@ -49,6 +50,7 @@ export class ContractorListComponent implements OnInit, OnDestroy {
   onDesc(master) {
     this.master = master;
     this.popup = true;
+    document.body.style.overflow = 'hidden';
   }
 
   onSortByRating() {

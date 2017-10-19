@@ -11,6 +11,8 @@ import {CommonService} from '../../../services/common.service';
 })
 export class RegistrationComponent implements OnInit, OnDestroy {
 
+  public mask = [[0], '(', /[0-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
+
   codeValue: string;
   nameValue: string;
   phoneValue: string;
@@ -21,6 +23,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   countdown = 13;
   nullDigit: number;
   smsRepeat = false;
+  phoneComplete: boolean;
 
   private subscriptions: Subscription[] = [];
 
@@ -31,6 +34,15 @@ export class RegistrationComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     (<HTMLInputElement>document.getElementById('checkBox')).checked = true;
+  }
+
+  //check phone input to be completed
+  checkPhoneComplete() {
+    if (/[0-9]/.test(this.phoneValue[13])) {
+      this.phoneComplete = false;
+    } else {
+      this.phoneComplete = true;
+    }
   }
 
   ngOnDestroy() {
@@ -118,6 +130,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   }
 
   private smsSend() {
+    this.phoneValue = this.phoneValue.replace(/[- )(]/g, '');
     const urlSms = 'sendSms&mobile=' + this.phoneValue;
     this.subscriptions.push(this.common.get(urlSms).subscribe(resp => {
       if (resp.statusText === 'OK') {
@@ -125,6 +138,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
         alert('Ваш смс код: ' + resp.json()[2]);
       }
     }));
+    console.log(this.phoneValue);
   }
 
 }

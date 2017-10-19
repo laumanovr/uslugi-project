@@ -11,9 +11,8 @@
     </div>
 
     <div class="contacts-content">
-      <input class="qr-c-name" name="phone" type="text" id="phone" autocomplete="off" placeholder="Номер телефона"
-             [(ngModel)]="phoneValue" #phone="ngModel" minlength="10" maxlength="10" required
-             (blur)="checkPhone()">
+      <input [textMask]="{mask: mask}" (keyup)="checkPhoneComplete()" class="qr-c-name" name="phone" type="text" id="phone" autocomplete="off" placeholder="Номер телефона"
+             [(ngModel)]="phoneValue" #phone="ngModel" required (blur)="checkPhone()">
 
       <label class="phone-notif" *ngIf="phoneBusy">Указанный номер уже зарегистрирован</label>
 
@@ -29,7 +28,7 @@
         <p class="reg-accept m-l-10">Я согласен с <span class="reg-url">Пользовательским соглашением</span></p>
       </div>
 
-      <button id="btn" class="qr-c-btn" (click)="onClickRegBTn()">
+      <button [disabled]="phoneComplete || pass.invalid || phone.invalid" id="btn" class="qr-c-btn" (click)="onClickRegBTn()">
         Далее
       </button>
     </div>

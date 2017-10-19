@@ -11,13 +11,13 @@
     </div>
     <div class="contacts-content">
       <input class="qr-c-name" name="name" type="text" id="address" autocomplete="off" placeholder="Имя"
-             [(ngModel)]="nameValue" #name="ngModel" minlength="2" required (keyup)="checkBtnValid()"/>
+             [(ngModel)]="nameValue" #name="ngModel" minlength="2" maxlength="30" required (keyup)="checkBtnValid()"/>
 
-      <input class="qr-c-name" name="phone" type="text" id="phone" autocomplete="off" placeholder="{{phonePlaceholder}}"
-             [(ngModel)]="phoneValue" #phone="ngModel" minlength="10" maxlength="10" required
-             (keyup)="checkBtnValid()">
+      <input [textMask]="{mask: mask}" class="qr-c-name" name="phone" type="text" id="phone" autocomplete="off" placeholder="{{phonePlaceholder}}"
+             [(ngModel)]="phoneValue" #phone="ngModel" required
+             (keyup)="checkPhoneComplete(); checkBtnValid();">
 
-      <button id="btn" [disabled]="name.invalid || phone.invalid" class="qr-c-btn" (click)="onNext()">
+      <button id="btn" [disabled]="name.invalid || phone.invalid || phoneComplete" class="qr-c-btn" (click)="onNext()">
         Далее
       </button>
 

@@ -11,11 +11,14 @@ import {CommonService} from '../../../services/common.service';
 })
 export class ContactsComponent implements OnInit, OnDestroy {
 
+  public mask = [[0], '(', /[0-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
+
   nameValue: string;
   phoneValue: string;
   phonePlaceholder = 'Номер телефона';
   modal = false;
   password = false;
+  phoneComplete: boolean;
 
   private button: HTMLElement;
   private subscriptions: Subscription[] = [];
@@ -28,6 +31,15 @@ export class ContactsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.button = document.getElementById('btn');
     this.checkPhonePlaceholder();
+  }
+
+  //check phone input to be completed
+  checkPhoneComplete() {
+    if (/[0-9]/.test(this.phoneValue[13])) {
+      this.phoneComplete = false;
+    } else {
+      this.phoneComplete = true;
+    }
   }
 
   ngOnDestroy() {

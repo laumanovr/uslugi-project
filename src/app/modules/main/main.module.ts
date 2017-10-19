@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import { TextMaskModule } from 'angular2-text-mask';
 import {MainComponent} from './main.component';
 import {NavBarModule} from '../../shared/nav-bar/nav-bar.module';
 import {MainRouting} from './main.routes';
@@ -17,7 +18,8 @@ import {MasterDescModule} from '../../shared/master-desc/master-desc.module';
     MainRouting,
     FormsModule,
     NavBarModule,
-    MasterDescModule
+    MasterDescModule,
+    TextMaskModule
   ],
   declarations: [
     MainComponent,

@@ -11,8 +11,12 @@ import {Location} from '@angular/common';
 })
 export class LoginComponent implements OnInit, OnDestroy {
 
+  public mask = [[0], '(', /[0-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
+
   phoneVal: string;
   passVal: string;
+  phoneComplete: boolean;
+
 
   private subscription: Subscription;
 
@@ -23,6 +27,15 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.authCheck();
+  }
+
+  //check phone input to be completed
+  checkPhoneComplete() {
+    if (/[0-9]/.test(this.phoneVal[13])) {
+      this.phoneComplete = false;
+    } else {
+      this.phoneComplete = true;
+    }
   }
 
   ngOnDestroy() {
@@ -56,6 +69,7 @@ export class LoginComponent implements OnInit, OnDestroy {
    * User checking
    */
   onLogin() {
+    this.phoneVal = this.phoneVal.replace(/[- )(]/g, '');
     const phone = '&mobile=' + this.phoneVal;
     const pass = '&password=' + this.passVal;
     const url = 'check_password_client' + phone + pass;
@@ -71,6 +85,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.checkRoutes();
       }
     });
+    console.log(this.phoneVal);
   }
 
   /**
