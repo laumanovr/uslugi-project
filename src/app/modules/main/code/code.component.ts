@@ -36,7 +36,7 @@ export class CodeComponent implements OnInit, OnDestroy {
   }
 
   onClick() {
-    const url = 'checkSms&code=' + this.codeValue + '&mobile=' + this.common.phone;
+    const url = 'checkSms&code=' + this.codeValue + '&mobile=' + JSON.parse(this.common.storage.getItem('user')).phone;
     this.subscriptions.push(this.common.get(url).subscribe(data => {
       if (data.statusText === 'OK') {
         this.common.storage.setItem('auth', 'true');
@@ -46,7 +46,7 @@ export class CodeComponent implements OnInit, OnDestroy {
   }
 
   onSendSms() {
-    const urlSms = 'smsSend&mobile=' + this.common.phone;
+    const urlSms = 'smsSend&mobile=' + JSON.parse(this.common.storage.getItem('user')).phone;
     this.subscriptions.push(this.common.get(urlSms).subscribe(resp => {
       console.log(resp.json());
     }));

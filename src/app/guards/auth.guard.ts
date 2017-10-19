@@ -10,6 +10,6 @@ export class AuthGuard implements CanActivate {
 
   canActivate(next: ActivatedRouteSnapshot,
               state: RouterStateSnapshot): boolean {
-    return Boolean(this.common.storage.getItem('auth'));
+    return JSON.parse(this.common.storage.getItem('auth'));
   }
 }

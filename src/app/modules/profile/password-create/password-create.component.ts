@@ -35,9 +35,9 @@ export class PasswordCreateComponent implements OnInit, OnDestroy {
 
   onSave() {
     const urlPart = 'updatePasswordBySms&code=';
-    const url = urlPart + this.codeValue + '&mobile=' + this.common.phone + '&password=' + this.passValue;
+    const url = urlPart + this.codeValue + '&mobile=' + JSON.parse(this.common.storage.getItem('user')).phone
+      + '&password=' + this.passValue;
     this.subscription = this.common.get(url).subscribe(data => {
-      console.log(data.json());
       const response = data.json()[0];
       if (response === 'ok') {
         this.checkRoutes();

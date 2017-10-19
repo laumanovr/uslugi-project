@@ -173,6 +173,10 @@ export class OrdersComponent implements OnInit, OnDestroy {
     this.modalDesc = true;
   }
 
+  onModalClose() {
+    this.modalDesc = false;
+  }
+
   private getOrdersFromApi(url) {
     this.subscriptions.push(this.common.get(url).subscribe(data => {
       const resp = data.json();

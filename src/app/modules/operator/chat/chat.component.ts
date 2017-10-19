@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import RTCPeerConnection from 'webrtc-adapter';
 import JsSIP from 'jssip';
+import {CommonService} from '../../../services/common.service';
 
 @Component({
     selector: 'app-chat',
@@ -28,7 +29,7 @@ export class ChatComponent implements OnInit {
 
     status = 'Онлайн';
 
-    constructor() {
+    constructor(private common: CommonService) {
     }
 
     ngOnInit() {

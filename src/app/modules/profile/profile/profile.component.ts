@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {CommonService} from '../../../services/common.service';
 import {Subscription} from 'rxjs/Subscription';
+import {User} from '../../../models/user';
 
 @Component({
   selector: 'app-profile',
@@ -10,7 +11,7 @@ import {Subscription} from 'rxjs/Subscription';
 })
 export class ProfileComponent implements OnInit, OnDestroy {
 
-  user;
+  user: User;
   private subscriptions: Subscription[] = [];
 
   constructor(private router: Router,
@@ -35,6 +36,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     const url = 'deleteSession';
     this.subscriptions.push(this.common.get(url).subscribe(resp => {
       this.common.storage.setItem('auth', 'false');
+      this.common.storage.removeItem('user');
       this.router.navigate(['login']);
     }));
   }

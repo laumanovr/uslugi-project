@@ -44,6 +44,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
   }
 
   onNext() {
+    this.common.storage.setItem('orderPhone', this.phoneValue);
     const user = {
       name: this.nameValue,
       phone: this.phoneValue
@@ -127,9 +128,9 @@ export class ContactsComponent implements OnInit, OnDestroy {
   }
 
   private checkPhonePlaceholder() {
-    if (this.common.storage.getItem('auth')) {
+    if (this.common.storage.getItem('user')) {
       this.phonePlaceholder = 'Контактный телефон';
-      this.phoneValue = '0' +  JSON.parse(this.common.storage.getItem('user')).phone;
+      this.phoneValue = JSON.parse(this.common.storage.getItem('user')).phone;
       this.nameValue = JSON.parse(this.common.storage.getItem('user')).name;
     }
   }

@@ -61,8 +61,13 @@ export class LoginComponent implements OnInit, OnDestroy {
     const url = 'check_password_client' + phone + pass;
     this.subscription = this.common.get(url).subscribe(resp => {
       const respStatus = resp.json()[0];
+      const user = {
+        name: resp.json()[2].name,
+        phone: 0 + resp.json()[2].phone
+      };
       if (respStatus === 'ok') {
         this.common.storage.setItem('auth', 'true');
+        this.common.storage.setItem('user', JSON.stringify(user));
         this.checkRoutes();
       }
     });
@@ -72,7 +77,8 @@ export class LoginComponent implements OnInit, OnDestroy {
    * Quick authorization check
    */
   private authCheck() {
-    if (this.common.storage.getItem('auth')) {
+    const auth = Boolean(this.common.storage.getItem('auth'));
+    if (auth) {
       this.router.navigate(['profile']);
     }
   }

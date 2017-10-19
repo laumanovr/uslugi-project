@@ -4,11 +4,6 @@ import {Http, Headers, RequestOptions} from '@angular/http';
 @Injectable()
 export class CommonService {
 
-  // Must be removed:
-  name: string;
-  phone: string;
-
-  // Used somewhere
   fromOrderCreate = false;
   fromMasterPage = false;
   password = false;

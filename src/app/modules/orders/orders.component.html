@@ -172,5 +172,5 @@
 
 <!--Description popup-->
 <div *ngIf="modalDesc" (click)="onClickOverModalDesc($event)">
-  <app-order-desc [selectedOrder]="selectedOrder" (modalClose)="modalDesc = false"></app-order-desc>
+  <app-order-desc [selectedOrder]="selectedOrder" (modalClose)="onModalClose()"></app-order-desc>
 </div>

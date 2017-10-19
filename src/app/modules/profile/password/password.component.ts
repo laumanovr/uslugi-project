@@ -20,6 +20,7 @@ export class PasswordComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.checkPhone();
   }
 
   ngOnDestroy() {
@@ -38,9 +39,17 @@ export class PasswordComponent implements OnInit, OnDestroy {
       if (resp.statusText === 'OK') {
         // Todo for test
         alert('смс код: ' + resp.json()[2]);
-        this.common.phone = this.phoneVal;
+        const user = {phone: this.phoneVal};
+        this.common.storage.setItem('user', JSON.stringify(user));
         this.router.navigate(['password-create']);
       }
     });
+  }
+
+  private checkPhone() {
+    const phone = JSON.parse(this.common.storage.getItem('user')).phone;
+    if (phone) {
+      this.phoneVal = 0 + phone;
+    }
   }
 }

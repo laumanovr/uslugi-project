@@ -28,7 +28,7 @@ export class AppComponent implements OnInit, OnDestroy {
       .subscribe(resp => {
         const user = {
           name: resp.json()[2].name,
-          phone: resp.json()[2].phone
+          phone: 0 + resp.json()[2].phone
         };
         const userAuth = resp.json()[2].name;
         if (userAuth !== '' && userAuth !== 'undefined') {

@@ -62,15 +62,15 @@ export class MasterComponent implements OnInit {
 
   private checkFirstCall() {
     if (!this.secondCall) {
-      this.createClient();
+      this.orderCreate();
       this.secondCall = true;
     }
   }
 
-  private createClient() {
+  private orderCreate() {
     const url = 'createorder';
     const body = '&serviceid=' + this.common.storage.getItem('serviceId') + '&agent=' + this.master.id
-      + '&mobile=' + JSON.parse(this.common.storage.getItem('user')).phone;
+      + '&mobile=' + this.common.storage.getItem('orderPhone');
     this.common.post(url, body).subscribe(data => {
       this.common.fromMasterPage = true;
       this.modal = true;
