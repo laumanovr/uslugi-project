@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers, RequestOptions} from '@angular/http';
+import {EventEmitter} from "events";
 
 @Injectable()
 export class CommonService {
@@ -14,6 +15,30 @@ export class CommonService {
    * Local storage
    */
   storage = window.localStorage;
+
+  /**
+   * WebSocket connection with asterisk chats and video call service
+   * @type {WebSocket}
+   */
+  connection: WebSocket;
+
+  /**
+   * WebSocket event emitter
+   * @type {EventEmitter}
+   */
+  connectionEvents: EventEmitter = new EventEmitter;
+
+  /**
+   * WebSocket asterisk url
+   * @type {string}
+   */
+  private connectionUrl = 'wss://localhost:9515/';
+
+  /**
+   * Maximum connection tries for creation
+   * @type {number}
+   */
+  private tries = 5;
 
   /**
    * Main url to get and post data
@@ -31,6 +56,7 @@ export class CommonService {
 
 
   constructor(private http: Http) {
+    this.createConnection();
   }
 
   /**
@@ -48,4 +74,36 @@ export class CommonService {
     return this.http.post(url, body, this.options);
   }
 
+  /**
+   * Open new WebSocket connection
+   * @param tries
+   */
+  createConnection(tries: number = 0) {
+    const that = this;
+    this.connection = new WebSocket(this.connectionUrl);
+    this.connection.onopen = function () {
+      that.tries = 0;
+      that.connection.send('Hello');
+      console.log('New start new connection');
+    };
+    this.connection.onerror = function (error) {
+      console.log('Cannot connect to websocket', error);
+      if (tries < that.tries) {
+        that.createConnection(tries + 1);
+      }
+    };
+    this.connection.onclose = function () {
+      console.log('Connection is closed, try to reconect');
+      if (tries < that.tries) {
+        that.createConnection(tries + 1);
+      }
+    };
+    this.connection.onmessage = function (msg) {
+      const data = JSON.parse(msg.data);
+
+      if ('undefined' !== data.action) {
+        that.connectionEvents.emit(data.action, data);
+      }
+    };
+  }
 }

@@ -26,18 +26,10 @@ export class ChatComponent implements OnInit {
     TYPING      = 'Печатает...';
 
     /**
-     * @type {[{id: string; who: string; type: string; content: string; date: Date}]}
+     * @type {[{id: string; who: string; type: string; content: string; date: Date; sent: boolean; read: boolean}]}
      */
     messages = [
-        {id: 1, who: this.OPERATOR, type: 'image', content: '../../../assets/img/antenna.png', date: new Date('2017-10-09 10:15:00')},
-        {id: 2, who: this.CLIENT, type: 'text', content: 'Текст', date: new Date()},
-        {id: 3, who: this.CLIENT, type: 'desc', content: {
-            desc: 'описание',
-            address: 'ул. Медерова, 56',
-            date: '03.08.2017',
-            time: '10:00 - 12:00',
-            price: '1500 сом'
-        }, date: new Date()}
+        {id: '123', who: this.CLIENT, type: 'text', content: 'Текст', date: new Date(), sent: true, read: true},
     ];
 
     /**
@@ -51,44 +43,18 @@ export class ChatComponent implements OnInit {
     status  = this.OFFLINE;
 
     /**
-     * @type {WebSocket}
-     */
-    connection = null;
-
-    /**
-     * @type {number}
-     */
-    private connTries = 0;
-
-    /**
      * @param common
      */
     constructor(private common: CommonService) {
     }
 
     ngOnInit() {
-        this.createConnection();
-    }
-
-    createConnection() {
-        const that = this;
-        this.connection = new WebSocket(this.webSocketUrl);
-        this.connection.onopen = function () {
-            that.connTries = 0;
-            console.log('Start new connection');
-        };
-
-        this.connection.onmessage = function (msg) {
-            console.log(msg.data);
-        };
-
-        this.connection.onerror = function (error) {
-            that.connTries += 1;
-            if (that.connTries < 5) {
-                that.createConnection();
-            }
-
-            console.log(error);
-        };
+        const master = this.common.storage.getItem('master');
+        if (typeof master === 'string') {
+            console.log(JSON.parse(master));
+        }
+        this.common.connectionEvents.on('text', function (data) {
+            console.log(data.value);
+        });
     }
 }
