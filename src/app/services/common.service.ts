@@ -88,13 +88,11 @@ export class CommonService {
     };
     this.connection.onerror = function (error) {
       console.log('Cannot connect to websocket', error);
-      if (tries < that.tries) {
-        that.createConnection(tries + 1);
-      }
     };
     this.connection.onclose = function () {
       console.log('Connection is closed, try to reconnect in 10 sec');
       if (tries < that.tries) {
+        console.log(tries, that.tries, 'tries');
         setTimeout(function () {
           that.createConnection(tries + 1);
         }, 10000);

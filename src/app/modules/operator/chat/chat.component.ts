@@ -43,17 +43,20 @@ export class ChatComponent implements OnInit {
     status  = this.OFFLINE;
 
     /**
+     * Service number from CRM
+     * @type {number}
+     */
+    service = null;
+
+    /**
      * @param common
      */
     constructor(private common: CommonService) {
     }
 
     ngOnInit() {
-        const master = this.common.storage.getItem('master');
         const that = this;
-        if (typeof master === 'string') {
-            console.log(JSON.parse(master));
-        }
+        this.service = this.common.storage.getItem('serviceId');
         this.common.connectionEvents.on('text', function (data) {
             console.log(data);
             that.messages.push(data);
