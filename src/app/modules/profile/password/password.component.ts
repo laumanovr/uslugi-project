@@ -61,9 +61,11 @@ export class PasswordComponent implements OnInit, OnDestroy {
   }
 
   private checkPhone() {
-    const phone = JSON.parse(this.common.storage.getItem('user')).phone;
-    if (phone) {
-      this.phoneVal = 0 + phone;
+    if (this.common.storage.getItem('user')) {
+      const phone = JSON.parse(this.common.storage.getItem('user')).phone;
+      if (phone) {
+        this.phoneVal = 0 + phone;
+      }
     }
   }
 }
