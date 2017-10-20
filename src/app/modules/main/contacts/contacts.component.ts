@@ -57,7 +57,6 @@ export class ContactsComponent implements OnInit, OnDestroy {
   }
 
   onNext() {
-
     this.common.storage.setItem('orderPhone', this.phoneValue);
     this.common.tempUser = {
       name: this.nameValue,
