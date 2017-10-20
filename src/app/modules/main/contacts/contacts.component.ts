@@ -37,10 +37,13 @@ export class ContactsComponent implements OnInit, OnDestroy {
    * check phone input to be completed
    */
   checkPhoneComplete() {
+    this.button.style.backgroundColor = '#E5E5E5';
+    this.phoneComplete = true;
     if (/[0-9]/.test(this.phoneValue[13])) {
       this.phoneComplete = false;
+      this.button.style.backgroundColor = '#FFC107';
+      this.button.style.color = 'black';
     }
-    this.phoneComplete = true;
   }
 
   ngOnDestroy() {
@@ -57,6 +60,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
   }
 
   onNext() {
+    this.phoneValue = this.phoneValue.replace(/[- )(]/g, '');
     this.common.storage.setItem('orderPhone', this.phoneValue);
     this.common.tempUser = {
       name: this.nameValue,
@@ -67,20 +71,9 @@ export class ContactsComponent implements OnInit, OnDestroy {
     } else {
       this.createUser();
     }
+    console.log(this.phoneValue);
   }
 
-  /**
-   * Handler to change the button colors
-   */
-  checkBtnValid() {
-    const buttonDisabled = (<HTMLInputElement> document.getElementById('btn')).disabled;
-    if (buttonDisabled === false) {
-      this.button.style.backgroundColor = '#FFC107';
-      this.button.style.color = 'black';
-    } else {
-      this.button.style.backgroundColor = '#E5E5E5';
-    }
-  }
 
   onLogin() {
     this.common.fromOrderCreate = true;
