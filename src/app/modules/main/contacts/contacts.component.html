@@ -17,7 +17,7 @@
              [(ngModel)]="phoneValue" #phone="ngModel" required
              (keyup)="checkPhoneComplete(); checkBtnValid();">
 
-      <button id="btn" [disabled]="name.invalid || phone.invalid || phoneComplete" class="qr-c-btn" (click)="onNext()">
+      <button id="btn" class="qr-c-btn" (click)="onNext()">
         Далее
       </button>
 
