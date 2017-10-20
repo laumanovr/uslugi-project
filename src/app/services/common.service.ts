@@ -82,8 +82,8 @@ export class CommonService {
     const that = this;
     this.connection = new WebSocket(this.connectionUrl);
     this.connection.onopen = function () {
-      that.tries = 0;
-      that.connection.send('Hello');
+      tries = 0;
+      that.connection.send(JSON.stringify({action: 'text', data: {msg: 'Hello'}}));
       console.log('New start new connection');
     };
     this.connection.onerror = function (error) {
@@ -93,16 +93,18 @@ export class CommonService {
       }
     };
     this.connection.onclose = function () {
-      console.log('Connection is closed, try to reconect');
+      console.log('Connection is closed, try to reconnect in 10 sec');
       if (tries < that.tries) {
-        that.createConnection(tries + 1);
+        setTimeout(function () {
+          that.createConnection(tries + 1);
+        }, 10000);
       }
     };
     this.connection.onmessage = function (msg) {
       const data = JSON.parse(msg.data);
 
       if ('undefined' !== data.action) {
-        that.connectionEvents.emit(data.action, data);
+        that.connectionEvents.emit(data.action, data.data);
       }
     };
   }

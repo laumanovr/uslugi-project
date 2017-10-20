@@ -18,7 +18,7 @@
       <p class="chat-time">Сегодня</p>
 
       <div class="chat-bubble" *ngFor="let i of messages">
-        <div>{{i.date|date:'shortTime'}}</div>
+        <div>{{i.date.date|date:'shortTime'}}</div>
         <div *ngIf="i.type === 'text'">
           {{i.content}}
         </div>

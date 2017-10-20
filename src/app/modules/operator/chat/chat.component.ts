@@ -50,11 +50,13 @@ export class ChatComponent implements OnInit {
 
     ngOnInit() {
         const master = this.common.storage.getItem('master');
+        const that = this;
         if (typeof master === 'string') {
             console.log(JSON.parse(master));
         }
         this.common.connectionEvents.on('text', function (data) {
-            console.log(data.value);
+            console.log(data);
+            that.messages.push(data);
         });
     }
 }
