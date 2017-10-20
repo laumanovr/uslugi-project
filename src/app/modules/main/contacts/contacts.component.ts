@@ -58,12 +58,11 @@ export class ContactsComponent implements OnInit, OnDestroy {
 
   onNext() {
     this.common.storage.setItem('orderPhone', this.phoneValue);
-    const user = {
+    this.common.tempUser = {
       name: this.nameValue,
       phone: this.phoneValue
     };
-    this.common.storage.setItem('user', JSON.stringify(user));
-    if (this.common.storage.getItem('auth')) {
+    if (JSON.parse(this.common.storage.getItem('auth'))) {
       this.router.navigate(['choose']);
     } else {
       this.createUser();

@@ -36,10 +36,12 @@ export class CodeComponent implements OnInit, OnDestroy {
   }
 
   onClick() {
-    const url = 'checkSms&code=' + this.codeValue + '&mobile=' + JSON.parse(this.common.storage.getItem('user')).phone;
+    const phone = JSON.parse(this.common.storage.getItem('user')).phone;
+    const url = 'checkSms&code=' + this.codeValue + '&mobile=' + phone;
     this.subscriptions.push(this.common.get(url).subscribe(data => {
       if (data.statusText === 'OK') {
         this.common.storage.setItem('auth', 'true');
+        this.common.storage.setItem('user', JSON.stringify(this.common.tempUser));
         this.router.navigate(['choose']);
       }
     }));
@@ -48,7 +50,7 @@ export class CodeComponent implements OnInit, OnDestroy {
   onSendSms() {
     const urlSms = 'smsSend&mobile=' + JSON.parse(this.common.storage.getItem('user')).phone;
     this.subscriptions.push(this.common.get(urlSms).subscribe(resp => {
-      console.log(resp.json());
+      alert(resp.json());
     }));
   }
 
