@@ -1,4 +1,4 @@
-import {Component, NgZone, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, NgZone, OnInit} from '@angular/core';
 import {MapsAPILoader} from '@agm/core';
 
 declare const google: any;
@@ -19,7 +19,8 @@ export class GeolocationComponent implements OnInit {
   private lng = 74.563707;
   private zoom = 15;
 
-  constructor(private mapsAPILoader: MapsAPILoader) {
+  constructor(private mapsAPILoader: MapsAPILoader,
+              private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -84,13 +85,14 @@ export class GeolocationComponent implements OnInit {
       if (results) {
         if (results[0].formatted_address.includes('Unnamed Road')) {
           this.address = 'Адрес не найден';
-          console.log(this.address);
+          this.cdr.detectChanges();
         } else {
           this.address = results[0].formatted_address;
-          console.log(this.address);
+          this.cdr.detectChanges();
         }
       } else {
         this.address = 'Адрес не найден';
+        this.cdr.detectChanges();
       }
     });
   }
