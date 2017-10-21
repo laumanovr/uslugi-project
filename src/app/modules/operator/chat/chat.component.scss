@@ -170,3 +170,23 @@
 .content-wrapper {
   margin-bottom: 40px;
 }
+
+.upload-photo-img{
+  display: block;
+  position: fixed;
+  bottom: 0;
+  right: 54px;
+
+  img{
+    width: 40px;
+  }
+}
+
+.send-message{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 50px;
+  height: 48px;
+  border: none;
+}

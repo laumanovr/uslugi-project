@@ -71,7 +71,13 @@
       <p class="chat-choose">Вы хотите подтвердить заказ?</p>
       <button class="chat-btn-2">Подтвердить заказ</button>
 
-      <input class="message-input" placeholder="Написать сообщение...">
+      <div class="write-message">
+        <input class="message-input" [(ngModel)]="usersMessage" #users="ngModel" placeholder="Написать сообщение...">
+        <button class="send-message" (click)="sendMessage()">Send</button>
+        <input type="file" style="display: none" accept="image/*" id="file-uploader" (change)="onUpload($event)">
+        <li><label for="file-uploader" class="upload-photo-img"><img src="../../../../assets/img/camera.png"></label>
+        </li>
+      </div>
 
     </div>
 
