@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import RTCPeerConnection from 'webrtc-adapter';
 import JsSIP from 'jssip';
 import {CommonService} from '../../../services/common.service';
+import {Router} from '@angular/router'
 
 @Component({
   selector: 'app-chat',
@@ -27,7 +28,8 @@ export class ChatComponent implements OnInit, OnDestroy {
    * @type {[{id: string; who: string; type: string; content: string; date: Date; sent: boolean; read: boolean}]}
    */
   messages = [
-    {id: '123', who: this.CLIENT, type: 'text', content: 'Текст', date: new Date(), sent: true, read: true},
+    {id: '123', who: this.CLIENT, type: 'text', content: 'Текст клиента', date: new Date(), sent: true, read: true},
+    {id: '5', who: this.OPERATOR, type: 'text', content: 'Текст оператора', date: new Date(), sent: true, read: true}
   ];
 
   /**
@@ -59,7 +61,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   imageUrl: string;
   usersMessage: string;
 
-  constructor(private common: CommonService) {
+  constructor(private common: CommonService, private router: Router) {
   }
 
   ngOnInit() {
@@ -112,5 +114,9 @@ export class ChatComponent implements OnInit, OnDestroy {
         content: this.usersMessage
       }
     }));
+  }
+
+  goToGeoLocation(){
+    this.router.navigate(['geolocation'])
   }
 }
