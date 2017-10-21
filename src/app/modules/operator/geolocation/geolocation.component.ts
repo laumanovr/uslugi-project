@@ -1,5 +1,7 @@
-import {ChangeDetectorRef, Component, NgZone, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {Location} from '@angular/common';
 import {MapsAPILoader} from '@agm/core';
+import {CommonService} from '../../../services/common.service';
 
 declare const google: any;
 
@@ -20,11 +22,28 @@ export class GeolocationComponent implements OnInit {
   private zoom = 15;
 
   constructor(private mapsAPILoader: MapsAPILoader,
-              private cdr: ChangeDetectorRef) {
+              private cdr: ChangeDetectorRef,
+              private common: CommonService,
+              private location: Location) {
   }
 
   ngOnInit() {
     this.mapInit();
+  }
+
+  /**
+   * Navigate back
+   */
+  onCLickBack() {
+    this.location.back();
+  }
+
+  /**
+   * Get location and navigate back
+   */
+  onClickOk() {
+    this.common.geoAddress = this.address;
+    this.location.back();
   }
 
   /**

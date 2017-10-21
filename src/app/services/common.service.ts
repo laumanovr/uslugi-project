@@ -5,6 +5,8 @@ import {EventEmitter} from 'events';
 @Injectable()
 export class CommonService {
 
+  geoAddress: string;
+
   fromOrderCreate = false;
   fromMasterPage = false;
   password = false;
@@ -85,11 +87,11 @@ export class CommonService {
       console.log('Start new connection');
       tries = 0;
       if (that.storage.getItem('auth')) {
-          console.log('Login in...');
-          that.connection.send(JSON.stringify({
-            action: 'login',
-            data: JSON.parse(that.storage.getItem('asterisk'))
-          }));
+        console.log('Login in...');
+        that.connection.send(JSON.stringify({
+          action: 'login',
+          data: JSON.parse(that.storage.getItem('asterisk'))
+        }));
       }
 
     };
