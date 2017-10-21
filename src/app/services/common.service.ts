@@ -32,7 +32,7 @@ export class CommonService {
    * WebSocket asterisk url
    * @type {string}
    */
-  private connectionUrl = 'wss://localhost:9515/';
+  private connectionUrl = 'wss://pbx.minifets.info:9515/';
 
   /**
    * Maximum connection tries for creation

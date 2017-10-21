@@ -10,8 +10,6 @@ import {CommonService} from '../../../services/common.service';
 })
 export class ChatComponent implements OnInit, OnDestroy {
 
-  private webSocketUrl = 'wss://localhost:9515/';
-
   /**
    * Project constants for user types (may be client or operator)
    */
@@ -69,13 +67,15 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.common.connectionEvents.on('text', function (data) {
       that.messages.push(data);
     });
-
-    this.common.connection.send(JSON.stringify({
-      action: 'initChat',
-      data: {
-        context: that.service
-      }
-    }));
+    this.common.connectionEvents.on('logged', function () {
+      console.log('Try init chat');
+      that.common.connection.send(JSON.stringify({
+        action: 'initChat',
+        data: {
+          context: that.service
+        }
+      }));
+    });
   }
 
   ngOnDestroy() {
