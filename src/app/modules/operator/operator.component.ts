@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-operator',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OperatorComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router){}
 
   ngOnInit() {
+
+  }
+
+  onCallOperator(){
+    this.router.navigate(['chat'])
   }
 
 }
