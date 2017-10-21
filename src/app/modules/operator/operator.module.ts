@@ -4,6 +4,7 @@ import {OperatorComponent} from './operator.component';
 import {NavBarModule} from '../../shared/nav-bar/nav-bar.module';
 import {RouterModule, Routes} from '@angular/router';
 import {ChatComponent} from './chat/chat.component';
+import {FormsModule} from "@angular/forms";
 
 const operatorRoutes: Routes = [
   {
@@ -22,7 +23,8 @@ const OperatorRouting = RouterModule.forChild(operatorRoutes);
   imports: [
     CommonModule,
     OperatorRouting,
-    NavBarModule
+    NavBarModule,
+    FormsModule
   ],
   declarations: [OperatorComponent, ChatComponent],
   exports: [OperatorComponent]
