@@ -55,6 +55,10 @@ export class ChatComponent implements OnInit, OnDestroy {
   /**
    * @param common
    */
+
+  imageUrl: string;
+  usersMessage: string;
+
   constructor(private common: CommonService) {
   }
 
@@ -82,13 +86,27 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.common.connectionEvents.removeAllListeners();
   }
 
-  sendMessage(text: string) {
+  onUpload(event) {
+    this.imageUrl = '';
+    if (event.target.files && event.target.files[0]) {
+      let reader = new FileReader();
+      reader.onloadend = (e: any) => {
+        this.imageUrl = e.target.result;
+        this.messages.push({id: '', who: this.CLIENT, type: 'image', content: this.imageUrl, date: new Date(), sent: true, read: true})
+
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+
+  sendMessage() {
+    console.log(this.usersMessage);
     this.common.connection.send(JSON.stringify({
       action: 'text',
       data: {
         id: this.id,
         context: this.service,
-        content: text
+        content: this.usersMessage
       }
     }));
   }
