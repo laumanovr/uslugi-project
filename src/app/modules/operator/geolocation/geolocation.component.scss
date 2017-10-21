@@ -1,0 +1,36 @@
+.main-wrap {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.header-title {
+  padding: 0;
+}
+
+.address {
+  height: 42px;
+}
+
+agm-map {
+  height: 100%;
+  width: 100%;
+}
+
+#map {
+  width: 100%;
+  height: 95%;
+}
+
+#centerMarker {
+  position: absolute;
+  background: url(../../../../assets/img/marker.svg) no-repeat;
+  top: 50%;
+  left: 50%;
+  z-index: 1000;
+  height: 34px;
+  width: 20px;
+  cursor: pointer;
+}

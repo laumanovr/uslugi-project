@@ -1,9 +1,11 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import { AgmCoreModule } from '@agm/core';
 import {OperatorComponent} from './operator.component';
 import {NavBarModule} from '../../shared/nav-bar/nav-bar.module';
 import {RouterModule, Routes} from '@angular/router';
 import {ChatComponent} from './chat/chat.component';
+import {GeolocationComponent} from './geolocation/geolocation.component';
 import {FormsModule} from "@angular/forms";
 
 const operatorRoutes: Routes = [
@@ -14,6 +16,10 @@ const operatorRoutes: Routes = [
   {
     path: 'chat',
     component: ChatComponent
+  },
+  {
+    path: 'geolocation',
+    component: GeolocationComponent
   }
 ];
 const OperatorRouting = RouterModule.forChild(operatorRoutes);
@@ -24,9 +30,13 @@ const OperatorRouting = RouterModule.forChild(operatorRoutes);
     CommonModule,
     OperatorRouting,
     NavBarModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCXExTQqr1dhojneZIObrNyKcII05rZ7ok&language=ru'
+    }),
+    NavBarModule,
     FormsModule
   ],
-  declarations: [OperatorComponent, ChatComponent],
+  declarations: [OperatorComponent, ChatComponent, GeolocationComponent],
   exports: [OperatorComponent]
 })
 export class OperatorModule {
