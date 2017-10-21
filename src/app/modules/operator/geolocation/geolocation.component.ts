@@ -72,7 +72,7 @@ export class GeolocationComponent implements OnInit {
   /**
    * Get geolocation
    */
-  private getGeolocation() {
+  getGeolocation() {
     const self = this;
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
