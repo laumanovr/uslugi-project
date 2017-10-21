@@ -71,6 +71,9 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.common.connectionEvents.on('text', function (data) {
       that.messages.push(data);
     });
+    this.common.connectionEvents.on('error', function (data) {
+      console.log(data);
+    });
     this.common.connectionEvents.on('logged', function () {
       console.log('Try init chat');
       that.common.connection.send(JSON.stringify({
