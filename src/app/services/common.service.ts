@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers, RequestOptions} from '@angular/http';
-import {EventEmitter} from "events";
+import {EventEmitter} from 'events';
 
 @Injectable()
 export class CommonService {
@@ -82,9 +82,16 @@ export class CommonService {
     const that = this;
     this.connection = new WebSocket(this.connectionUrl);
     this.connection.onopen = function () {
+      console.log('Start new connection');
       tries = 0;
-      that.connection.send(JSON.stringify({action: 'text', data: {msg: 'Hello'}}));
-      console.log('New start new connection');
+      if (that.storage.getItem('auth')) {
+          console.log('Login in...');
+          that.connection.send(JSON.stringify({
+            action: 'login',
+            data: JSON.parse(that.storage.getItem('asterisk'))
+          }));
+      }
+
     };
     this.connection.onerror = function (error) {
       console.log('Cannot connect to websocket', error);
@@ -92,7 +99,6 @@ export class CommonService {
     this.connection.onclose = function () {
       console.log('Connection is closed, try to reconnect in 10 sec');
       if (tries < that.tries) {
-        console.log(tries, that.tries, 'tries');
         setTimeout(function () {
           that.createConnection(tries + 1);
         }, 10000);
