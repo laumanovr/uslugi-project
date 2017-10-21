@@ -80,9 +80,7 @@ export class GeolocationComponent implements OnInit {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
-
         self.reverseGeocode(pos);
-
         self.infoWindow.setPosition(pos);
         // infoWindow.setContent('Location found.');
         // infoWindow.open(map);
