@@ -17,42 +17,39 @@
     <div class="chat-wrap">
       <p class="chat-time">Сегодня</p>
 
-      <div class="chat-bubble" *ngFor="let i of messages">
-        <ng-container *ngIf="i.who === 'operator'">
-        <!--<p class="message-time">{{i.date.date | date:'shortTime'}}</p>-->
-        <p class="message-time">10:50</p>
-        <div *ngIf="i.type === 'text'">
-          {{i.content}}
-        </div>
-        <div *ngIf="i.type === 'image'">
-          <img src="{{i.content}}"/>
-        </div>
-        <div *ngIf="i.type === 'desc'">
-          <p class="message-title">Описание:</p>
-          <p>{{i.content.desc}}</p>
-          <p class="message-title m-t-20">Адрес:</p>
-          <p>{{i.content.address}}</p>
-          <p class="message-title m-t-20">Дата:</p>
-          <p>{{i.content.date}}</p>
-          <p class="message-title m-t-20">Время:</p>
-          <p>{{i.content.time}}</p>
-          <p class="message-title m-t-20">Примерная стоимость:</p>
-          <p class="m-b-10">{{i.content.price}} </p>
-        </div>
-        </ng-container>
-      </div>
+      <div class="operator" *ngFor="let i of messages">
 
+        <ng-container *ngIf="i.who === 'operator'">
+          <!--<p class="message-time">{{i.date.date | date:'shortTime'}}</p>-->
+          <p class="message-time">10:50</p>
+          <p class="chat-bubble" *ngIf="i.type === 'text'">{{i.content}}</p>
+          <p class="chat-bubble" *ngIf="i.type === 'image'"><img src="{{i.content}}"/></p>
+          <div *ngIf="i.type === 'desc'">
+            <p class="message-title">Описание:</p>
+            <p>{{i.content.desc}}</p>
+            <p class="message-title m-t-20">Адрес:</p>
+            <p>{{i.content.address}}</p>
+            <p class="message-title m-t-20">Дата:</p>
+            <p>{{i.content.date}}</p>
+            <p class="message-title m-t-20">Время:</p>
+            <p>{{i.content.time}}</p>
+            <p class="message-title m-t-20">Примерная стоимость:</p>
+            <p class="m-b-10">{{i.content.price}} </p>
+          </div>
+        </ng-container>
+
+      </div>
       <!--<p class="chat-choose">Как вы хотите переговорить</p>-->
       <!--<button class="chat-btn-1">Обсудить по телефону</button>-->
       <!--<button  class="chat-btn-1">Обсудить в чате</button>-->
 
       <div class="row message-wrap-2" *ngFor="let i of messages">
         <ng-container *ngIf="i.who === 'client' ">
-        <!--<p class="message-time">{{i.date.date | date:'shortTime'}}</p>-->
-        <p class="message-time">10:50</p>
-        <p class="chat-bubble-2" *ngIf="i.type === 'text'">{{i.content}}</p>
+          <!--<p class="message-time">{{i.date.date | date:'shortTime'}}</p>-->
+          <p class="message-time">10:50</p>
+          <p class="chat-bubble-2" *ngIf="i.type === 'text'">{{i.content}}</p>
           <div class="bubble-img">
-        <p class="chat-bubble-2" *ngIf="i.type === 'image'"><img src="{{i.content}}"/></p>
+            <p class="chat-bubble-2" *ngIf="i.type === 'image'"><img src="{{i.content}}"/></p>
           </div>
           <div *ngIf="i.type === 'desc'">
             <p class="message-title">Описание:</p>
@@ -80,7 +77,7 @@
         </li>
 
         <a (click)="goToGeoLocation()">
-        <div class="map-img"><img src="../../../../assets/img/map.jpg"></div>
+          <div class="map-img"><img src="../../../../assets/img/map.jpg"></div>
         </a>
       </div>
 
