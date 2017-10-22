@@ -85,6 +85,7 @@ export class ChatComponent implements OnInit, OnDestroy {
         }
       }));
     });
+    this.hideDropUpMenu();
   }
 
   ngOnDestroy() {
@@ -97,8 +98,15 @@ export class ChatComponent implements OnInit, OnDestroy {
       let reader = new FileReader();
       reader.onloadend = (e: any) => {
         this.imageUrl = e.target.result;
-        this.messages.push({id: '', who: this.CLIENT, type: 'image', content: this.imageUrl, date: new Date(), sent: true, read: true})
-
+        this.messages.push({
+          id: '',
+          who: this.CLIENT,
+          type: 'image',
+          content: this.imageUrl,
+          date: new Date(),
+          sent: true,
+          read: true
+        })
       };
       reader.readAsDataURL(event.target.files[0]);
     }
@@ -116,7 +124,21 @@ export class ChatComponent implements OnInit, OnDestroy {
     }));
   }
 
-  goToGeoLocation(){
+  goToGeoLocation() {
     this.router.navigate(['geolocation'])
+  }
+
+  hideDropUpMenu() {
+    let dropUp = <HTMLElement>document.getElementsByClassName('drop-up')[0];
+    dropUp.style.display = 'none';
+  }
+
+  toggleDropUp() {
+    let dropUp = <HTMLElement>document.getElementsByClassName('drop-up')[0];
+    if (dropUp.style.display === 'none') {
+      dropUp.style.display = 'block';
+    } else {
+      dropUp.style.display = 'none';
+    }
   }
 }
