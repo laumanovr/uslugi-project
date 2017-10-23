@@ -66,3 +66,15 @@
   text-align: center;
   cursor: pointer;
 }
+
+@media screen and (max-width: 325px) {
+  .prof-content{
+    width: 96%;
+  }
+  .prof-form{
+    width: 305px;
+  }
+  .btn-orange{
+    width: 307px;
+  }
+}
