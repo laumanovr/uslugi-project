@@ -34,7 +34,7 @@ export class CommonService {
    * WebSocket asterisk url
    * @type {string}
    */
-  private connectionUrl = 'wss://pbx.minifets.info:9515/';
+  private connectionUrl = 'ws://127.0.0.1:9515/';
 
   /**
    * Maximum connection tries for creation
@@ -56,8 +56,18 @@ export class CommonService {
     headers: this.header,
   });
 
-
+  /**
+   * @param {Http} http
+   */
   constructor(private http: Http) {
+    const that = this;
+    this.connectionEvents.on('registered', function (data) {
+      that.storage.setItem('asterisk', JSON.stringify(data));
+    });
+    this.connectionEvents.on('logged', function (data) {
+      console.log('Successfully logged');
+    });
+    // Connect to web socket
     this.createConnection();
   }
 
@@ -83,21 +93,33 @@ export class CommonService {
   createConnection(tries: number = 0) {
     const that = this;
     this.connection = new WebSocket(this.connectionUrl);
+
     this.connection.onopen = function () {
       console.log('Start new connection');
       tries = 0;
-      if (that.storage.getItem('auth')) {
+      if (!that.storage.getItem('auth')) {
+        return null;
+      }
+      // After connection is established login or register user
+      if (null === that.storage.getItem('asterisk')) {
+        console.log('Register new account');
+        that.connection.send(JSON.stringify({
+          action: 'register',
+          params: JSON.parse(that.storage.getItem('user'))
+        }));
+      } else {
         console.log('Login in...');
         that.connection.send(JSON.stringify({
           action: 'login',
-          data: JSON.parse(that.storage.getItem('asterisk'))
+          params: JSON.parse(that.storage.getItem('asterisk'))
         }));
       }
-
     };
+
     this.connection.onerror = function (error) {
       console.log('Cannot connect to websocket', error);
     };
+
     this.connection.onclose = function () {
       console.log('Connection is closed, try to reconnect in 10 sec');
       if (tries < that.tries) {
@@ -106,11 +128,12 @@ export class CommonService {
         }, 10000);
       }
     };
+
     this.connection.onmessage = function (msg) {
       const data = JSON.parse(msg.data);
 
       if ('undefined' !== data.action) {
-        that.connectionEvents.emit(data.action, data.data);
+        that.connectionEvents.emit(data.action, data.params);
       }
     };
   }
