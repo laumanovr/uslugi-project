@@ -129,16 +129,24 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   hideDropUpMenu() {
-    let dropUp = <HTMLElement>document.getElementsByClassName('drop-up')[0];
+    let dropUp = document.getElementById('dropUp');
     dropUp.style.display = 'none';
   }
 
   toggleDropUp() {
-    let dropUp = <HTMLElement>document.getElementsByClassName('drop-up')[0];
+    let dropUp = document.getElementById('dropUp');
     if (dropUp.style.display === 'none') {
       dropUp.style.display = 'block';
     } else {
       dropUp.style.display = 'none';
     }
   }
+
+  closeDropUpOuter() {
+    let dropUp = document.getElementById('dropUp');
+    if (dropUp.style.display === 'block') {
+      dropUp.style.display = 'none';
+    }
+  }
+
 }
