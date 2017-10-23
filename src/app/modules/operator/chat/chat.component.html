@@ -1,7 +1,5 @@
 <div class="row main">
-
   <div class="content-wrapper">
-
     <!--Header-->
     <div class="operator-header">
       <div class="back-icon"></div>
@@ -12,9 +10,8 @@
       </div>
       <div class="phone-icon"></div>
     </div>
-
     <!--Content-->
-    <div class="chat-wrap">
+    <div class="chat-wrap" (click)="closeDropUpOuter()">
       <p class="chat-time">Сегодня</p>
 
       <div class="operator" *ngFor="let i of messages">
@@ -63,30 +60,28 @@
           </div>
         </ng-container>
       </div>
-
       <!--<p class="chat-choose">Вы хотите подтвердить заказ?</p>-->
       <!--<button class="chat-btn-2">Подтвердить заказ</button>-->
+    </div>
+    <div class="write-message">
+      <input class="message-input" [(ngModel)]="usersMessage" #users="ngModel" placeholder="Написать сообщение...">
+      <button class="send-message" (click)="sendMessage()"><img src="../../../../assets/img/send-icon.svg"></button>
+      <div class="attach-icon" (click)="toggleDropUp()"><img src="../../../../assets/img/attach-icon.png"></div>
 
-      <div class="write-message">
-        <input class="message-input" [(ngModel)]="usersMessage" #users="ngModel" placeholder="Написать сообщение...">
-        <button class="send-message" (click)="sendMessage()"><img src="../../../../assets/img/send-icon.svg"></button>
-        <div class="attach-icon" (click)="toggleDropUp()"><img src="../../../../assets/img/attach-icon.png"></div>
-
-        <ul class="drop-up">
-          <li>
-            <a (click)="goToGeoLocation()">
-              <div class="map-img"><img src="../../../../assets/img/marker.svg"><span>Геолокация</span></div>
-            </a>
-          </li>
-          <hr>
-          <input type="file" style="display: none" accept="image/*" id="file-uploader" (change)="onUpload($event)">
-          <li>
-            <label for="file-uploader" class="upload-photo-img" (click)="hideDropUpMenu()">
-              <img src="../../../../assets/img/camera.png"><span>Фото</span>
-            </label>
-          </li>
-        </ul>
-      </div>
+      <ul class="drop-up" id="dropUp">
+        <li>
+          <a (click)="goToGeoLocation()">
+            <div class="map-img"><img src="../../../../assets/img/marker.svg"><span>Геолокация</span></div>
+          </a>
+        </li>
+        <hr>
+        <input type="file" style="display: none" accept="image/*" id="file-uploader" (change)="onUpload($event)">
+        <li>
+          <label for="file-uploader" class="upload-photo-img" (click)="hideDropUpMenu()">
+            <img src="../../../../assets/img/camera.png"><span>Фото</span>
+          </label>
+        </li>
+      </ul>
     </div>
   </div>
 </div>
