@@ -31,16 +31,16 @@ export class CommonService {
   connectionEvents: EventEmitter = new EventEmitter;
 
   /**
+   * Logged in web socket
+   * @type {boolean}
+   */
+  logged = false;
+
+  /**
    * WebSocket asterisk url
    * @type {string}
    */
   private connectionUrl = 'ws://127.0.0.1:9515/';
-
-  /**
-   * Maximum connection tries for creation
-   * @type {number}
-   */
-  private tries = 5;
 
   /**
    * Main url to get and post data
@@ -65,6 +65,7 @@ export class CommonService {
       that.storage.setItem('asterisk', JSON.stringify(data));
     });
     this.connectionEvents.on('logged', function (data) {
+      that.logged = true;
       console.log('Successfully logged');
     });
     // Connect to web socket
@@ -122,7 +123,7 @@ export class CommonService {
 
     this.connection.onclose = function () {
       console.log('Connection is closed, try to reconnect in 10 sec');
-      if (tries < that.tries) {
+      if (tries < 5) {
         setTimeout(function () {
           that.createConnection(tries + 1);
         }, 10000);

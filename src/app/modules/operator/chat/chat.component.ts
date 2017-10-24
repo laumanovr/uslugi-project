@@ -25,12 +25,9 @@ export class ChatComponent implements OnInit, OnDestroy {
   TYPING = 'Печатает...';
 
   /**
-   * @type {[{id: string; who: string; type: string; content: string; date: Date; sent: boolean; read: boolean}]}
+   * @type {[{id: string; who: string; type: string; content: string; date: string; sent: boolean; read: boolean}]}
    */
-  messages = [
-    {id: '123', who: this.CLIENT, type: 'text', content: 'Текст клиента', date: new Date(), sent: true, read: true},
-    {id: '5', who: this.OPERATOR, type: 'text', content: 'Текст оператора', date: new Date(), sent: true, read: true}
-  ];
+  messages = [];
 
   /**
    * @type {string} Operator name
@@ -49,12 +46,6 @@ export class ChatComponent implements OnInit, OnDestroy {
   service = null;
 
   /**
-   * Chat id
-   * @type {number}
-   */
-  id = null;
-
-  /**
    * @param common
    */
 
@@ -67,24 +58,22 @@ export class ChatComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const that = this;
     this.service = this.common.storage.getItem('serviceId');
-    this.common.connectionEvents.on('chatInited', function (data) {
-      that.id = data.id;
-    });
+
     this.common.connectionEvents.on('text', function (data) {
       that.messages.push(data);
     });
     this.common.connectionEvents.on('error', function (data) {
       console.log(data);
     });
-    this.common.connectionEvents.on('logged', function () {
-      console.log('Try init chat');
-      that.common.connection.send(JSON.stringify({
-        action: 'initChat',
-        data: {
-          context: that.service
-        }
-      }));
-    });
+
+    if (this.common.logged) {
+      this.initChat();
+    } else {
+      setTimeout(function () {
+        that.initChat();
+      }, 2000);
+    }
+
     this.hideDropUpMenu();
   }
 
@@ -106,19 +95,29 @@ export class ChatComponent implements OnInit, OnDestroy {
           date: new Date(),
           sent: true,
           read: true
-        })
+        });
       };
       reader.readAsDataURL(event.target.files[0]);
     }
   }
 
-  sendMessage() {
-    console.log(this.usersMessage);
+  initChat() {
+    const that = this;
+    console.log('Try init chat');
+    this.common.connection.send(JSON.stringify({
+      action: 'initChat',
+      params: {
+        id: that.service
+      }
+    }));
+  }
+
+  sendMessage(type: string = 'text') {
     this.common.connection.send(JSON.stringify({
       action: 'text',
-      data: {
-        id: this.id,
-        context: this.service,
+      params: {
+        chat: this.service,
+        type: type,
         content: this.usersMessage
       }
     }));
