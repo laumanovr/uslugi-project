@@ -68,6 +68,9 @@ export class CommonService {
       that.logged = true;
       console.log('Successfully logged');
     });
+    this.connectionEvents.on('error', function (data) {
+      console.log(data);
+    });
     // Connect to web socket
     this.createConnection();
   }
