@@ -69,17 +69,15 @@ export class ChatComponent implements OnInit, OnDestroy {
     });
     this.common.connectionEvents.on('messages', function (data) {
       that.messages = data.concat(that.messages);
-      that.page -= 1;
+      that.page--;
+
+      if (that.messages.length < 10) {
+        that.loadMessages();
+      }
     });
     this.common.connectionEvents.on('connectedToChat', function (data) {
       that.page = data.page;
-      that.common.connection.send(JSON.stringify({
-        action: 'history',
-        params: {
-          id: that.service,
-          page: that.page
-        }
-      }));
+      that.loadMessages();
     });
 
     if (this.common.logged) {
@@ -124,6 +122,20 @@ export class ChatComponent implements OnInit, OnDestroy {
       action: 'initChat',
       params: {
         id: that.service
+      }
+    }));
+  }
+
+  loadMessages() {
+    if (this.page < 1) {
+      return;
+    }
+
+    this.common.connection.send(JSON.stringify({
+      action: 'history',
+      params: {
+        id: this.service,
+        page: this.page
       }
     }));
   }
