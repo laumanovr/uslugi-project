@@ -46,9 +46,14 @@ export class ChatComponent implements OnInit, OnDestroy {
   service = null;
 
   /**
+   * Current page
+   * @type {number}
+   */
+  page: number;
+
+  /**
    * @param common
    */
-
   imageUrl: string;
   usersMessage: string;
 
@@ -63,7 +68,18 @@ export class ChatComponent implements OnInit, OnDestroy {
       that.messages.push(data);
     });
     this.common.connectionEvents.on('messages', function (data) {
-      data.concat(that.messages);
+      that.messages = data.concat(that.messages);
+      that.page -= 1;
+    });
+    this.common.connectionEvents.on('connectedToChat', function (data) {
+      that.page = data.page;
+      that.common.connection.send(JSON.stringify({
+        action: 'history',
+        params: {
+          id: that.service,
+          page: that.page
+        }
+      }));
     });
 
     if (this.common.logged) {
