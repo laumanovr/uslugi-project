@@ -40,7 +40,7 @@ export class CommonService {
    * WebSocket asterisk url
    * @type {string}
    */
-  private connectionUrl = 'ws://127.0.0.1:9515/';
+  private connectionUrl = 'wss://pbx.minifets.info:9515/';
 
   /**
    * Main url to get and post data
