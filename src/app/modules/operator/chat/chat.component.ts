@@ -79,6 +79,10 @@ export class ChatComponent implements OnInit, OnDestroy {
       that.page = data.page;
       that.loadMessages();
     });
+    this.common.connectionEvents.on('operatorConnected', function (data) {
+      that.name = data.name;
+      that.status = data.status;
+    });
 
     if (this.common.logged) {
       this.initChat();
