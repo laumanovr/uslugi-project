@@ -100,16 +100,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     if (event.target.files && event.target.files[0]) {
       let reader = new FileReader();
       reader.onloadend = (e: any) => {
-        this.imageUrl = e.target.result;
-        this.messages.push({
-          id: '',
-          who: this.CLIENT,
-          type: 'image',
-          content: this.imageUrl,
-          date: new Date(),
-          sent: true,
-          read: true
-        });
+        this.sendMessage('image', e.target.result);
       };
       reader.readAsDataURL(event.target.files[0]);
     }
@@ -140,13 +131,13 @@ export class ChatComponent implements OnInit, OnDestroy {
     }));
   }
 
-  sendMessage(type: string = 'text') {
+  sendMessage(type: string = 'text', content: string = null) {
     this.common.connection.send(JSON.stringify({
       action: 'text',
       params: {
         chat: this.service,
         type: type,
-        content: this.usersMessage
+        content: content || this.usersMessage
       }
     }));
   }
