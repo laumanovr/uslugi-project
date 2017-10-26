@@ -15,11 +15,11 @@
       <p class="chat-time">Сегодня</p>
 
       <div class="dialog" *ngFor="let i of messages">
-        <ng-container *ngIf="i.who === 'operator'">
+        <ng-container *ngIf="i.who === OPERATOR">
           <p class="message-time">{{i.date.date | date:'shortTime'}}</p>
           <!--<p class="message-time">10:50</p>-->
-          <p class="chat-bubble" *ngIf="i.type === 'text'">{{i.content}}</p>
-          <p class="chat-bubble" *ngIf="i.type === 'image'"><img src="{{i.content}}"/></p>
+          <p class="chat-bubble" *ngIf="i.type === TYPE_TEXT">{{i.content}}</p>
+          <p class="chat-bubble" *ngIf="i.type === TYPE_IMAGE"><img src="{{i.content}}"/></p>
           <div *ngIf="i.type === 'desc'">
             <p class="message-title">Описание:</p>
             <p>{{i.content.desc}}</p>
@@ -34,7 +34,7 @@
           </div>
         </ng-container>
         <div class="row message-wrap-2">
-          <ng-container *ngIf="i.who === 'client' ">
+          <ng-container *ngIf="i.who === CLIENT">
             <p class="message-time">{{i.date | date:'shortTime'}}</p>
             <!--<p class="message-time">10:50</p>-->
             <p class="chat-bubble-2" *ngIf="i.type === 'text'">{{i.content}}</p>

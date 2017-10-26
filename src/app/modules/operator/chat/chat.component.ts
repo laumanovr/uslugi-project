@@ -17,6 +17,10 @@ export class ChatComponent implements OnInit, OnDestroy {
   OPERATOR = 'operator';
   CLIENT = 'client';
 
+  TYPE_TEXT = 'text';
+  TYPE_IMAGE = 'image';
+  TYPE_SUBMIT = 'submit';
+
   /**
    * Constants for user statuses
    */
@@ -66,6 +70,12 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.service = this.common.storage.getItem('serviceId');
 
     this.common.connectionEvents.on('text', function (data) {
+      if (data.type = $this.TYPE_SUBMIT) {
+        if (data.content === null) {
+          // Запрос на crm
+        }
+      }
+
       $this.messages.push(data);
     });
     this.common.connectionEvents.on('messages', function (data) {
@@ -152,6 +162,17 @@ export class ChatComponent implements OnInit, OnDestroy {
         chat: this.service,
         type: type,
         content: content || this.usersMessage
+      }
+    }));
+  }
+
+  changeMessage(id: string, content: any) {
+    this.common.connection.send(JSON.stringify({
+      action: 'editText',
+      params: {
+        chat: this.service,
+        id: id,
+        content: content
       }
     }));
   }
