@@ -23,12 +23,14 @@ export class OrderDescComponent implements OnInit {
     console.log(this.selectedOrder);
   }
 
+  // /------------------------------/
   onAcceptOrder(id) {
     const url = 'updateorder' + '&orderid=' + id + '&status=accepted';
     this.common.get(url).subscribe(data => {
-
+      console.log(data);
     });
   }
+// /------------------------------/
 
   onClose() {
     this.modalClose.emit(true);

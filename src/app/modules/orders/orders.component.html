@@ -1,3 +1,5 @@
+<preloader *ngIf="is_loading"></preloader>
+
 <div class="row main">
   <!--Nav bar-->
   <div class="nav-bar">
@@ -13,12 +15,17 @@
 
     <!--Not authorized notification-->
     <div *ngIf="noOrders" class="authorized">
+      <p class="notif-title">У вас нет заказов</p>
+    </div>
+
+    <div *ngIf="not_logged_in" class="authorized">
       <p class="notif-title">Вход в систему</p>
       <p class="notif-text m-t-20">Для просмотра заказов необходимо авторизоваться</p>
       <button class="btn btn-orange m-t-20" (click)="onClickAuth()">Войти</button>
     </div>
 
     <!--Content-->
+    <ng-container *ngIf="!not_logged_in">
     <div *ngIf="!noOrders">
       <!--Content nav bar-->
       <div class="row list-nav-cont">
@@ -61,27 +68,16 @@
             <button class="order-btn" (click)="onClickDesc(order)">Подробнее</button>
 
             <div class="row order-btn-con">
-              <button class="order-btn1">Написать</button>
+              <button class="order-btn1" (click)="onRedirectToChat(order.id)">Написать</button>
               <button class="order-btn2" (click)="modal = true">Позвонить</button>
             </div>
 
-            <div class="row order-not-accept" *ngIf="order.status === 'not_accepted'"
-                 (click)="onClickDesc(order)">
-              <i class="material-icons info-icon">info_outline</i>
-              <p>Требуется ваше подтверждение</p>
-            </div>
 
             <div class="row order-accept" *ngIf="order.status === 'accepted'">
               <i class="material-icons info-icon">done</i>
               <p>Заказ принят. Ожидайте исполнения</p>
             </div>
 
-            <div class="row order-aborted" *ngIf="order.status === 'aborted'">
-              <i class="material-icons info-icon">error</i>
-              <p>Заказ отменен</p>
-            </div>
-
-            <button class="btn m-10" (click)="onCompleteOrder(order.id)">Завершить (для тестов)</button>
 
           </div>
         </div>
@@ -133,6 +129,7 @@
       </div>
 
     </div>
+    </ng-container>
   </div>
 </div>
 
