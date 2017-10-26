@@ -78,6 +78,15 @@ export class ChatComponent implements OnInit, OnDestroy {
       console.log(data);
       $this.messages.push(data);
     });
+    this.common.connectionEvents.on('updateText', function (data) {
+      const index = $this.messages.findIndex(function (message) {
+        return message.id === data.id;
+      });
+
+      if (-1 !== index) {
+        $this.messages[index] = data;
+      }
+    });
     this.common.connectionEvents.on('messages', function (data) {
       $this.messages = data.concat($this.messages);
       $this.page--;
