@@ -66,18 +66,14 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    console.log('order-id ' + this.common.currentOrderId);
     const $this = this;
     this.service = this.common.storage.getItem('serviceId');
 
     this.common.connectionEvents.on('text', function (data) {
-      if (data.type === $this.TYPE_SUBMIT) {
-        if (data.content === null) {
-          // Запрос на crm
-        }
-      }
-      console.log(data);
-      $this.messages.push(data);
+        $this.addLocalMessage(data);
     });
+
     this.common.connectionEvents.on('updateText', function (data) {
       const index = $this.messages.findIndex(function (message) {
         return message.id === data.id;
@@ -88,13 +84,15 @@ export class ChatComponent implements OnInit, OnDestroy {
       }
     });
     this.common.connectionEvents.on('messages', function (data) {
-      $this.messages = data.concat($this.messages);
+      for (let i = data.length - 1; i >= 0; i--){
+        $this.addLocalMessage(data[i], 'up');
+      }
       $this.page--;
-
       if ($this.messages.length < 10) {
         $this.loadMessages();
       }
     });
+
     this.common.connectionEvents.on('connectedToChat', function (data) {
       $this.page = data.page;
       $this.loadMessages();
@@ -120,6 +118,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.common.connectionEvents.removeAllListeners('messages');
     this.common.connectionEvents.removeAllListeners('connectedToChat');
     this.common.connectionEvents.removeAllListeners('operatorConnected');
+    this.common.connectionEvents.removeAllListeners('updateText');
   }
 
   onUpload(event) {
@@ -184,6 +183,26 @@ export class ChatComponent implements OnInit, OnDestroy {
         content: content
       }
     }));
+  }
+
+  addLocalMessage(data, position = 'down'){
+    if (data.type === this.TYPE_SUBMIT) {
+      console.log(data.content, data.content === undefined);
+      if (data.content === undefined) {
+        const url = 'getOrders&type=active&id=' + 1324;
+        this.common.get(url).subscribe(resp => {
+          data.crm = resp.json()[1][0];
+
+          console.log(data.crm);
+
+        })
+      }
+    }
+    if(position === 'down'){
+      this.messages.push(data);
+    }else{
+      this.messages.unshift(data);
+    }
   }
 
   goToGeoLocation() {
