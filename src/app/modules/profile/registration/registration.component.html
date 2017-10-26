@@ -48,7 +48,7 @@
 
     <p class="reg-pop-counter" *ngIf="!smsRepeat">00:{{nullDigit}}{{countdown}}</p>
 
-    <button class="reg-pop-btn" *ngIf="smsRepeat">Отправить код заново</button>
+    <button class="reg-pop-btn" *ngIf="smsRepeat" (click)="onClickSendRepeat()">Отправить код заново</button>
 
     <button class="btn-orange" (click)="onNext()">Далее</button>
   </div>
