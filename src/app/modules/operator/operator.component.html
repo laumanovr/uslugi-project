@@ -15,69 +15,17 @@
       </div>
     </a>
 
-    <div class="content">
-      <p class="oper-time">Сегодня</p>
+    <div class="content" *ngFor="let dialog of oldDialogs">
+      <!--<p class="oper-time">Сегодня</p>-->
 
-      <div class="chat">
+      <div class="chat" (click)="onRedirectToHistoryDialog(dialog.message.chat)">
         <img class="oper-photo" src="">
         <div class="m-l-20">
-          <p class="chat-title-2">Ремонт бойлера и замена смесителя</p>
-          <p class="chat-desc">Все готово для оформления заказа. Если</p>
+          <p class="chat-title-2">{{dialog.message.content}}</p>
+          <p class="chat-desc"></p>
         </div>
       </div>
-
-      <div class="chat">
-        <img class="oper-photo" src="">
-        <div class="m-l-20">
-          <p class="chat-title">Ремонт бойлера и замена смесителя</p>
-          <p class="chat-desc">Все готово для оформления заказа. Если</p>
-        </div>
-      </div>
-
-      <p class="oper-time">02.08.2017</p>
-
-      <div class="chat">
-        <img class="oper-photo" src="">
-        <div class="m-l-20">
-          <p class="chat-title">Ремонт бойлера и замена смесителя</p>
-          <p class="chat-desc">Все готово для оформления заказа. Если</p>
-        </div>
-      </div>
-
-      <div class="chat">
-        <img class="oper-photo" src="">
-        <div class="m-l-20">
-          <p class="chat-title">Ремонт бойлера и замена смесителя</p>
-          <p class="chat-desc">Все готово для оформления заказа. Если</p>
-        </div>
-      </div>
-
-      <div class="chat">
-        <img class="oper-photo" src="">
-        <div class="m-l-20">
-          <p class="chat-title">Ремонт бойлера и замена смесителя</p>
-          <p class="chat-desc">Все готово для оформления заказа. Если</p>
-        </div>
-      </div>
-
-      <div class="chat">
-        <img class="oper-photo" src="">
-        <div class="m-l-20">
-          <p class="chat-title">Ремонт бойлера и замена смесителя</p>
-          <p class="chat-desc">Все готово для оформления заказа. Если</p>
-        </div>
-      </div>
-
-      <div class="chat">
-        <img class="oper-photo" src="">
-        <div class="m-l-20">
-          <p class="chat-title">Ремонт бойлера и замена смесителя</p>
-          <p class="chat-desc">Все готово для оформления заказа. Если</p>
-        </div>
-      </div>
-
     </div>
 
   </div>
-
 </div>
