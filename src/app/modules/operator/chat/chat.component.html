@@ -36,10 +36,9 @@
         <div class="row message-wrap-2">
           <ng-container *ngIf="i.who === CLIENT">
             <p class="message-time">{{i.date | date:'shortTime'}}</p>
-            <!--<p class="message-time">10:50</p>-->
-            <p class="chat-bubble-2" *ngIf="i.type === 'text'">{{i.content}}</p>
+            <p class="chat-bubble-2" *ngIf="i.type === TYPE_TEXT">{{i.content}}</p>
             <div class="bubble-img">
-              <p class="chat-bubble-2" *ngIf="i.type === 'image'"><img src="{{i.content}}"/></p>
+              <p class="chat-bubble-2" *ngIf="i.type === TYPE_IMAGE"><img src="{{i.content}}"/></p>
             </div>
             <div *ngIf="i.type === 'desc'">
               <p class="message-title">Описание:</p>
