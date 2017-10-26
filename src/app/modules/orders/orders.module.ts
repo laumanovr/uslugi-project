@@ -5,6 +5,8 @@ import {OrdersComponent} from './orders.component';
 import {NavBarModule} from '../../shared/nav-bar/nav-bar.module';
 import {FormsModule} from '@angular/forms';
 import {OrderDescModule} from "../../shared/order-desc/order-desc.module";
+import {PreloaderModule} from "../preloader/preloader.module";
+
 
 @NgModule({
   imports: [
@@ -12,7 +14,8 @@ import {OrderDescModule} from "../../shared/order-desc/order-desc.module";
     OrdersRouting,
     NavBarModule,
     FormsModule,
-    OrderDescModule
+    OrderDescModule,
+    PreloaderModule
   ],
   declarations: [
     OrdersComponent,
