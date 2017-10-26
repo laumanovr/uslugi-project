@@ -12,6 +12,7 @@ export class CommonService {
   password = false;
 
   tempUser = {};
+  currentOrderId: any;
 
   /**
    * Local storage
@@ -47,6 +48,7 @@ export class CommonService {
    * @type {string}
    */
   private mainUrl = 'https://usluga.namba1.co/api.php?todo=';
+  private sendImageUrl = 'https://usluga.namba1.co/api.php?';
 
   private header = new Headers({
     'Content-Type': 'application/x-www-form-urlencoded'
@@ -88,6 +90,11 @@ export class CommonService {
   post(urlPart: string, body: string) {
     const url = this.mainUrl + urlPart;
     return this.http.post(url, body, this.options);
+  }
+
+  sendImage(urlPart, formData){
+    const url = this.sendImageUrl + urlPart;
+    return this.http.post(url, formData);
   }
 
   /**
