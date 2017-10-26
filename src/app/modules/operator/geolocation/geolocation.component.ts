@@ -13,6 +13,7 @@ declare const google: any;
 export class GeolocationComponent implements OnInit {
 
   address: string;
+  service = null;
 
   private geocoder;
   private infoWindow;
@@ -28,6 +29,7 @@ export class GeolocationComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.service = this.common.storage.getItem('serviceId');
     this.mapInit();
   }
 
@@ -43,6 +45,14 @@ export class GeolocationComponent implements OnInit {
    */
   onClickOk() {
     this.common.geoAddress = this.address;
+    this.common.connection.send(JSON.stringify({
+      action: 'text',
+      params: {
+        chat: this.service,
+        type: 'text',
+        content: this.common.geoAddress
+      }
+    }));
     this.location.back();
   }
 
