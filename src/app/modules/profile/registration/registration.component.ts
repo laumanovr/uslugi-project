@@ -80,6 +80,12 @@ export class RegistrationComponent implements OnInit, OnDestroy {
     this.countDownStart();
   }
 
+  onClickSendRepeat(){
+    this.smsRepeat = false;
+    this.smsSend();
+    this.countDownStart();
+  }
+
   onNext() {
     const url = 'checkSms&code=' + this.codeValue + '&mobile=' + this.phoneValue;
     this.subscriptions.push(this.common.get(url).subscribe(data => {
