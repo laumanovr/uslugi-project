@@ -27,4 +27,8 @@ export class ChooseTypeComponent implements OnInit {
   onClick() {
     this.router.navigate(['master-call']);
   }
+
+  onClickOperator(){
+    this.router.navigate(['chat']);
+  }
 }
