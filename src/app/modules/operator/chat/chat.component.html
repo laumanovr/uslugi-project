@@ -2,7 +2,9 @@
   <div class="content-wrapper">
     <!--Header-->
     <div class="operator-header">
-      <a (click)="goToMainPage()"><div class="back-icon"><img src="../../../../assets/img/arrow-back.png"></div></a>
+      <a (click)="goToMainPage()">
+        <div class="back-icon"><img src="../../../../assets/img/arrow-back.png"></div>
+      </a>
       <img class="operator-photo" src="">
       <div class="operator-info">
         <p class="operator-title">Оператор {{name}}</p>
@@ -16,23 +18,27 @@
 
       <div class="dialog" *ngFor="let i of messages">
         <ng-container *ngIf="i.who === OPERATOR">
-          <p class="message-time">{{i.date | date:'shortTime'}}</p>
-          <!--<p class="message-time">10:50</p>-->
+          <p class="message-time-oper">{{i.date | date:'shortTime'}}</p>
           <p class="chat-bubble" *ngIf="i.type === TYPE_TEXT">{{i.content}}</p>
           <p class="chat-bubble" *ngIf="i.type === TYPE_IMAGE"><img src="{{i.content}}"/></p>
-          <div *ngIf="i.type === 'desc'">
-            <p class="message-title">Описание:</p>
-            <p>{{i.content.desc}}</p>
-            <p class="message-title m-t-20">Адрес:</p>
-            <p>{{i.content.address}}</p>
-            <p class="message-title m-t-20">Дата:</p>
-            <p>{{i.content.date}}</p>
-            <p class="message-title m-t-20">Время:</p>
-            <p>{{i.content.time}}</p>
-            <p class="message-title m-t-20">Примерная стоимость:</p>
-            <p class="m-b-10">{{i.content.price}} </p>
+
+          <div *ngIf="i.type === TYPE_SUBMIT && i.content === undefined">
+              <p class="message-title">Описание:</p>
+              <p>{{i.crm.desc}}</p>
+              <p class="message-title m-t-20">Адрес:</p>
+              <p>{{i.crm.address}}</p>
+              <p class="message-title m-t-20">Дата:</p>
+              <p>{{i.crm.orderDate}}</p>
+              <p class="message-title m-t-20">Время:</p>
+              <p>{{i.crm.time}}</p>
+              <p class="message-title m-t-20">Примерная стоимость:</p>
+              <p class="m-b-10">{{i.crm.total}} </p>
+            <p class="chat-choose">Вы хотите подтвердить заказ?</p>
+            <button class="chat-btn-2" (click)="changeMessage(i.id, true)">Подтвердить заказ</button>
+            <button class="chat-btn-2" (click)="changeMessage(i.id, false)">Отменить заказ</button>
           </div>
         </ng-container>
+
         <div class="row message-wrap-2">
           <ng-container *ngIf="i.who === CLIENT">
             <p class="message-time">{{i.date | date:'shortTime'}}</p>
@@ -55,13 +61,8 @@
           </ng-container>
         </div>
       </div>
-      <!--<p class="chat-choose">Как вы хотите переговорить</p>-->
-      <!--<button class="chat-btn-1">Обсудить по телефону</button>-->
-      <!--<button  class="chat-btn-1">Обсудить в чате</button>-->
 
 
-      <!--<p class="chat-choose">Вы хотите подтвердить заказ?</p>-->
-      <!--<button class="chat-btn-2">Подтвердить заказ</button>-->
     </div>
     <div class="write-message">
       <input class="message-input" [(ngModel)]="usersMessage" #users="ngModel" placeholder="Написать сообщение...">
@@ -75,7 +76,8 @@
           </a>
         </li>
         <hr>
-        <input type="file" style="display: none" accept="image/*" name="filename" id="file-uploader" (change)="onUpload($event)">
+        <input type="file" style="display: none" accept="image/*" name="filename" id="file-uploader"
+               (change)="onUpload($event)">
         <li>
           <label for="file-uploader" class="upload-photo-img" (click)="hideDropUpMenu()">
             <img src="../../../../assets/img/camera.png"><span>Фото</span>
