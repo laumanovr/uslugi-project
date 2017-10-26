@@ -16,7 +16,7 @@
 
       <div class="dialog" *ngFor="let i of messages">
         <ng-container *ngIf="i.who === OPERATOR">
-          <p class="message-time">{{i.date.date | date:'shortTime'}}</p>
+          <p class="message-time">{{i.date | date:'shortTime'}}</p>
           <!--<p class="message-time">10:50</p>-->
           <p class="chat-bubble" *ngIf="i.type === TYPE_TEXT">{{i.content}}</p>
           <p class="chat-bubble" *ngIf="i.type === TYPE_IMAGE"><img src="{{i.content}}"/></p>

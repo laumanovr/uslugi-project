@@ -70,12 +70,12 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.service = this.common.storage.getItem('serviceId');
 
     this.common.connectionEvents.on('text', function (data) {
-      if (data.type = $this.TYPE_SUBMIT) {
+      if (data.type === $this.TYPE_SUBMIT) {
         if (data.content === null) {
           // Запрос на crm
         }
       }
-
+      console.log(data);
       $this.messages.push(data);
     });
     this.common.connectionEvents.on('messages', function (data) {
