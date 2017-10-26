@@ -11,10 +11,6 @@
     </div>
 
     <p class="rev-title">Детали заказа</p>
-    <div class="rev-desc" *ngIf="selectedOrder.status === 'not_accepted'">
-      <p class="rev-desc-text">Если вы ознакомились и согласны с деталями заказа нажмите кнопку "Подтвердить"</p>
-      <button class="rev-desc-btn btn-orange" (click)="onAcceptOrder(selectedOrder.id)">Подтвердить</button>
-    </div>
 
     <!--Master-->
     <p class="rev-title-2">Исполнитель</p>
