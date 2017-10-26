@@ -1,6 +1,6 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {CommonService} from '../../services/common.service';
+import {Component, OnDestroy, OnInit} from "@angular/core";
+import {Router} from "@angular/router";
+import {CommonService} from "../../services/common.service";
 
 @Component({
   selector: 'app-operator',
@@ -9,19 +9,24 @@ import {CommonService} from '../../services/common.service';
 })
 export class OperatorComponent implements OnInit, OnDestroy {
 
-  constructor(private router: Router, private common: CommonService) {}
+  oldDialogs: any;
+
+  constructor(private router: Router, private common: CommonService) {
+  }
 
   ngOnInit() {
-    const $this = this;
-    this.common.connectionEvents.on('listChats', function (data) {
-      console.log(data);
+    // const $this = this;
+    this.common.connectionEvents.on('listChats', (data) => {
+      // console.log(data);
+      this.oldDialogs = data;
+      console.log(this.oldDialogs);
     });
 
     if (this.common.logged) {
       this.loadChats();
     } else {
-      setTimeout(function () {
-        $this.loadChats();
+      setTimeout(() => {
+        this.loadChats();
       }, 2000);
     }
   }
@@ -40,5 +45,10 @@ export class OperatorComponent implements OnInit, OnDestroy {
       action: 'listChats',
       params: {}
     }));
+  }
+
+  onRedirectToHistoryDialog(serviceId) {
+    this.common.storage.setItem('serviceId', serviceId);
+    this.router.navigate(['chat']);
   }
 }
