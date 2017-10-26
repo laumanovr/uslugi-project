@@ -54,7 +54,8 @@ export class ChatComponent implements OnInit, OnDestroy {
   /**
    * @param common
    */
-  imageUrl: string;
+
+  image: string;
   usersMessage: string;
 
   constructor(private common: CommonService, private router: Router) {
@@ -100,11 +101,17 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   onUpload(event) {
-    this.imageUrl = '';
     if (event.target.files && event.target.files[0]) {
       let reader = new FileReader();
       reader.onloadend = (e: any) => {
         this.sendMessage('image', e.target.result);
+
+        let formData = new FormData();
+        formData.append('filename', event.target.files[0]);
+        const url = 'orderimage=' + this.common.currentOrderId + '&filename=' + event.target.files[0].name;
+        this.common.sendImage(url, formData).subscribe(data => {
+          console.log(data)
+        });
       };
       reader.readAsDataURL(event.target.files[0]);
     }
@@ -148,6 +155,10 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   goToGeoLocation() {
     this.router.navigate(['geolocation'])
+  }
+
+  goToMainPage(){
+    this.router.navigate([''])
   }
 
   hideDropUpMenu() {
