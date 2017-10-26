@@ -15,6 +15,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
    * Var to show/hide modal the authorized window
    */
   noOrders = true;
+  not_logged_in = true;
 
   /**
    * Var to show/hide modal the modal window
@@ -53,6 +54,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.common.fromOrderCreate = false;
     this.getOrdersFromApi('getOrders&type=active');
+    this.checkUserLoggedIn();
   }
 
   ngOnDestroy() {
@@ -61,22 +63,37 @@ export class OrdersComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Todo: implement later
-  onAbortOrder(id) {
-    const url = 'updateorder' + '&orderid=' + id + '&status=aborted';
-    this.common.get(url).subscribe(data => {
-      console.log(data.json());
-      this.getOrdersFromApi('getOrders&type=active');
-    });
+  checkUserLoggedIn(){
+    if (this.common.storage.getItem('user') && JSON.parse(this.common.storage.getItem('user')).name && JSON.parse(this.common.storage.getItem('user')).phone){
+      this.not_logged_in = false;
+    }else{
+      this.not_logged_in = true;
+      this.noOrders = false;
+    }
   }
+  //
+  // // Todo: implement later
+  // onAbortOrder(id) {
+  //   const url = 'updateorder' + '&orderid=' + id + '&status=aborted';
+  //   this.common.get(url).subscribe(data => {
+  //     console.log(data.json());
+  //     this.getOrdersFromApi('getOrders&type=active');
+  //   });
+  // }
+  //
+  // // Todo: delete later, made for tests
+  // onCompleteOrder(id) {
+  //   const url = 'updateorder' + '&orderid=' + id + '&status=completed';
+  //   this.common.get(url).subscribe(data => {
+  //     console.log(data.json());
+  //     this.getOrdersFromApi('getOrders&type=active');
+  //   });
+  // }
 
-  // Todo: delete later, made for tests
-  onCompleteOrder(id) {
-    const url = 'updateorder' + '&orderid=' + id + '&status=completed';
-    this.common.get(url).subscribe(data => {
-      console.log(data.json());
-      this.getOrdersFromApi('getOrders&type=active');
-    });
+  onRedirectToChat(orderId){
+    this.common.currentOrderId = orderId;
+    this.router.navigate(['chat']);
+    console.log('orderId ' + this.common.currentOrderId);
   }
 
   /**
@@ -177,6 +194,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
 
   onModalClose() {
     this.modalDesc = false;
+    document.body.style.overflow = 'auto';
   }
 
   private getOrdersFromApi(url) {
@@ -194,7 +212,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
     for (const order of orders) {
       if (order.status === 'completed') {
         this.ordersCompleted.push(order);
-      } else {
+      } else if(order.status === 'accepted'){
         this.orders.push(order);
       }
     }
