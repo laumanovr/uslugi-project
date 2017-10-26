@@ -1,21 +1,44 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {CommonService} from '../../services/common.service';
 
 @Component({
   selector: 'app-operator',
   templateUrl: './operator.component.html',
   styleUrls: ['./operator.component.scss']
 })
-export class OperatorComponent implements OnInit {
+export class OperatorComponent implements OnInit, OnDestroy {
 
-  constructor(private router: Router){}
+  constructor(private router: Router, private common: CommonService) {}
 
   ngOnInit() {
+    const $this = this;
+    this.common.connectionEvents.on('listChats', function (data) {
+      console.log(data);
+    });
 
+    if (this.common.logged) {
+      this.loadChats();
+    } else {
+      setTimeout(function () {
+        $this.loadChats();
+      }, 2000);
+    }
   }
 
-  onCallOperator(){
-    this.router.navigate(['chat'])
+  ngOnDestroy() {
+    this.common.connectionEvents.removeAllListeners('listChats');
   }
 
+  onCallOperator() {
+    this.router.navigate(['chat']);
+  }
+
+  loadChats() {
+    console.log('Try load chats');
+    this.common.connection.send(JSON.stringify({
+      action: 'listChats',
+      params: {}
+    }));
+  }
 }

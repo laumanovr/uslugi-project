@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import RTCPeerConnection from 'webrtc-adapter';
 import JsSIP from 'jssip';
 import {CommonService} from '../../../services/common.service';
-import {Router} from '@angular/router'
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-chat',
@@ -62,34 +62,34 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    const that = this;
+    const $this = this;
     this.service = this.common.storage.getItem('serviceId');
 
     this.common.connectionEvents.on('text', function (data) {
-      that.messages.push(data);
+      $this.messages.push(data);
     });
     this.common.connectionEvents.on('messages', function (data) {
-      that.messages = data.concat(that.messages);
-      that.page--;
+      $this.messages = data.concat($this.messages);
+      $this.page--;
 
-      if (that.messages.length < 10) {
-        that.loadMessages();
+      if ($this.messages.length < 10) {
+        $this.loadMessages();
       }
     });
     this.common.connectionEvents.on('connectedToChat', function (data) {
-      that.page = data.page;
-      that.loadMessages();
+      $this.page = data.page;
+      $this.loadMessages();
     });
     this.common.connectionEvents.on('operatorConnected', function (data) {
-      that.name = data.name;
-      that.status = data.status;
+      $this.name = data.name;
+      $this.status = data.status;
     });
 
     if (this.common.logged) {
       this.initChat();
     } else {
       setTimeout(function () {
-        that.initChat();
+        $this.initChat();
       }, 2000);
     }
 
@@ -97,7 +97,10 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.common.connectionEvents.removeAllListeners();
+    this.common.connectionEvents.removeAllListeners('text');
+    this.common.connectionEvents.removeAllListeners('messages');
+    this.common.connectionEvents.removeAllListeners('connectedToChat');
+    this.common.connectionEvents.removeAllListeners('operatorConnected');
   }
 
   onUpload(event) {
@@ -118,12 +121,12 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   initChat() {
-    const that = this;
+    const $this = this;
     console.log('Try init chat');
     this.common.connection.send(JSON.stringify({
       action: 'initChat',
       params: {
-        id: that.service
+        id: $this.service
       }
     }));
   }
