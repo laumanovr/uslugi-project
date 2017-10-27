@@ -19,12 +19,11 @@
         <div class="row" (click)="dropdown = !dropdown">
           <p class="dropbtn">Сортировать</p>
           <div [ngClass]="{'drop-icon':!dropdown, 'drop-icon-2':dropdown}"></div>
-        </div>
-
-        <div class="dropdown-content" *ngIf="dropdown">
-          <p class="option" (click)="onSortByRating()">По рейтингу</p>
-          <p class="option" (click)="onSortByPopular()">По популярности</p>
-          <p class="option" (click)="onSortByPrice()">По цене</p>
+          <div class="dropdown-content" *ngIf="dropdown">
+            <p class="option" (click)="onSortByRating()">По рейтингу</p>
+            <p class="option" (click)="onSortByPopular()">По популярности</p>
+            <p class="option" (click)="onSortByPrice()">По цене</p>
+          </div>
         </div>
       </div>
     </div>
