@@ -2,10 +2,10 @@
   <div class="content-wrapper">
     <!--Header-->
     <div class="operator-header">
-      <a (click)="goToMainPage()">
+      <a (click)="goBack()">
         <div class="back-icon"><img src="../../../../assets/img/arrow-back.png"></div>
       </a>
-      <img class="operator-photo" src="">
+      <img class="operator-photo" src="../../../../assets/img/tech-support.jpg">
       <div class="operator-info">
         <p class="operator-title">Оператор {{name}}</p>
         <p class="operator-online">{{status}}</p>
@@ -14,60 +14,51 @@
     </div>
     <!--Content-->
     <div class="chat-wrap" (click)="closeDropUpOuter()">
-      <p class="chat-time">Сегодня</p>
 
-      <div class="dialog" *ngFor="let i of messages">
-        <ng-container *ngIf="i.who === OPERATOR">
-          <p class="message-time-oper">{{i.date | date:'shortTime'}}</p>
-          <p class="chat-bubble" *ngIf="i.type === TYPE_TEXT">{{i.content}}</p>
-          <p class="chat-bubble" *ngIf="i.type === TYPE_IMAGE"><img src="{{i.content}}"/></p>
-
-          <div *ngIf="i.type === TYPE_SUBMIT && i.content === undefined">
-              <p class="message-title">Описание:</p>
-              <p>{{i.crm.desc}}</p>
-              <p class="message-title m-t-20">Адрес:</p>
-              <p>{{i.crm.address}}</p>
-              <p class="message-title m-t-20">Дата:</p>
-              <p>{{i.crm.orderDate}}</p>
-              <p class="message-title m-t-20">Время:</p>
-              <p>{{i.crm.time}}</p>
-              <p class="message-title m-t-20">Примерная стоимость:</p>
-              <p class="m-b-10">{{i.crm.total}} </p>
-            <p class="chat-choose">Вы хотите подтвердить заказ?</p>
-            <button class="chat-btn-2" (click)="changeMessage(i.id, true)">Подтвердить заказ</button>
-            <button class="chat-btn-2" (click)="changeMessage(i.id, false)">Отменить заказ</button>
-          </div>
-        </ng-container>
-
-        <div class="row message-wrap-2">
-          <ng-container *ngIf="i.who === CLIENT">
-            <p class="message-time">{{i.date | date:'shortTime'}}</p>
-            <p class="chat-bubble-2" *ngIf="i.type === TYPE_TEXT">{{i.content}}</p>
-            <div class="bubble-img">
-              <p class="chat-bubble-2" *ngIf="i.type === TYPE_IMAGE"><img src="{{i.content}}"/></p>
+      <div class="all-messages">
+        <div class="dialog" *ngFor="let i of messages">
+          <ng-container *ngIf="i.who === OPERATOR">
+            <div class="bubble-block">
+              <p class="chat-bubble">
+                <span *ngIf="i.type === TYPE_TEXT">{{i.content}}</span>
+                <span class="message-time-oper" *ngIf="i.type !== TYPE_SUBMIT">{{i.date | date:'shortTime'}}</span>
+              </p>
+              <p class="chat-bubble" *ngIf="i.type === TYPE_IMAGE"><img src="{{i.content}}"/></p>
             </div>
-            <div *ngIf="i.type === 'desc'">
-              <p class="message-title">Описание:</p>
-              <p>{{i.content.desc}}</p>
-              <p class="message-title m-t-20">Адрес:</p>
-              <p>{{i.content.address}}</p>
-              <p class="message-title m-t-20">Дата:</p>
-              <p>{{i.content.date}}</p>
-              <p class="message-title m-t-20">Время:</p>
-              <p>{{i.content.time}}</p>
-              <p class="message-title m-t-20">Примерная стоимость:</p>
-              <p class="m-b-10">{{i.content.price}} </p>
+            <div class="submit-window" *ngIf="i.type === TYPE_SUBMIT && i.content === undefined">
+              <p class="message-title">Описание: {{i.crm.desc}}</p>
+              <p class="message-title m-t-20">Адрес: {{i.crm.address}}</p>
+              <p class="message-title m-t-20">Дата: {{i.crm.orderDate}}</p>
+              <p class="message-title m-t-20">Время: {{i.crm.time}}</p>
+              <p class="message-title m-t-20">Примерная стоимость: {{i.crm.total}}</p>
+              <p class="m-b-10"></p>
+              <p class="chat-choose">Вы хотите подтвердить заказ?</p>
+              <button class="chat-btn-2" (click)="changeMessage(i.id, true)">Подтвердить заказ</button>
+              <button class="chat-btn-2" (click)="changeMessage(i.id, false)">Отменить заказ</button>
             </div>
           </ng-container>
+
+          <div class="row message-wrap-2">
+            <ng-container *ngIf="i.who === CLIENT">
+              <div class="chat-bubble-2">
+                <span *ngIf="i.type === TYPE_TEXT">{{i.content}}</span>
+
+              <div class="bubble-img" *ngIf="i.type === TYPE_IMAGE">
+                <img src="{{i.content}}"/>
+              </div>
+              <span class="message-time">{{i.date | date:'shortTime'}}</span>
+              </div>
+            </ng-container>
+          </div>
         </div>
       </div>
-
-
     </div>
     <div class="write-message">
-      <input class="message-input" [(ngModel)]="usersMessage" #users="ngModel" placeholder="Написать сообщение...">
+      <input type="text" (click)="scrollToBottom()" class="message-input" id="user-message-input"
+             [(ngModel)]="usersMessage" #users="ngModel" placeholder="Написать сообщение...">
       <button class="send-message" (click)="sendMessage()"><img src="../../../../assets/img/send-icon.svg"></button>
-      <div class="attach-icon" (click)="toggleDropUp()"><img src="../../../../assets/img/attach-icon.png"></div>
+      <div *ngIf="common.showAttachIcon" class="attach-icon" (click)="toggleDropUp()"><img
+        src="../../../../assets/img/attach-icon.png"></div>
 
       <ul class="drop-up" id="dropUp">
         <li>
