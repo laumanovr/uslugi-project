@@ -14,6 +14,8 @@ export class GeolocationComponent implements OnInit {
 
   address: string;
   service = null;
+  mapLat: any;
+  mapLng: any;
 
   private geocoder;
   private infoWindow;
@@ -53,6 +55,15 @@ export class GeolocationComponent implements OnInit {
         content: this.common.geoAddress
       }
     }));
+
+    const url = 'updateorder' + '&orderid=' + this.common.currentOrderId;
+    const body = '&serviceid=' + this.service + '&maplat=' + this.mapLat + '&maplng=' + this.mapLng +
+      '&address=' + this.common.geoAddress;
+
+    this.common.post(url, body).subscribe(resp => {
+      console.log(resp);
+    });
+
     this.location.back();
   }
 
@@ -122,6 +133,8 @@ export class GeolocationComponent implements OnInit {
         this.cdr.detectChanges();
       }
     });
+    this.mapLat = latlng.lat;
+    this.mapLng = latlng.lng;
   }
 
   /**
