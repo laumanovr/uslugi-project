@@ -7,6 +7,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {ChatComponent} from './chat/chat.component';
 import {GeolocationComponent} from './geolocation/geolocation.component';
 import {FormsModule} from "@angular/forms";
+import {PreloaderModule} from "../preloader/preloader.module";
 
 const operatorRoutes: Routes = [
   {
@@ -31,10 +32,11 @@ const OperatorRouting = RouterModule.forChild(operatorRoutes);
     OperatorRouting,
     NavBarModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCXExTQqr1dhojneZIObrNyKcII05rZ7ok&language=ru'
+      apiKey: 'AIzaSyAI9h51OE6MDUJPtjMLIvMxmEkGcSkHQVs'
     }),
     NavBarModule,
-    FormsModule
+    FormsModule,
+    PreloaderModule
   ],
   declarations: [OperatorComponent, ChatComponent, GeolocationComponent],
   exports: [OperatorComponent]
