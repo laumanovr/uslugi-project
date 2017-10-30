@@ -11,6 +11,7 @@ import {CodeComponent} from './code/code.component';
 import {ChooseTypeComponent} from './choose-type/choose-type.component';
 import {MasterComponent} from './master/master.component';
 import {MasterDescModule} from '../../shared/master-desc/master-desc.module';
+import {PreloaderModule} from "../preloader/preloader.module";
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import {MasterDescModule} from '../../shared/master-desc/master-desc.module';
     FormsModule,
     NavBarModule,
     MasterDescModule,
-    TextMaskModule
+    TextMaskModule,
+    PreloaderModule
   ],
   declarations: [
     MainComponent,
