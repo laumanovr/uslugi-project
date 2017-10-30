@@ -62,18 +62,26 @@ export class MasterComponent implements OnInit {
 
   private checkFirstCall() {
     if (!this.secondCall) {
-      this.orderCreate();
+      this.orderCreate(event);
       this.secondCall = true;
     }
   }
 
-  private orderCreate() {
+  private orderCreate(event) {
+    this.common.showAttachIcon = true;
     const url = 'createorder';
     const body = '&serviceid=' + this.common.storage.getItem('serviceId') + '&agent=' + this.master.id
       + '&mobile=' + this.common.storage.getItem('orderPhone');
-    this.common.post(url, body).subscribe(data => {
-      this.common.fromMasterPage = true;
-      this.modal = true;
+    this.common.post(url, body).subscribe(resp => {
+      this.common.currentOrderId = resp.json()[2];
+      const createWithOper = document.getElementById('createWithOperator');
+      if (event.target === createWithOper) {
+        this.router.navigate(['chat']);
+      } else {
+        this.common.fromMasterPage = true;
+        this.modal = true;
+      }
+      console.log(resp);
     });
   }
 }
