@@ -10,15 +10,15 @@ import {CommonService} from "../../services/common.service";
 export class OperatorComponent implements OnInit, OnDestroy {
 
   oldDialogs: any;
+  is_loading = true;
 
   constructor(private router: Router, private common: CommonService) {
   }
 
   ngOnInit() {
-    // const $this = this;
     this.common.connectionEvents.on('listChats', (data) => {
-      // console.log(data);
       this.oldDialogs = data;
+      this.is_loading = false;
       console.log(this.oldDialogs);
     });
 
@@ -36,6 +36,7 @@ export class OperatorComponent implements OnInit, OnDestroy {
   }
 
   onCallOperator() {
+    this.common.showAttachIcon = false;
     this.router.navigate(['chat']);
   }
 
@@ -48,6 +49,7 @@ export class OperatorComponent implements OnInit, OnDestroy {
   }
 
   onRedirectToHistoryDialog(serviceId) {
+    this.common.showAttachIcon = false;
     this.common.storage.setItem('serviceId', serviceId);
     this.router.navigate(['chat']);
   }
