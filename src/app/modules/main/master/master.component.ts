@@ -67,7 +67,7 @@ export class MasterComponent implements OnInit {
     }
   }
 
-  private orderCreate(event) {
+   orderCreate(event) {
     this.common.showAttachIcon = true;
     const url = 'createorder';
     const body = '&serviceid=' + this.common.storage.getItem('serviceId') + '&agent=' + this.master.id
