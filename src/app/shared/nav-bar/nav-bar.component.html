@@ -22,11 +22,13 @@
       </li>
     </ul>
   </div>
+  <ng-container *ngIf="!logged_in">
   <div class="log-out m-t-30">
     <a>
-      <button class="log-outbtn" type="submit">Войти</button>
+      <button class="log-outbtn" (click)="onClickLogin()">Войти</button>
     </a>
   </div>
+  </ng-container>
 </div>
 
 <!--Bottom menu-->
