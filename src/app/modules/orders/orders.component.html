@@ -1,4 +1,4 @@
-
+<preloader class="pre_loading" *ngIf="is_loading"></preloader>
 <div class="row main">
   <!--Nav bar-->
   <div class="nav-bar">
@@ -113,7 +113,7 @@
 
             <button class="order-btn" (click)="onClickDesc(orderComp)">Подробнее</button>
             <div class="row order-btn-con">
-              <button class="order-btn1">Написать</button>
+              <button class="order-btn1" (click)="onRedirectToChat(orderComp.id)">Написать</button>
               <button class="order-btn2" (click)="onClickReview(orderComp)" [disabled]="orderComp.stars?.length">
                 Оценить
               </button>
