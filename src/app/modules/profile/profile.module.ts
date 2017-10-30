@@ -9,6 +9,7 @@ import {ProfileComponent} from './profile/profile.component';
 import {LoginComponent} from './login/login.component';
 import {FormsModule} from '@angular/forms';
 import {RegistrationComponent} from './registration/registration.component';
+import {PreloaderModule} from "../preloader/preloader.module";
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import {RegistrationComponent} from './registration/registration.component';
     ProfileRouting,
     NavBarModule,
     FormsModule,
-    TextMaskModule
+    TextMaskModule,
+    PreloaderModule
   ],
   declarations: [
     ProfileComponent,
