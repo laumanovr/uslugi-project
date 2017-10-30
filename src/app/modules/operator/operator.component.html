@@ -1,3 +1,4 @@
+<preloader class="pre_loading" *ngIf="is_loading"></preloader>
 <div class="row main">
   <!--Nav bar-->
   <div class="nav-bar">
@@ -11,6 +12,7 @@
 
     <a (click)="onCallOperator()">
       <div class="tech-support">
+        <img src="../../../../assets/img/tech-support.jpg">
         <div>Тех.поддержка</div>
       </div>
     </a>
@@ -19,7 +21,7 @@
       <!--<p class="oper-time">Сегодня</p>-->
 
       <div class="chat" (click)="onRedirectToHistoryDialog(dialog.message.chat)">
-        <img class="oper-photo" src="">
+        <img class="oper-photo" src="../../../../assets/img/tech-support.jpg">
         <div class="m-l-20">
           <p class="chat-title-2">{{dialog.message.content}}</p>
           <p class="chat-desc"></p>
