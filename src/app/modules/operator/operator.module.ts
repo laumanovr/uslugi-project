@@ -32,7 +32,7 @@ const OperatorRouting = RouterModule.forChild(operatorRoutes);
     OperatorRouting,
     NavBarModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAI9h51OE6MDUJPtjMLIvMxmEkGcSkHQVs'
+      apiKey: 'AIzaSyAI9h51OE6MDUJPtjMLIvMxmEkGcSkHQVs&language=ru'
     }),
     NavBarModule,
     FormsModule,
