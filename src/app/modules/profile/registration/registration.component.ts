@@ -82,6 +82,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
 
   onClickSendRepeat(){
     this.smsRepeat = false;
+    this.countdown = 13;
     this.smsSend();
     this.countDownStart();
   }
