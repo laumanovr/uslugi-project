@@ -14,6 +14,9 @@ export class PasswordCreateComponent implements OnInit, OnDestroy {
   codeValue: string;
   passValue: string;
   subscription: Subscription;
+  countdown = 10;
+  nullDigit: number;
+  smsRepeat = true;
 
   constructor(private location: Location,
               private router: Router,
@@ -21,6 +24,7 @@ export class PasswordCreateComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    console.log('----Phone-Recovery: '+this.common.recoveryPhoneVal);
   }
 
   ngOnDestroy() {
@@ -53,6 +57,37 @@ export class PasswordCreateComponent implements OnInit, OnDestroy {
       this.router.navigate(['choose']);
     }
     this.router.navigate(['profile']);
+  }
+
+  onSendSmsAgain() {
+    const url = 'sendSms&mobile=' + this.common.recoveryPhoneVal;
+    this.subscription = this.common.get(url).subscribe(resp => {
+      if (resp.statusText === 'OK') {
+        // Todo for test
+        alert('смс код: ' + resp.json()[2]);
+        const user = {phone: this.common.recoveryPhoneVal};
+        this.common.storage.setItem('user', JSON.stringify(user));
+        console.log(resp);
+      }
+    });
+
+    this.countDownStart();
+  }
+
+  private countDownStart() {
+    this.countdown = 10;
+    this.smsRepeat = false;
+    const second = 1;
+    const timer = setInterval(() => {
+      this.countdown -= second;
+      if (this.countdown < 10) {
+        this.nullDigit = 0;
+        if (this.countdown <= 0) {
+          this.smsRepeat = true;
+          clearInterval(timer);
+        }
+      }
+    }, 1000);
   }
 
 }
