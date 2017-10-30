@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import * as Icons from '../../utils/icons';
 import {Router} from '@angular/router';
 import {orders} from '../../utils/icons';
+import {CommonService} from "../../services/common.service";
 
 @Component({
   selector: 'app-nav-bar',
@@ -9,6 +10,8 @@ import {orders} from '../../utils/icons';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
+
+  logged_in: boolean;
 
   /**
    * Handler for icons
@@ -31,7 +34,7 @@ export class NavBarComponent implements OnInit {
   supportIcon: HTMLElement;
   supportIconBottom: HTMLElement;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private common: CommonService) {
   }
 
   ngOnInit() {
@@ -48,6 +51,16 @@ export class NavBarComponent implements OnInit {
     this.supportIcon = document.getElementById('supportIcon');
     this.supportIconBottom = document.getElementById('supportIconBottom');
     this.checkLocation();
+    this.checkUserLoggedIn();
+  }
+
+
+  checkUserLoggedIn(){
+    if(this.common.storage.getItem('user') && JSON.parse(this.common.storage.getItem('user')).name && JSON.parse(this.common.storage.getItem('user')).phone){
+      this.logged_in = true;
+    }else{
+      this.logged_in = false;
+    }
   }
 
   /**
@@ -76,6 +89,10 @@ export class NavBarComponent implements OnInit {
    */
   onClickOperator() {
     this.router.navigate(['operator']);
+  }
+
+  onClickLogin(){
+    this.router.navigate(['login']);
   }
 
 
