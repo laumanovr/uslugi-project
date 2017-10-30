@@ -17,6 +17,7 @@
       </div>
     </a>
 
+    <ng-container *ngIf="logged_in">
     <div class="content" *ngFor="let dialog of oldDialogs">
       <!--<p class="oper-time">Сегодня</p>-->
 
@@ -28,6 +29,6 @@
         </div>
       </div>
     </div>
-
+    </ng-container>
   </div>
 </div>
