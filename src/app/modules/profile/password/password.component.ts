@@ -47,6 +47,7 @@ export class PasswordComponent implements OnInit, OnDestroy {
 
   onSendSms() {
     this.phoneVal = this.phoneVal.replace(/[- )(]/g, '');
+    this.common.recoveryPhoneVal = this.phoneVal;
     const url = 'sendSms&mobile=' + this.phoneVal;
     this.subscription = this.common.get(url).subscribe(resp => {
       if (resp.statusText === 'OK') {
