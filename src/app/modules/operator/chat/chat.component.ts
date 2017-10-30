@@ -1,8 +1,9 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, ElementRef} from '@angular/core';
 import RTCPeerConnection from 'webrtc-adapter';
 import JsSIP from 'jssip';
 import {CommonService} from '../../../services/common.service';
 import {Router} from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-chat',
@@ -59,14 +60,18 @@ export class ChatComponent implements OnInit, OnDestroy {
    * @param common
    */
 
-  image: string;
   usersMessage: string;
 
-  constructor(private common: CommonService, private router: Router) {
-  }
+  constructor(private common: CommonService,
+              private router: Router,
+              private location: Location,
+              private _elementRef: ElementRef
+  ){}
 
   ngOnInit() {
-    console.log('order-id ' + this.common.currentOrderId);
+    console.log('order-id: ' + this.common.currentOrderId);
+    console.log('attachIcon: '+this.common.showAttachIcon);
+
     const $this = this;
     this.service = this.common.storage.getItem('serviceId');
 
@@ -172,6 +177,9 @@ export class ChatComponent implements OnInit, OnDestroy {
         content: content || this.usersMessage
       }
     }));
+
+    (document.getElementById("user-message-input") as HTMLInputElement).value = '';
+    this.scrollToBottom();
   }
 
   changeMessage(id: string, content: any) {
@@ -189,12 +197,10 @@ export class ChatComponent implements OnInit, OnDestroy {
     if (data.type === this.TYPE_SUBMIT) {
       console.log(data.content, data.content === undefined);
       if (data.content === undefined) {
-        const url = 'getOrders&type=active&id=' + 1324;
+        const url = 'getOrders&type=active&id=' + this.common.currentOrderId;
         this.common.get(url).subscribe(resp => {
           data.crm = resp.json()[1][0];
-
           console.log(data.crm);
-
         })
       }
     }
@@ -203,14 +209,16 @@ export class ChatComponent implements OnInit, OnDestroy {
     }else{
       this.messages.unshift(data);
     }
+
+    this.scrollToBottom();
   }
 
   goToGeoLocation() {
     this.router.navigate(['geolocation'])
   }
 
-  goToMainPage(){
-    this.router.navigate([''])
+  goBack(){
+    this.location.back();
   }
 
   hideDropUpMenu() {
@@ -231,6 +239,23 @@ export class ChatComponent implements OnInit, OnDestroy {
     let dropUp = document.getElementById('dropUp');
     if (dropUp.style.display === 'block') {
       dropUp.style.display = 'none';
+    }
+  }
+
+
+  scrollToBottom(): void {
+    if (!this._elementRef.nativeElement.querySelector('.all-messages')) {
+      setTimeout(() => {
+        this.scrollToBottom();
+      }, 150)
+    } else {
+      let allMessages = this._elementRef.nativeElement.querySelector('.all-messages');
+      allMessages.scrollTop = allMessages.scrollHeight;
+      setTimeout(()=>{
+        if (allMessages.scrollTop !== allMessages.scrollHeight) {
+          allMessages.scrollTop = allMessages.scrollHeight;
+        }
+      }, 400);
     }
   }
 
