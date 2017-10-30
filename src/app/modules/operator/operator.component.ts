@@ -11,6 +11,7 @@ export class OperatorComponent implements OnInit, OnDestroy {
 
   oldDialogs: any;
   is_loading = true;
+  logged_in = false;
 
   constructor(private router: Router, private common: CommonService) {
   }
@@ -27,7 +28,15 @@ export class OperatorComponent implements OnInit, OnDestroy {
     } else {
       setTimeout(() => {
         this.loadChats();
-      }, 2000);
+      }, 1000);
+    }
+
+    this.checkUserLoggedIn();
+  }
+
+  checkUserLoggedIn(){
+    if (this.common.storage.getItem('user') && JSON.parse(this.common.storage.getItem('user')).name && JSON.parse(this.common.storage.getItem('user')).phone){
+      this.logged_in = true;
     }
   }
 
@@ -41,6 +50,7 @@ export class OperatorComponent implements OnInit, OnDestroy {
   }
 
   loadChats() {
+    this.is_loading = false;
     console.log('Try load chats');
     this.common.connection.send(JSON.stringify({
       action: 'listChats',
