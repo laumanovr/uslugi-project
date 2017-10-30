@@ -16,6 +16,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
    */
   noOrders = true;
   not_logged_in = true;
+  is_loading = true;
 
   /**
    * Var to show/hide modal the modal window
@@ -63,37 +64,21 @@ export class OrdersComponent implements OnInit, OnDestroy {
     }
   }
 
-  checkUserLoggedIn(){
-    if (this.common.storage.getItem('user') && JSON.parse(this.common.storage.getItem('user')).name && JSON.parse(this.common.storage.getItem('user')).phone){
+  checkUserLoggedIn() {
+    if (this.common.storage.getItem('user') && JSON.parse(this.common.storage.getItem('user')).name && JSON.parse(this.common.storage.getItem('user')).phone) {
       this.not_logged_in = false;
-    }else{
+    } else {
       this.not_logged_in = true;
       this.noOrders = false;
+      this.is_loading = false;
     }
   }
-  //
-  // // Todo: implement later
-  // onAbortOrder(id) {
-  //   const url = 'updateorder' + '&orderid=' + id + '&status=aborted';
-  //   this.common.get(url).subscribe(data => {
-  //     console.log(data.json());
-  //     this.getOrdersFromApi('getOrders&type=active');
-  //   });
-  // }
-  //
-  // // Todo: delete later, made for tests
-  // onCompleteOrder(id) {
-  //   const url = 'updateorder' + '&orderid=' + id + '&status=completed';
-  //   this.common.get(url).subscribe(data => {
-  //     console.log(data.json());
-  //     this.getOrdersFromApi('getOrders&type=active');
-  //   });
-  // }
 
-  onRedirectToChat(orderId){
+
+  onRedirectToChat(orderId) {
     this.common.currentOrderId = orderId;
+    this.common.showAttachIcon = true;
     this.router.navigate(['chat']);
-    console.log('orderId ' + this.common.currentOrderId);
   }
 
   /**
@@ -202,8 +187,11 @@ export class OrdersComponent implements OnInit, OnDestroy {
       const resp = data.json();
       if (resp[0] === 'ok') {
         this.noOrders = false;
+        this.is_loading = false;
         const orders = resp[1];
         this.sortOrders(orders);
+      } else {
+        this.is_loading = false;
       }
     }));
   }
@@ -212,7 +200,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
     for (const order of orders) {
       if (order.status === 'completed') {
         this.ordersCompleted.push(order);
-      } else if(order.status === 'accepted'){
+      } else if (order.status === 'accepted') {
         this.orders.push(order);
       }
     }
