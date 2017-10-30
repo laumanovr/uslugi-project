@@ -13,6 +13,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   user: User;
   private subscriptions: Subscription[] = [];
+  is_loading = true;
 
   constructor(private router: Router,
               private common: CommonService) {
@@ -45,6 +46,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     const url = 'getClientData';
     this.subscriptions.push(this.common.get(url).subscribe(resp => {
       this.user = resp.json()[2];
+      this.is_loading = false;
     }));
   }
 }
