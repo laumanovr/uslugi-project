@@ -74,6 +74,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     const pass = '&password=' + this.passVal;
     const url = 'check_password_client' + phone + pass;
     this.subscription = this.common.get(url).subscribe(resp => {
+      console.log(resp);
       const respStatus = resp.json()[0];
       const user = {
         name: resp.json()[2].name,

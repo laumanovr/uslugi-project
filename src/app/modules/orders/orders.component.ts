@@ -65,7 +65,9 @@ export class OrdersComponent implements OnInit, OnDestroy {
   }
 
   checkUserLoggedIn() {
-    if (this.common.storage.getItem('user') && JSON.parse(this.common.storage.getItem('user')).name && JSON.parse(this.common.storage.getItem('user')).phone) {
+    let auth = JSON.parse(this.common.storage.getItem('auth'));
+    if (this.common.storage.getItem('user') && JSON.parse(this.common.storage.getItem('user')).name
+      && JSON.parse(this.common.storage.getItem('user')).phone || auth === true) {
       this.not_logged_in = false;
     } else {
       this.not_logged_in = true;
