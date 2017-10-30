@@ -11,6 +11,7 @@ import {CommonService} from '../../services/common.service';
 export class MainComponent implements OnInit, OnDestroy {
 
   services;
+  is_loading = true;
 
   private subscriptions: Subscription[] = [];
 
@@ -42,6 +43,7 @@ export class MainComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.common.get('getservices')
       .subscribe((data) => {
         this.services = data.json();
+        this.is_loading = false;
       }));
   }
 
