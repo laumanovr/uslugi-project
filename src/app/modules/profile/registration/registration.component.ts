@@ -131,6 +131,8 @@ export class RegistrationComponent implements OnInit, OnDestroy {
         const resp = data.json()[0];
         if (resp === 'ok') {
           this.common.storage.setItem('auth', 'true');
+          const user = {name: this.nameValue, phone: this.phoneValue};
+          this.common.storage.setItem('user', JSON.stringify(user));
           this.router.navigate(['profile']);
         }
       }));
