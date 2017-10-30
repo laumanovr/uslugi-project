@@ -13,6 +13,8 @@ export class CommonService {
 
   tempUser = {};
   currentOrderId: any;
+  public showAttachIcon: boolean;
+  recoveryPhoneVal: string;
 
   /**
    * Local storage
@@ -87,7 +89,7 @@ export class CommonService {
     return this.http.get(url);
   }
 
-  post(urlPart: string, body: string) {
+  post(urlPart: string, body: any) {
     const url = this.mainUrl + urlPart;
     return this.http.post(url, body, this.options);
   }
