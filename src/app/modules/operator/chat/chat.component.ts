@@ -62,7 +62,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   usersMessage: string;
 
-  constructor(private common: CommonService,
+  constructor(public common: CommonService,
               private router: Router,
               private location: Location,
               private _elementRef: ElementRef
