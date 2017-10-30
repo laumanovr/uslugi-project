@@ -13,7 +13,7 @@ export class CommonService {
 
   tempUser = {};
   currentOrderId: any;
-  public showAttachIcon: boolean;
+  showAttachIcon: boolean;
   recoveryPhoneVal: string;
 
   /**
