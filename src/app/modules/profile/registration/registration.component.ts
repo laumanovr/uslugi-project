@@ -52,6 +52,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   }
 
   checkPhone() {
+    this.phoneValue = this.phoneValue.replace(/[- )(]/g, '');
     const url = 'check_number&mobile=' + this.phoneValue;
     this.subscriptions.push(this.common.get(url).subscribe(data => {
       const resp = data.json()[1];
