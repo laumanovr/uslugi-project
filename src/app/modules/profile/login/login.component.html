@@ -20,13 +20,10 @@
         Войти
       </button>
 
+      <div class="wrong-num-phone" *ngIf="wrongNumberOrPhone">Неправильный номер или пароль</div>
+
       <p class="prof-text-2 m-t-30" (click)="onRegistration()">Еще не зарегистрированы?</p>
 
-      <!--Implement later-->
-      <!--<div class="row m-t-20">-->
-        <!--<span class="prof-hor-line"></span><span class="prof-or">или</span><span class="prof-hor-line"></span>-->
-      <!--</div>-->
-      <!--<button class="prof-namba1-btn"></button>-->
     </div>
   </div>
 
