@@ -125,9 +125,11 @@ export class RegistrationComponent implements OnInit, OnDestroy {
     const urlPart = 'create_client';
     const name = '&firstname=' + this.nameValue;
     const phone = '&mobile=' + this.phoneValue;
-    const url = urlPart + phone + name;
+    const pass = '&password=' + this.passValue;
+    const url = urlPart + phone + name + pass;
     this.subscriptions.push(
       this.common.get(url).subscribe(data => {
+        console.log(data);
         const resp = data.json()[0];
         if (resp === 'ok') {
           this.common.storage.setItem('auth', 'true');
