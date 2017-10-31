@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   phoneVal: string;
   passVal: string;
   phoneComplete: boolean;
+  wrongNumberOrPhone = false;
 
 
   private subscription: Subscription;
@@ -74,19 +75,19 @@ export class LoginComponent implements OnInit, OnDestroy {
     const pass = '&password=' + this.passVal;
     const url = 'check_password_client' + phone + pass;
     this.subscription = this.common.get(url).subscribe(resp => {
-      console.log(resp);
+      console.log(resp.json());
       const respStatus = resp.json()[0];
-      const user = {
-        name: resp.json()[2].name,
-        phone: 0 + resp.json()[2].phone
-      };
       if (respStatus === 'ok') {
+        const user = {
+          name: resp.json()[2].name,
+          phone: 0 + resp.json()[2].phone};
         this.common.storage.setItem('auth', 'true');
         this.common.storage.setItem('user', JSON.stringify(user));
         this.checkRoutes();
+      } else {
+        this.wrongNumberOrPhone = true;
       }
     });
-    console.log(this.phoneVal);
   }
 
   /**
