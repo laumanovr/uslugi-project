@@ -71,7 +71,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
     } else {
       this.createUser();
     }
-    console.log(this.phoneValue);
+    this.common.recoveryPhoneVal = this.phoneValue;
   }
 
 
@@ -99,6 +99,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
     const url = urlPart + phone + name;
     this.subscriptions.push(
       this.common.get(url).subscribe(resp => {
+        console.log(resp);
         const userCreated = resp.json()[1];
         switch (userCreated) {
           case 'no password':
@@ -118,6 +119,7 @@ export class ContactsComponent implements OnInit, OnDestroy {
   private sendSms(route) {
     const urlSms = 'sendSms&mobile=' + this.phoneValue;
     this.subscriptions.push(this.common.get(urlSms).subscribe(resp => {
+      console.log(resp);
       alert('Ваш смс код: ' + resp.json()[2]);
       if (resp.statusText === 'OK') {
         switch (route) {
