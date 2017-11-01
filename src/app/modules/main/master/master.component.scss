@@ -70,7 +70,6 @@
 .btn-operator {
   outline: none;
   border: none;
-  display: none;
   align-items: center;
   height: 42px;
   width: 80%;
@@ -80,9 +79,15 @@
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
   font-size: 1em;
-  white-space: nowrap;
   overflow: hidden;
   padding-right: 40px;
+  display: inline-flex;
+
+  img {
+    width: 30px;
+    margin-right: 20px;
+    margin-left: 25px;
+  }
 }
 
 .phone-call {
@@ -159,14 +164,54 @@
 
   .btn-operator {
     display: flex;
+    outline: none;
+    border: none;
+    align-items: center;
+    height: 42px;
+    width: 80%;
+    background-color: #F1F1F1;
+    border-radius: 4px;
+    margin-top: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 1em;
+    overflow: hidden;
+    padding-right: 40px;
+
+    img {
+      width: 30px;
+      margin-right: 20px;
+      margin-left: 25px;
+    }
   }
 
   .popup {
     position: absolute;
     left: 7%;
     width: 85%;
-    height: 140px;
+    height: 315px;
     background-color: white;
     border-radius: 4px;
+    top: 20%;
   }
+}
+
+.popup{
+  height: 315px;
+}
+
+.call-to-operator {
+  margin-top: 20px;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.call-to-master {
+  font-size: 17px;
+  font-weight: bold;
+  border-top: 1px solid grey;
+  width: 100%;
+  text-align: center;
+  margin-top: 25px;
+  padding-top: 17px;
 }
