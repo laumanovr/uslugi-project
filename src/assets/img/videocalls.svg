@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="3951 307 24 24">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #2196f3;
+        stroke: rgba(0,0,0,0);
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <g id="videocalls" transform="translate(3870)">
+    <path id="back-icon" class="cls-1" d="M15.184-11.375,19.5-15.691V-3.809L15.184-8.125v3.809a1.02,1.02,0,0,1-.33.736,1.075,1.075,0,0,1-.787.33h-13A1.02,1.02,0,0,1,.33-3.58,1.02,1.02,0,0,1,0-4.316V-15.184a1.02,1.02,0,0,1,.33-.736,1.02,1.02,0,0,1,.736-.33h13a1.075,1.075,0,0,1,.787.33,1.02,1.02,0,0,1,.33.736Z" transform="translate(83 329.25)"/>
+    <rect id="Rectangle_67" data-name="Rectangle 67" class="cls-2" width="24" height="24" transform="translate(81 307)"/>
+  </g>
+</svg>
