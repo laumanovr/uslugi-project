@@ -32,14 +32,21 @@
     <!--Call popup-->
     <div class="modal" id="modal" *ngIf="modal" (click)="onClickOverModal($event)">
       <div class="popup">
-        <p class="phone-call">Наберите номер: <span class="phone-number">1412</span></p>
+        <div class="call-to-operator">Звонок оператору</div>
         <button class="btn-operator">
-          <i class="material-icons phone-icon">phone</i>
-          Звонок оператору
+          <img src="../../../../assets/img/videocalls.svg">
+          <b>Видеозвонок</b>
         </button>
         <button class="btn-operator">
-          <i class="material-icons phone-icon">phone</i>
-          Звонок исполнителю
+          <img src="../../../../assets/img/audiocalls.svg">
+          <b>Аудиозвонок</b>
+        </button>
+
+        <div class="call-to-master">Звонок исполнителю</div>
+
+        <button class="btn-operator">
+          <img src="../../../../assets/img/audiocalls.svg">
+          <b>Аудиозвонок</b>
         </button>
       </div>
     </div>
