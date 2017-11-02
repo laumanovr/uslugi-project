@@ -10,7 +10,9 @@
         <p class="operator-title">Оператор {{name}}</p>
         <p class="operator-online">{{status}}</p>
       </div>
-      <div class="phone-icon"></div>
+      <div class="phone-icon" (click)="onMakeCall()">
+        <img src="../../../../assets/img/audiocalls-white.svg">
+      </div>
     </div>
     <!--Content-->
     <div class="chat-wrap" (click)="closeDropUpOuter()">
@@ -75,6 +77,28 @@
           </label>
         </li>
       </ul>
+    </div>
+
+
+
+    <!--Call popup-->
+    <div class="modal" id="modal" *ngIf="modal" (click)="onCloseModal($event)">
+      <div class="popup">
+        <button class="btn-operator">
+          <img src="../../../../assets/img/audiocalls.svg">
+          <b>Начать аудиозвонок</b>
+        </button>
+
+        <button class="btn-operator">
+          <img src="../../../../assets/img/videocalls.svg">
+          <b>Начать видеозвонок</b>
+        </button>
+
+        <button class="btn-operator" id="cancel-call" (click)="onCloseModal($event)">
+          <img src="../../../../assets/img/cancel.svg">
+          <b class="cancel">Отменить</b>
+        </button>
+      </div>
     </div>
   </div>
 </div>
