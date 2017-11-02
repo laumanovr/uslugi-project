@@ -61,6 +61,7 @@ export class ChatComponent implements OnInit, OnDestroy {
    */
 
   usersMessage: string;
+  modal = false;
 
   constructor(public common: CommonService,
               private router: Router,
@@ -259,4 +260,15 @@ export class ChatComponent implements OnInit, OnDestroy {
     }
   }
 
+  onMakeCall(){
+    this.modal = true;
+  }
+
+  onCloseModal(event) {
+    const modalWindow = document.getElementById('modal');
+    const cancelCall = document.getElementById('cancel-call');
+    if (event.target === modalWindow || event.currentTarget === cancelCall) {
+      this.modal = false;
+    }
+  }
 }
