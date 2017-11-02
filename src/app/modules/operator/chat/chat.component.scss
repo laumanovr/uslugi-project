@@ -4,10 +4,54 @@
 }
 
 .phone-icon {
-  background: url("../../../../assets/img/phone-icon.svg") no-repeat;
-  width: 20px;
-  height: 26px;
   margin-right: 20px;
+
+  img{
+    width: 30px;
+  }
+}
+
+.popup{
+  height: 220px;
+  top: 30%;
+  left: 35%;
+
+  .btn-operator{
+    display: flex;
+    outline: none;
+    border: none;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 42px;
+    width: 90%;
+    background-color: #F1F1F1;
+    border-radius: 4px;
+    margin-top: 24px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+
+    img{
+      width: 30px;
+      margin-right: 20px;
+      margin-left: 25px;
+    }
+
+    b{
+      color: #2196f3;
+    }
+
+    .cancel{
+      color: #9f9f9f;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .popup{
+    left: 10%;
+  }
 }
 
 .operator-photo {
