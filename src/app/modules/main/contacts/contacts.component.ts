@@ -31,6 +31,11 @@ export class ContactsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.button = document.getElementById('btn');
     this.checkPhonePlaceholder();
+    if(this.common.storage.getItem('user') && JSON.parse(this.common.storage.getItem('user')).name
+      && JSON.parse(this.common.storage.getItem('user')).phone) {
+      this.button.style.backgroundColor = '#FFC107';
+      this.button.style.color = 'black';
+    }
   }
 
   /**
