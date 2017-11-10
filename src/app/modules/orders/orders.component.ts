@@ -31,6 +31,11 @@ export class OrdersComponent implements OnInit, OnDestroy {
   revTitle: string;
   revDescription: string;
   selectedOrder;
+  master;
+  videoModal = false;
+  audioModal = false;
+  masterCallModal = false;
+  masterAvatar: any;
 
   /**
    * Vars to hide/show html containers
@@ -53,6 +58,8 @@ export class OrdersComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.master = JSON.parse(this.common.storage.getItem('master'));
+    this.masterAvatar = this.master.photo[0];
     this.common.fromOrderCreate = false;
     this.getOrdersFromApi('getOrders&type=active');
     this.checkUserLoggedIn();
@@ -223,6 +230,34 @@ export class OrdersComponent implements OnInit, OnDestroy {
         }
       });
     }
+  }
+
+
+  onStartVideoCall(){
+    this.modal = false;
+    this.videoModal = true;
+  }
+
+  onCompleteVideoCall(){
+    this.videoModal = false;
+  }
+
+  onStartAudioCall(){
+    this.modal = false;
+    this.audioModal = true;
+  }
+
+  onCompleteAudioCall(){
+    this.audioModal = false;
+  }
+
+  onStartMasterCallAudio(){
+    this.modal = false;
+    this.masterCallModal = true;
+  }
+
+  onCompleteMasterCall(){
+    this.masterCallModal = false;
   }
 
 }
