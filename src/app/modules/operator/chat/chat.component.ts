@@ -62,6 +62,8 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   usersMessage: string;
   modal = false;
+  audioModal = false;
+  videoModal = false;
 
   constructor(public common: CommonService,
               private router: Router,
@@ -270,5 +272,23 @@ export class ChatComponent implements OnInit, OnDestroy {
     if (event.target === modalWindow || event.currentTarget === cancelCall) {
       this.modal = false;
     }
+  }
+
+  onStartAudioCall(){
+    this.modal = false;
+    this.audioModal = true;
+  }
+
+  onCompleteAudioCall(){
+    this.audioModal = false;
+  }
+
+  onStartVideoCall(){
+    this.modal = false;
+    this.videoModal = true;
+  }
+
+  onCompleteVideoCall(){
+    this.videoModal = false;
   }
 }
