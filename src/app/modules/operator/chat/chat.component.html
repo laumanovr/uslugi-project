@@ -78,27 +78,58 @@
         </li>
       </ul>
     </div>
+  </div>
+</div>
 
 
+<!--Call popup-->
+<div class="modal" id="modal" *ngIf="modal" (click)="onCloseModal($event)">
+  <div class="popup">
+    <button class="btn-operator" (click)="onStartAudioCall()">
+      <img src="../../../../assets/img/audiocalls.svg">
+      <b>Начать аудиозвонок</b>
+    </button>
 
-    <!--Call popup-->
-    <div class="modal" id="modal" *ngIf="modal" (click)="onCloseModal($event)">
-      <div class="popup">
-        <button class="btn-operator">
-          <img src="../../../../assets/img/audiocalls.svg">
-          <b>Начать аудиозвонок</b>
-        </button>
+    <button class="btn-operator" (click)="onStartVideoCall()">
+      <img src="../../../../assets/img/videocalls.svg">
+      <b>Начать видеозвонок</b>
+    </button>
 
-        <button class="btn-operator">
-          <img src="../../../../assets/img/videocalls.svg">
-          <b>Начать видеозвонок</b>
-        </button>
+    <button class="btn-operator" id="cancel-call" (click)="onCloseModal($event)">
+      <img src="../../../../assets/img/cancel.svg">
+      <b class="cancel">Отменить</b>
+    </button>
+  </div>
+</div>
 
-        <button class="btn-operator" id="cancel-call" (click)="onCloseModal($event)">
-          <img src="../../../../assets/img/cancel.svg">
-          <b class="cancel">Отменить</b>
-        </button>
-      </div>
+<div class="modal" id="audio_modal" *ngIf="audioModal">
+  <div class="block">
+    <div class="audio_call">Аудиозвонок</div>
+    <div class="operator">
+      <img src="../../../../assets/img/tech-support.jpg">
+      <div class="name">Оператор {{name}}</div>
+      <div class="timer">00:30</div>
+      <div class="connecting">идет соединение</div>
     </div>
+    <div class="complete" (click)="onCompleteAudioCall()">
+      <img src="../../../../assets/img/ic-end-call.svg">
+      <div class="finish_call">Завершить вызов</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" id="video_modal" *ngIf="videoModal">
+  <div class="block">
+    <div class="video_call">Видеозвонок</div>
+    <div class="operator">
+      <div class="video_image">идет соединение</div>
+      <div class="name">Оператор {{name}}</div>
+      <div class="timer">00:30</div>
+    </div>
+    <a class="complete" (click)="onCompleteVideoCall()">
+      <img src="../../../../assets/img/ic-end-call.svg">
+      <div class="finish_call">Завершить вызов</div>
+    </a>
   </div>
 </div>
