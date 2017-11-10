@@ -14,6 +14,10 @@ export class MasterComponent implements OnInit {
   master;
   popup = false;
   secondCall = false;
+  videoModal = false;
+  audioModal = false;
+  masterCallModal = false;
+  masterAvatar: any;
 
   constructor(private location: Location,
               private router: Router,
@@ -22,6 +26,7 @@ export class MasterComponent implements OnInit {
 
   ngOnInit() {
     this.master = JSON.parse(this.common.storage.getItem('master'));
+    this.masterAvatar = this.master.photo[0];
   }
 
   closePopup(event) {
@@ -83,5 +88,32 @@ export class MasterComponent implements OnInit {
       }
       console.log(resp);
     });
+  }
+
+  onStartVideoCall(){
+    this.modal = false;
+    this.videoModal = true;
+  }
+
+  onCompleteVideoCall(){
+    this.videoModal = false;
+  }
+
+  onStartAudioCall(){
+    this.modal = false;
+    this.audioModal = true;
+  }
+
+  onCompleteAudioCall(){
+    this.audioModal = false;
+  }
+
+  onStartMasterCallAudio(){
+    this.modal = false;
+    this.masterCallModal = true;
+  }
+
+  onCompleteMasterCall(){
+    this.masterCallModal = false;
   }
 }
